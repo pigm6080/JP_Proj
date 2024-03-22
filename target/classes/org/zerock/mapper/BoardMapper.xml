@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.BoardMapper">
+	<!-- <![CDATA[아래의 부등호를 사용하기 위함. -->
+	<select id="getList" resultType="org.zerock.domain.BoardVO">
+		<![CDATA[
+			select * from tbl_board where bno > 0
+		]]>
+	</select>
+
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr" separator=" OR ">
+				<choose>
+					<when test="type == 'T'.toString()">
+						title LIKE CONCAT('%', #{keyword}, '%')
+					</when>
+					<when test="type == 'C'.toString()">
+						content LIKE CONCAT('%', #{keyword}, '%')
+					</when>
+					<when test="type == 'W'.toString()">
+						writer LIKE CONCAT('%', #{keyword}, '%')
+					</when>
+				</choose>
+			</foreach>
+		</trim>
+	</sql>
+
+	<select id="getListWithPaging"
+		resultType="org.zerock.domain.BoardVO">
+		<![CDATA[
+		SELECT
+		    bno, title, content, writer, regdate, updatedate
+		FROM
+		    (
+		    SELECT 
+		        @rownum := @rownum + 1 AS rn, bno, title, content, writer, regdate, updatedate
+		    FROM 
+		        tbl_board, 
+		        (SELECT @rownum := 0) AS rn_init
+		    ) AS numbered_board
+		WHERE ]]>
+
+		<include refid="criteria"></include>
+		
+		<![CDATA[
+		    rn > (#{pageNum}-1)*10 LIMIT #{amount}
+		]]>
+
+	</select>
+
+	<select id="getTotalCount" resultType="int">
+		select count(*) from tbl_board where
+		<include refid="criteria"></include>
+		bno > 0
+	</select>
+
+	<insert id="insert" parameterType="org.zerock.domain.BoardVO">
+		insert into tbl_board (title, content, writer)
+		values (#{title}, #{content}, #{writer})
+	</insert>
+
+
+	<insert id="insertSelectKey"
+		parameterType="org.zerock.domain.BoardVO" useGeneratedKeys="true"
+		keyProperty="bno">
+		insert into tbl_board (title, content, writer)
+		values (#{title}, #{content}, #{writer})
+	</insert>
+
+	<select id="read" resultType="org.zerock.domain.BoardVO">
+		select * from tbl_board where bno =
+		#{bno}
+	</select>
+
+	<delete id="delete">
+		delete from tbl_board where bno = #{bno}
+	</delete>
+
+	<update id="update" parameterType="org.zerock.domain.BoardVO">
+		update tbl_board
+		set title = #{title},
+		content = #{content},
+		writer = #{writer},
+		updateDate = now()
+		where bno = #{bno}
+	</update>
+
+</mapper>
