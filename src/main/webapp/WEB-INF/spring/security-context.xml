@@ -11,7 +11,6 @@
 <bean id="customUserDetailsService" class="org.zerock.security.CustomUserDetailsService"></bean>		
 	
 <security:http>
-<!-- 경계를 정하고 -->
 	
 	<security:intercept-url pattern="/sample/all" access="permitAll" />
 	<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')" />
@@ -21,7 +20,7 @@
 	
 	
 	<security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/>
-	
+
 	<security:access-denied-handler ref="customAccesDenid"/> 
 	 
 	<security:logout logout-url="/customLogout" invalidate-session="true"/>

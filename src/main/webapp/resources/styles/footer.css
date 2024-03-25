@@ -1,0 +1,54 @@
+/*푸터영역 */
+
+footer {
+  text-align: center;
+  width: 100%;
+
+  background-color: rgba(42, 193, 188, 0.7);
+  position: relative;
+}
+
+.footer_logo {
+  display: flex;
+  align-items: center;
+  padding-bottom: 30px;
+  justify-content: space-between;
+}
+.footer_logo > h2 {
+  color: white;
+}
+.thth {
+  width: 350px;
+}
+
+.footer_logo_container {
+  display: flex;
+  color: white;
+  font-size: 48px;
+}
+
+footer > .copy {
+  width: 100%;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+footer > .connect {
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+  font-size: 26px;
+  flex-direction: column;
+  text-align: right;
+  margin-right: 30px;
+  top: 10%;
+}
+.connect > p {
+  margin-top: 20px;
+}
+
+.icon > img {
+  margin-right: 70px;
+}

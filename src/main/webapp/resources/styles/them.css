@@ -1,0 +1,176 @@
+/* 테마 버튼디자인 */
+
+#테마 {
+  position: relative;
+}
+
+.them__container {
+  width: 300vw;
+}
+.inner {
+  width: 100vw;
+  height: 67vh;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner img {
+  width: 50%;
+}
+.inner_text {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inner_text > h1 {
+  font-size: 62px;
+  color: #2ac1bc;
+  float: left;
+  line-height: 100px;
+}
+
+.them_subtitle {
+  color: #a5d6a7;
+  font-size: 48px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.them_prevBtn,
+.them_nextBtn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #a5d6a7;
+}
+
+.them_nextBtn {
+  left: 3%;
+}
+.them_prevBtn {
+  right: 3%;
+}
+
+.them_prevBtn::before,
+.them_nextBtn::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.them_prevBtn::before {
+  border-width: 8px 0 8px 13px;
+  border-color: transparent transparent transparent #a5d6a7;
+  position: relative;
+  left: 8px;
+  top: 0px;
+}
+
+.them_nextBtn::before {
+  border-width: 8px 13px 8px 0;
+  border-color: transparent #a5d6a7 transparent transparent;
+  position: relative;
+  left: 4px;
+  top: 0px;
+}
+
+/* 테마 버튼 */
+
+.them_button {
+  width: 400px;
+  height: 102px;
+  border-radius: 30px;
+  background: #28cb8b;
+  box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.them_button_text {
+  font-size: 50px;
+}
+
+/*테마 이미지 박스*/
+
+.them_img_container {
+  width: 50vw;
+  height: 67vh;
+  position: relative;
+}
+
+.them_img_box1 {
+  width: 350px;
+  height: 350px;
+  border-radius: 10px;
+  position: absolute;
+  rotate: 300deg;
+  top: 40%;
+  background-image: url("../img/them05.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.them_img_box2 {
+  width: 350px;
+  height: 350px;
+  position: absolute;
+  border-radius: 10px;
+  rotate: 320deg;
+  left: 4%;
+  top: 24%;
+  background-image: url("../img/them04.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.them_img_box3 {
+  width: 350px;
+  height: 350px;
+  position: absolute;
+  rotate: 340deg;
+  border-radius: 10px;
+  left: 12%;
+  top: 14%;
+  background-image: url("../img/them03.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.them_img_box4 {
+  width: 350px;
+  height: 350px;
+  position: absolute;
+  border-radius: 10px;
+  rotate: 355deg;
+  left: 20%;
+  top: 5%;
+  background-image: url("../img/them02.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.them_img_box5 {
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  left: 36%;
+  top: 30%;
+  border-radius: 10px;
+  background-image: url("../img/them01.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

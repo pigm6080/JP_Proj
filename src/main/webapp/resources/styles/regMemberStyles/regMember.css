@@ -1,0 +1,70 @@
+/* 회원가입 폼 스타일 */
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+label {
+  font-size: 22px;
+}
+
+.signup-form {
+  width: 1000px;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.signup-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="tel"] {
+  width: calc(100% - 10px);
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus,
+.form-group input[type="tel"]:focus {
+  outline: none;
+  border-color: #2ac1bc;
+}
+
+.form-group button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #2ac1bc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "maplestorybold";
+  font-size: 20px;
+}
+
+.form-group button[type="submit"]:hover {
+  background-color: #1e7c74;
+}

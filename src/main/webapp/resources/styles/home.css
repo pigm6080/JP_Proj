@@ -1,0 +1,251 @@
+/* 슬라이드바 */
+.slide_bar_container {
+  width: 38%;
+  height: 200px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 200px;
+}
+.slide_bar_info {
+  width: 500px;
+  height: 80px;
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
+}
+.slide_bar_info_num {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  width: 100px;
+  height: 30px;
+}
+.slide_bar_info_num :nth-child(1) {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2ac1bc;
+}
+
+.slide_bar_info_num :nth-child(2) {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #a5d6a7;
+  margin-left: 7px;
+}
+
+.slide_bar_button {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.slide_bar_button > a {
+  width: 100%;
+  padding-right: 20px;
+}
+.slide_bar_button > :nth-child(2) {
+  padding-left: 5px;
+}
+/*프로세스 바 */
+#progress {
+  appearance: none;
+  width: 180px;
+  height: 10px;
+  border-radius: 20px;
+}
+
+#progress::-webkit-progress-bar {
+  background: #e8f5e9;
+  border-radius: 10px;
+  box-shadow: inset 3px 3px 10px #ccc;
+}
+
+#progress::-webkit-progress-value {
+  border-radius: 10px;
+  background: #2ac1bc;
+}
+
+/*슬라이드 구현*/
+.home_slide_container {
+  display: flex;
+  width: 300vw;
+  float: left;
+}
+
+.home_slide1 {
+  display: flex;
+  width: 100vw;
+  height: 100%;
+  position: relative;
+  justify-content: space-around;
+}
+
+/* 슬라이드1 */
+.home_slide1_text {
+  width: 40vw;
+  padding-top: 200px;
+  padding-left: 400px;
+}
+
+.home_slide1_textBox {
+  display: flex;
+  background-color: #2ac1bc;
+  justify-content: flex-start;
+  align-items: center;
+  width: 400px;
+  height: 50px;
+  margin-bottom: 50px;
+  border-radius: 30px;
+}
+.home_slide1_text > .home_slide1_textBox > h1 {
+  color: white;
+  font-size: 38px;
+  padding-left: 40px;
+}
+
+.home_slide1_text > p {
+  color: #2ac1bc;
+  font-size: 48px;
+  margin-top: 20px;
+  padding-bottom: 60px;
+}
+
+.home_slide1_button_text > a {
+  font-size: 37px;
+  color: #a5d6a7;
+  text-decoration: underline;
+  padding-left: 6px;
+}
+
+/* 슬라이드 이미지 박스 */
+.home_slide1_imgbox {
+  position: relative;
+  margin-top: 130px;
+  margin-right: 200px;
+  width: 60vw;
+  height: 65vh;
+  border-radius: 50px;
+  background-image: url("..//img/homimg01.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* 2번슬라이드 */
+
+.home_slide2 {
+  display: flex;
+  width: 100vw;
+  height: 100%;
+  position: relative;
+  justify-content: space-around;
+  background-color: #f6d6d6;
+}
+
+.home_slide2_text {
+  width: 40%;
+  padding-top: 200px;
+  padding-left: 500px;
+}
+
+.home_slide2_textBox {
+  display: flex;
+  background-color: #f59999;
+  justify-content: flex-start;
+  align-items: center;
+  width: 400px;
+  height: 50px;
+  margin-bottom: 50px;
+  border-radius: 30px;
+}
+.home_slide2_text > .home_slide2_textBox > h1 {
+  color: white;
+  font-size: 38px;
+  padding-left: 40px;
+}
+
+.home_slide2_text > p {
+  color: #fff;
+  font-size: 48px;
+  margin-top: 20px;
+  padding-bottom: 60px;
+}
+.hothot {
+  color: #de5050;
+}
+
+.home_slide2_button_text > a {
+  font-size: 37px;
+  color: #fff;
+  text-decoration: underline;
+  padding-left: 6px;
+}
+
+.home_slide2_imgbox {
+  position: relative;
+  margin-top: 130px;
+  margin-right: 200px;
+  width: 60vw;
+  height: 65vh;
+  border-radius: 50px;
+  background-image: url("..//img/homeimg02.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+/*3번 슬라이드*/
+.home_slide3 {
+  display: flex;
+  width: 100vw;
+  height: 100%;
+  position: relative;
+  justify-content: space-around;
+}
+
+.home_slide3_text {
+  width: 40%;
+  padding-top: 200px;
+  padding-left: 500px;
+}
+
+.home_slide3_textBox {
+  display: flex;
+  background-color: #2ac1bc;
+  justify-content: flex-start;
+  align-items: center;
+  width: 400px;
+  height: 50px;
+  margin-bottom: 50px;
+  border-radius: 30px;
+}
+.home_slide3_text > .home_slide3_textBox > h1 {
+  color: white;
+  font-size: 38px;
+  padding-left: 40px;
+}
+
+.home_slide3_text > p {
+  color: #2ac1bc;
+  font-size: 48px;
+  margin-top: 20px;
+  padding-bottom: 60px;
+}
+
+.home_slide3_button_text > a {
+  font-size: 37px;
+  color: #a5d6a7;
+  text-decoration: underline;
+  padding-left: 6px;
+}
+
+.home_slide3_imgbox {
+  position: relative;
+  margin-top: 130px;
+  margin-right: 200px;
+  width: 60vw;
+  height: 65vh;
+  border-radius: 50px;
+  background-image: url("../img/homeimg03.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}

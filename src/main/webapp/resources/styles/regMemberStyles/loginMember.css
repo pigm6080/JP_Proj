@@ -1,0 +1,145 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#wrap {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title_header > h1 {
+  font-size: 60px;
+}
+.title_header > img {
+  width: 120px;
+}
+
+.title > p {
+  font-size: 32px;
+  margin: 20px;
+  padding-left: 40px;
+}
+
+/* 인풋박스 디자인 */
+.inputBox {
+  margin-bottom: 20px;
+  display: flex;
+  width: 400px;
+}
+
+label {
+  display: flex;
+  font-weight: bold;
+  width: 300px;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: rgba(42, 193, 188, 0.3);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #2ac1bc;
+}
+
+.login_form {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login_button {
+  margin-top: 50px;
+  padding: 10px 30px;
+  font-size: 30px;
+  width: 300px;
+  background-color: rgba(42, 193, 188, 0.3);
+  color: black;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "maplestorybold";
+}
+
+.login_button:hover {
+  background-color: #2ac1bc;
+}
+
+/*로그인 폼 언더 디자인*/
+.sns_login {
+  display: flex;
+  font-size: 23px;
+  align-items: center;
+}
+
+.login_dec {
+  width: 200px;
+  height: 0;
+  border: 1px solid black;
+  margin: 50px;
+}
+.joinus {
+  display: flex;
+  padding: 40px;
+  font-size: 18px;
+}
+.joinus > a:visited {
+  color: black;
+  text-decoration: underline;
+}
+.joinus > .reg {
+  padding-left: 10px;
+  text-decoration: underline;
+  transition: color 0.3s, text-decoration 0.3s;
+}
+
+.joinus > .reg:hover {
+  text-decoration: underline;
+  color: #2ac1bc; /* 텍스트 색상 변경 */
+}
+
+/* 아이콘 */
+.sns_icon {
+  display: flex;
+  width: 800px;
+  align-items: center;
+  justify-content: center;
+}
+.sns_icon > a {
+  padding: 30px;
+}
+.sns_icon :nth-child(1) {
+  width: 100px;
+}
+.sns_icon :nth-child(2) {
+  width: 100px;
+}
+.sns_icon :nth-child(3) {
+  width: 100px;
+}
+
+/*로그인 푸터 */
+.login_footer > p {
+  padding-top: 30px;
+  font-size: 20px;
+}

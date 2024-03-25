@@ -1,0 +1,217 @@
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.main {
+  display: flex;
+  background-color: #e8f5e9;
+}
+
+header {
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo > a {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  margin-right: 10px; /* 로고와 프로젝트명 사이 간격 조정 */
+}
+
+.project-name {
+  font-family: "MaplestoryBold", sans-serif; /* MaplestoryBold 폰트 적용 */
+  font-size: 48px;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background-color: #2ac1bc;
+  width: 100%;
+  height: 100px;
+  flex-direction: row;
+  justify-content: space-around;
+  z-index: 100;
+}
+
+.nav-buttons,
+.auth-buttons {
+  display: flex;
+}
+
+.nav-buttons > button {
+  margin-right: 40px;
+  padding: 10px 20px;
+}
+
+.auth-buttons > button {
+  padding: 10px 20px;
+}
+
+/* Common button styles */
+.button {
+  font-family: "MaplestoryBold", sans-serif; /* MaplestoryBold 폰트 적용 */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+
+  border: none;
+  background: none;
+  color: inherit;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+.button:focus {
+  outline: none;
+}
+.button > span {
+  vertical-align: middle;
+}
+
+/* 헤더 > 메인 홈 영역 */
+
+.main_home {
+  display: flex;
+  width: 100%;
+  height: 800px;
+  margin-top: 100px;
+  background-color: #e8f5e9;
+  font-family: "MaplestoryBold", sans-serif; /* MaplestoryBold 폰트 적용 */
+}
+
+.home_textBox {
+  display: flex;
+  margin-top: 400px;
+  margin-left: 350px;
+  width: 560px;
+  height: 400px;
+  flex-direction: column;
+  position: relative;
+}
+
+.home_textBox > h2 {
+  font-size: 39px;
+  color: #2ac1bc;
+  text-align-last: left;
+  padding-left: 30px;
+  margin-top: 20px;
+  line-height: 55px;
+}
+.home_textBox > a {
+  text-decoration: underline;
+  color: #a5d6a7;
+  font-size: 26px;
+  text-align-last: left;
+  margin-top: 40px;
+  padding-left: 32px;
+}
+
+.home_textBox_decBox {
+  width: 252px;
+  height: 30px;
+  position: absolute;
+  left: 229.5px;
+  top: 269.5px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background: rgba(42, 193, 188, 0.5);
+}
+.container {
+  width: 280px;
+  height: 40px;
+  border-radius: 20px;
+  background: rgba(42, 193, 188, 0.5);
+  align-items: center;
+  display: flex;
+  position: absolute;
+  top: -50px;
+  left: 30px;
+}
+
+.container p {
+  margin-left: 20px;
+  padding: 5px;
+  font-size: 25px;
+  font-weight: 300;
+  text-align: left;
+  color: #fff;
+  padding-left: 6px; /* Adjust as needed */
+  padding-top: 5px; /* Adjust as needed */
+}
+
+/* 메인 홈 사진영역 */
+
+.main_home_slide {
+  display: flex;
+  overflow: hidden;
+}
+
+.main_home_pic {
+  display: flex;
+  margin-top: 170px;
+  margin-left: 70px;
+  width: 900px;
+  height: 700px;
+  border: 1px solid black;
+  border-radius: 50px;
+}
+
+/* 슬라이드 가이드 */
+
+.slide {
+  display: flex;
+  box-sizing: border-box;
+  height: 800px;
+  margin-top: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide_box {
+  display: flex;
+}
+
+.slide_item {
+  flex: 0 0 100%; /* 슬라이드 아이템 너비 설정 */
+}
+
+.slide_item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 이미지가 화면에 맞추어 보이도록 설정 */
+}
+
+/* CSS 스타일 */
+.button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.on {
+  color: #fbc02d;
+}
+
+.button:hover {
+  color: #fbc02d;
+}
+
+/* */
