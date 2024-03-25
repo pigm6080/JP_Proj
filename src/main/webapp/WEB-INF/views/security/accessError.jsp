@@ -7,10 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Access Denied Page</title>
+<title>J발 너 P야 ? 에러페이지</title>
 </head>
 <body>
-	<h1>Access Denied Page</h1>
+	<h1>J발 너 P야 ? 에러페이지</h1>
 	
 	<h2><c:out value="${SPRING_SECURITY_403_EXCEPTION.getMessage()}" /></h2>
 	
