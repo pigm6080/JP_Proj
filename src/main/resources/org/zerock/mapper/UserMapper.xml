@@ -17,18 +17,10 @@
     </collection> 
   </resultMap>
   
-  
-  
-  
-  
   <resultMap type="org.zerock.domain.AuthVO" id="authMap">
     <result property="id" column="id"/>
     <result property="auth" column="auth"/>
   </resultMap>
-  
-  
-  
-  
   
   
   <select id="read" resultMap="memberMap">
@@ -38,5 +30,33 @@
         user mem Left outer Join user_auth a on mem.id = a.id 
       WHERE mem.id = #{id}
   </select>
+  
+  
+ 	<insert id="insert" parameterType="org.zerock.domain.UserVO">
+		insert into user(id, password, username, phone)
+		values (#{id}, #{password}, #{username},#{phone})
+	</insert>
+	
+	<delete id="delete" parameterType="String">
+		delete from user where id = #{id}
+	</delete>
+	
+	<update id="update" parameterType="org.zerock.domain.UserVO">
+		update user
+		set id = #{id},
+		password = #{password},
+		username = #{username},
+		phone = #{phone}
+		where id = #{id}
+	</update>
+	
+	<select id="getList" resultType="org.zerock.domain.UserVO">
+		<![CDATA[
+			select * from user
+		]]>
+	</select>
+	
+	
+	
 
 </mapper>

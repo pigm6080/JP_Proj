@@ -27,6 +27,7 @@
 	 
 </security:http>
 		
+		
 <security:authentication-manager>
 
 	<security:authentication-provider user-service-ref="customUserDetailsService">
