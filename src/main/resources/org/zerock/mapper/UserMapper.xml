@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.UserMapper">
+
+
+
+
+  <resultMap type="org.zerock.domain.UserVO" id="memberMap">
+    <id property="id" column="id"/>
+    <result property="id" column="id"/>
+    <result property="password" column="password"/>
+    <result property="username" column="username"/>
+    <result property="createday" column="createday"/>
+    <collection property="authList" resultMap="authMap">
+    </collection> 
+  </resultMap>
+  
+  
+  
+  
+  
+  <resultMap type="org.zerock.domain.AuthVO" id="authMap">
+    <result property="id" column="id"/>
+    <result property="auth" column="auth"/>
+  </resultMap>
+  
+  
+  
+  
+  
+  
+  <select id="read" resultMap="memberMap">
+      SELECT
+        mem.id , password  ,username ,phone  ,createday , auth
+      FROM
+        user mem Left outer Join user_auth a on mem.id = a.id 
+      WHERE mem.id = #{id}
+  </select>
+
+</mapper>
