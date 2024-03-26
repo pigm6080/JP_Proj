@@ -76,7 +76,7 @@
                 </p>
               </div>
             </div>
-            <div class="home_slide1_imgbox"></div>
+          
           </div>
           <!-- 슬라이드 2번-->
           <div class="home_slide2">
@@ -97,7 +97,7 @@
                 </p>
               </div>
             </div>
-            <div class="home_slide2_imgbox"></div>
+           
           </div>
           <!-- 슬라이드 3번-->
           <div class="home_slide3">
@@ -112,7 +112,7 @@
                 </p>
               </div>
             </div>
-            <div class="home_slide3_imgbox"></div>
+           
           </div>
         </div>
         <div class="slide_bar_container">
@@ -124,13 +124,13 @@
             </div>
             <div class="slide_bar_button">
               <a href="#" id="leftArrow">
-                <img src="./img/arrow-left.png" alt=""
+                <img src="resources/img/arrow-left.png" alt=""
               /></a>
               <a href="#" id="playButton"
-                ><img src="./img/play.png" alt=""
+                ><img src="resources/img/play.png" alt=""
               /></a>
               <a href="#" id="rightArrow"
-                ><img src="./img/arrow-right.png" alt=""
+                ><img src="resources/img/arrow-right.png" alt=""
               /></a>
             </div>
           </div>
