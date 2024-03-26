@@ -32,7 +32,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 		
 		
 		log.warn("ROLE NAMES :" + roleNames);
-		
+		/*
 		if(roleNames.contains("ROLE_ADMIN")) {
 			
 			response.sendRedirect("/sample/admin");
@@ -44,7 +44,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 			response.sendRedirect("/sample/member");
 			return;
 		}
-		
+		*/
 		response.sendRedirect("/");
 		
 	}
