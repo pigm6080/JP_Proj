@@ -12,6 +12,7 @@
     <result property="id" column="id"/>
     <result property="password" column="password"/>
     <result property="username" column="username"/>
+    <result property="phone" column="phone"/>
     <result property="createday" column="createday"/>
     <collection property="authList" resultMap="authMap">
     </collection> 
@@ -25,7 +26,7 @@
   
   <select id="read" resultMap="memberMap">
       SELECT
-        mem.id , password  ,username ,phone  ,createday , auth
+        mem.id , password  ,username , phone  ,createday , auth
       FROM
         user mem Left outer Join user_auth a on mem.id = a.id 
       WHERE mem.id = #{id}
@@ -34,7 +35,7 @@
   
  	<insert id="insert" parameterType="org.zerock.domain.UserVO">
 		insert into user(id, password, username, phone)
-		values (#{id}, #{password}, #{username},#{phone})
+		values (#{id}, #{password}, #{username}, #{phone})
 	</insert>
 	
 	<delete id="delete" parameterType="String">

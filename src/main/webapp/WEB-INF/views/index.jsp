@@ -63,79 +63,52 @@
 
       <section id="홈" class="home">
         <div class="home_container home_slide_container">
-          <!-- 슬라이드 1번-->
-          <div class="home_slide1">
-            <div class="home_slide1_text">
-              <div class="home_slide1_textBox">
-                <h1>두근두근 설레는</h1>
-              </div>
-              <p>감성과 특색이 넘치는 <br />신상 여행지</p>
-              <div class="home_slide1_button">
-                <p class="home_slide1_button_text">
-                  <a href="#">자세히 보기</a>
-                </p>
-              </div>
-            </div>
-          
-          </div>
-          <!-- 슬라이드 2번-->
-          <div class="home_slide2">
-            <div class="home_slide2_text">
-              <div class="home_slide2_textBox">
-                <h1>인기폭발 핫한</h1>
-              </div>
-              <p>
-                요즘 떠오르는 <span class="hothot">HOT 10</span> <br /><span
-                  class="hothot"
-                  >인기</span
-                >
-                여행지
-              </p>
-              <div class="home_slide2_button">
-                <p class="home_slide2_button_text">
-                  <a href="#">자세히 보기</a>
-                </p>
-              </div>
-            </div>
-           
-          </div>
-          <!-- 슬라이드 3번-->
-          <div class="home_slide3">
-            <div class="home_slide3_text">
-              <div class="home_slide3_textBox">
-                <h1>너만 모르는</h1>
-              </div>
-              <p>요즘 떠오르는 HOT 10 <br />인기 여행지</p>
-              <div class="home_slide3_button">
-                <p class="home_slide3_button_text">
-                  <a href="#">자세히 보기</a>
-                </p>
-              </div>
-            </div>
-           
-          </div>
+         <!-- 슬라이드 1번-->
+<div class="home_slide1">
+    <div class="home_slide1_text">
+        <div class="home_slide1_textBox">
+            <h1>두근두근 설레는</h1>
         </div>
-        <div class="slide_bar_container">
-          <div class="slide_bar_info">
-            <progress id="progress" value="10" min="0" max="100"></progress>
-            <div class="slide_bar_info_num">
-              <p class="info_num">01</p>
-              <p class="info_maxnum">/ 10</p>
-            </div>
-            <div class="slide_bar_button">
-              <a href="#" id="leftArrow">
-                <img src="resources/img/arrow-left.png" alt=""
-              /></a>
-              <a href="#" id="playButton"
-                ><img src="resources/img/play.png" alt=""
-              /></a>
-              <a href="#" id="rightArrow"
-                ><img src="resources/img/arrow-right.png" alt=""
-              /></a>
-            </div>
-          </div>
+        <p>감성과 특색이 넘치는 <br />신상 여행지</p>
+        <div class="home_slide1_button">
+            <p class="home_slide1_button_text">
+                <a href="#">자세히 보기</a>
+            </p>
         </div>
-      </section>
+    </div>
+    <div class="home_slide1_imgbox"></div> <!-- 이미지 경로 수정 필요 -->
+</div>
+<!-- 슬라이드 2번-->
+<div class="home_slide2">
+    <div class="home_slide2_text">
+        <div class="home_slide2_textBox">
+            <h1>인기폭발 핫한</h1>
+        </div>
+        <p>요즘 떠오르는 <span class="hothot">HOT 10</span> <br /><span class="hothot">인기</span> 여행지</p>
+        <div class="home_slide2_button">
+            <p class="home_slide2_button_text">
+                <a href="#">자세히 보기</a>
+            </p>
+        </div>
+    </div>
+    <div class="home_slide2_imgbox"></div> <!-- 이미지 경로 수정 필요 -->
+</div>
+<!-- 슬라이드 3번-->
+<div class="home_slide3">
+    <div class="home_slide3_text">
+        <div class="home_slide3_textBox">
+            <h1>너만 모르는</h1>
+        </div>
+        <p>요즘 떠오르는 HOT 10 <br />인기 여행지</p>
+        <div class="home_slide3_button">
+            <p class="home_slide3_button_text">
+                <a href="#">자세히 보기</a>
+            </p>
+        </div>
+    </div>
+    <div class="home_slide3_imgbox"></div> <!— 이미지 경로 수정 필요 —>
+   
+</div>
       <!-- 테마 영역 -->
       <section id="테마" class="content">
         <div class="home_container testcont" style="overflow: hidden">
