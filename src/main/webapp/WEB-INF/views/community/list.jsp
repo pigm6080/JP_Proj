@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>index 메인페이지입니다.</h1>
-	
-	<a href="/customLogout">Logout</a>
-
-
+	<h1>후기 등록 페이지 조회입니다.</h1>
 </body>
 </html>

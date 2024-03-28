@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>index 메인페이지입니다.</h1>
-	
-	<a href="/customLogout">Logout</a>
-
-
+	<h1>플래너 페이지입니다.</h1>
 </body>
 </html>

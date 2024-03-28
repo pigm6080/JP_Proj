@@ -10,41 +10,41 @@ import lombok.extern.log4j.Log4j;
 //커뮤니티 카테고리 컨트롤러 아마.. 가장 많은 기능구현될 컨트롤러.랄까..
 @Controller
 @Log4j
-@RequestMapping("/communty/*")
+@RequestMapping("/community/*")
 @AllArgsConstructor
-public class communtyController {
+public class communityController {
 	
 	@GetMapping("/home") //카테고리 메인으로이동
 	public String home() {
 		
-		return "communty";
+		return "community";
 	}
 	
 	@GetMapping("/review")
 	public String review() {
 		
-		return "/communty/review";
+		return "/community/review";
 	}
 	
 	@GetMapping("/review/save")
 	public String save() {
 		
-		return "/comunty/register";
+		return "/community/register";
 	}
 	@GetMapping("/review/list")
 	public String list() {
 		
-		return "/comunty/list";
+		return "/community/list";
 	}
 	@GetMapping("/list")
 	public String triplist() {
 		
-		return "/comunty/triplist";
+		return "/community/triplist";
 	}
 	@GetMapping("/favorite")
 	public String favorite() {
 		
-		return "/comunty/favorite";
+		return "/community/favorite";
 	}
 	
 }
