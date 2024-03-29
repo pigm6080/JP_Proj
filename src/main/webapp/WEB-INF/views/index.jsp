@@ -6,32 +6,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>너 J발 P야?</title>
-    <link rel="icon" href="./img/JP.png" />
-    <link rel="stylesheet" href="./styles/Header.css" />
-    <link rel="stylesheet" href="./styles/Content.css" />
-    <link rel="stylesheet" href="./styles/reset.css" />
-    <link rel="stylesheet" href="./styles/footer.css" />
-    <link rel="stylesheet" href="./styles/community.css" />
-    <link rel="stylesheet" href="./styles/info.css" />
-    <link rel="stylesheet" href=".//styles/planer.css" />
-    <link rel="stylesheet" href="./styles/them.css" />
-    <link rel="stylesheet" href="./styles/home.css" />
-    <link rel="stylesheet" href="./styles/test.css" />
-    <script defer src="./js/slide.js"></script>
-    <script defer src="./js/home.js"></script>
-    <script defer src="./js/test.js"></script>
+    <link rel="icon" href="resources/img/JP.png" />
+    <link rel="stylesheet" href="resources/styles/Header.css" />
+    <link rel="stylesheet" href="resources/styles/Content.css" />
+    <link rel="stylesheet" href="resources/styles/reset.css" />
+    <link rel="stylesheet" href="resources/styles/footer.css" />
+    <link rel="stylesheet" href="resources/styles/community.css" />
+    <link rel="stylesheet" href="resources/styles/info.css" />
+    <link rel="stylesheet" href="resources/styles/planer.css" />
+    <link rel="stylesheet" href="resources/styles/them.css" />
+    <link rel="stylesheet" href="resources/styles/home.css" />
+    <link rel="stylesheet" href="resources/styles/test.css" />
+    <script defer src="resources/js/slide.js"></script>
+    <script defer src="resources/js/home.js"></script>
+    <script defer src="resources/js/test.js"></script>
     
     <!-- IONICONS -->
     <script
       src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"
     ></script>
     <!-- JS -->
-    <script defer src="./js/test.js"></script>
+    <script defer src="resources/js/test.js"></script>
 
     <style>
       @font-face {
         font-family: "MaplestoryBold";
-        src: url("./font/Maplestory\ Bold.ttf") format("truetype");
+        src: url("resources/font/Maplestory\ Bold.ttf") format("truetype");
       }
 
       body {
@@ -45,8 +45,8 @@
         <div class="nav">
           <div class="logo-group">
             <div class="logo">
-              <a href="./index.html">
-                <img src="./img/로고02.png" alt="로고" />
+              <a href="resources/index.html">
+                <img src="resources/img/로고02.png" alt="로고" />
                 <span class="project-name">너 J발 P야?</span>
               </a>
             </div>
@@ -77,29 +77,29 @@
                   class="nav__toggle"
                   id="nav-toggle"
                 ></ion-icon>
-                <a href="./index.html" class="nav__logo">너 J발 P야?</a>
+                <a href="resources/index.html" class="nav__logo">너 J발 P야?</a>
               </div>
               <div class="nav__list">
-                <a href="./index.html" class="nav__link active">
+                <a href="resources/index.html" class="nav__link active">
                   <ion-icon name="home-outline" class="nav__icon"></ion-icon>
                   <span class="nav_name">홈</span>
                 </a>
-                <a href="./them.html" class="nav__link">
+                <a href="resources/them.html" class="nav__link">
                   <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
                   <span class="nav_name">테마</span>
                 </a>
     
-                <a href="./planer.html" class="nav__link collapse">
+                <a href="resources/planer.html" class="nav__link collapse">
                   <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
                   <span class="nav_name">플래너</span>
                 </a>
     
-                <a href="./tripInfo.html" class="nav__link">
+                <a href="resources/tripInfo.html" class="nav__link">
                   <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
                   <span class="nav_name">여행정보</span>
                 </a>
     
-                <a href="./community.html" class="nav__link collapse">
+                <a href="resources/community.html" class="nav__link collapse">
                   <ion-icon name="people-outline" class="nav__icon"></ion-icon>
                   <span class="nav_name">커뮤니티</span>
                 </a>
@@ -174,13 +174,13 @@
             </div>
             <div class="slide_bar_button">
               <a href="#" id="leftArrow">
-                <img src="./img/arrow-left.png" alt=""
+                <img src="resources/img/arrow-left.png" alt=""
               /></a>
               <a href="#" id="playButton"
-                ><img src="./img/play.png" alt=""
+                ><img src="resources/img/play.png" alt=""
               /></a>
               <a href="#" id="rightArrow"
-                ><img src="./img/arrow-right.png" alt=""
+                ><img src="resources/img/arrow-right.png" alt=""
               /></a>
             </div>
           </div>
@@ -202,7 +202,7 @@
                 <p class="them_subtitle">다양한 테마여행으로 떠나보아요</p>
                 <div class="them_button">
                   <p class="them_button_text">
-                    <a href="./them.html">다양한 테마 보기</a>
+                    <a href="resources/them.html">다양한 테마 보기</a>
                   </p>
                 </div>
               </div>
@@ -241,7 +241,7 @@
             </p>
             <div class="tripplanner_button">
               <p class="title">
-                <a href="./planer.html">코스만들기</a>
+                <a href="resources/planer.html">코스만들기</a>
               </p>
             </div>
           </div>
@@ -258,10 +258,10 @@
             <p>용인, 어디까지 가봤니?</p>
             <div class="infobox">
               <div class="info_pic pic1">
-                <img src="./img/infopic1.png" alt="" />
+                <img src="resources/img/infopic1.png" alt="" />
               </div>
               <div class="info_pic pic2">
-                <img src="./img/infopic2.png" alt="" />
+                <img src="resources/img/infopic2.png" alt="" />
               </div>
             </div>
           </div>
@@ -299,12 +299,12 @@
           <div class="instagram-layout">
             <img
               class="instagram-image"
-              src="./img/커뮤니티이미지레이아웃.png"
+              src="resources/img/커뮤니티이미지레이아웃.png"
               alt=""
             />
             <img
               class="community-image"
-              src="./img/커뮤니티이미지.jpg"
+              src="resources/img/커뮤니티이미지.jpg"
               alt=""
             />
           </div>
@@ -320,18 +320,18 @@
         <div class="footer_logo">
           <div class="thth"></div>
           <div class="footer_logo_container">
-            <img src="./img/로고02.png" alt="로고이미지" />
+            <img src="resources/img/로고02.png" alt="로고이미지" />
             <h2>너 J발 P야?</h2>
           </div>
           <div class="icon">
             <img
-              src="./img/gihub.png"
+              src="resources/img/gihub.png"
               style="width: 65px; height: 65px; object-fit: cover"
             /><img
-              src="./img/facebook.png"
+              src="resources/img/facebook.png"
               style="width: 64px; height: 64px; object-fit: cover"
             /><img
-              src="./img/instagram.png"
+              src="resources/img/instagram.png"
               style="width: 62px; height: 62px; object-fit: cover"
             />
           </div>
