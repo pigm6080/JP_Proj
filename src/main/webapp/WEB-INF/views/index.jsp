@@ -59,7 +59,7 @@
             <button class="button" data-section="community">커뮤니티</button>
           </div>
           <div class="auth-buttons">
-            <button class="button" onclick="location.href='loginMember.html'">
+            <button class="button" onclick="location.href='/customLogin'">
               로그인
             </button>
             <button class="button" onclick="location.href='regMember.html'">
@@ -80,26 +80,26 @@
                 <a href="resources/index.html" class="nav__logo">너 J발 P야?</a>
               </div>
               <div class="nav__list">
-                <a href="resources/index.html" class="nav__link active">
+                <a href="/" class="nav__link active">
                   <ion-icon name="home-outline" class="nav__icon"></ion-icon>
                   <span class="nav_name">홈</span>
                 </a>
-                <a href="resources/them.html" class="nav__link">
+                <a href="/tema/home" class="nav__link">
                   <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
                   <span class="nav_name">테마</span>
                 </a>
     
-                <a href="resources/planer.html" class="nav__link collapse">
+                <a href="/planner/home" class="nav__link collapse">
                   <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
                   <span class="nav_name">플래너</span>
                 </a>
     
-                <a href="resources/tripInfo.html" class="nav__link">
+                <a href="/trip/home" class="nav__link">
                   <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
                   <span class="nav_name">여행정보</span>
                 </a>
     
-                <a href="resources/community.html" class="nav__link collapse">
+                <a href="/community/home" class="nav__link collapse">
                   <ion-icon name="people-outline" class="nav__icon"></ion-icon>
                   <span class="nav_name">커뮤니티</span>
                 </a>
