@@ -6,13 +6,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입 페이지</title>
-    <link rel="icon" href="./img/JP.png" />
-    <link rel="stylesheet" href="./styles/reset.css" />
-    <link rel="stylesheet" href="./styles/regMemberStyles/regMember.css" />
+    <link rel="icon" href="resources/img/JP.png" />
+    <link rel="stylesheet" href="resources/styles/reset.css" />
+    <link rel="stylesheet" href="resources/styles/regMemberStyles/regMember.css" />
     <style>
       @font-face {
         font-family: "MaplestoryBold";
-        src: url("./font/Maplestory\ Bold.ttf") format("truetype");
+        src: url("resources/font/Maplestory\ Bold.ttf") format("truetype");
       }
 
       body {
@@ -23,7 +23,8 @@
   <body>
     <div class="signup-form">
       <h2>회원가입</h2>
-      <form>
+      
+      <form action="/reg" method="post"> 
         <div class="form-group">
           <label for="username">아이디</label>
           <input
@@ -33,6 +34,7 @@
             placeholder="아이디를 입력하세요"
           />
         </div>
+
         <div class="form-group">
           <label for="password">비밀번호</label>
           <input
@@ -42,6 +44,17 @@
             placeholder="비밀번호를 입력하세요"
           />
         </div>
+        
+        <div class="form-group">
+          <label for="name">이름</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="이름을 입력하세요"
+          />
+        </div>
+ 			
         <div class="form-group">
           <label for="phone">전화번호</label>
           <input
@@ -51,10 +64,13 @@
             placeholder="전화번호를 입력하세요"
           />
         </div>
+               
         <div class="form-group">
           <button type="submit">가입하기</button>
         </div>
-      </form>
+
+        	 <input type ="hidden" name ="${_csrf.parameterName}" value = "${_csrf.token}"/>
+     	 </form>
     </div>
   </body>
 </html>

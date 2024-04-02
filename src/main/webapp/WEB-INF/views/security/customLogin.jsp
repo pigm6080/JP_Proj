@@ -7,7 +7,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>로그인 페이지</title>
-    <link rel="icon" href="resources//img/JP.png" />
+    <link rel="icon" href="resources/img/JP.png" />
     <link rel="stylesheet" href="resources/styles/regMemberStyles/loginMember.css" />
     <link rel="stylesheet" href="resources/styles/reset.css" />
     <style>

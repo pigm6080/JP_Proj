@@ -1,0 +1,228 @@
+#detail_main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.detail_title_container {
+    text-align: center;
+    margin-top: 20px;
+    color: #2ac1bc;
+}
+
+.detail_title_container > h1 {
+    font-size: 52px;
+    font-weight: 700;
+    padding: 50px;
+}
+
+.detail_title_container > p {
+    font-size: 20px;
+}
+
+/*상세조회 이미지영역 */
+.detail_img_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    width: 80%;
+    height: 600px;
+}
+.detail_img_container > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*상세조회 내용영역 */
+#detail_info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.detail_info_title {
+    width: 60%;
+    height: 90px;
+    margin-top: 100px;
+    text-align: left;
+    font-size: 30px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-bottom: 3px solid black;
+    box-sizing: border-box;
+}
+
+.detail_info_content {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 400px;
+    margin-top: 50px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* 인포어드레스 */
+.info_address {
+    font-size: 20px;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 30px;
+}
+
+/* 인포콜 */
+.phone {
+    font-size: 20px;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 30px;
+}
+
+/*사이트*/
+.site {
+    font-size: 20px;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 30px;
+}
+
+/*정보*/
+.noti {
+    font-size: 20px;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 30px;
+}
+
+/*아이콘 공통영역 */
+
+.info > i {
+    padding-right: 50px;
+    padding-left: 30px;
+}
+
+/* 덧글창 */
+#reply {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.reply_title {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    display: flex;
+    font-size: 36px;
+    justify-content: flex-start;
+    padding: 50px;
+}
+
+.reply_title > h1 {
+    font-size: 40px;
+    color: rgba(0, 0, 0, 0.7);
+}
+.reply_title > h2 {
+    font-size: 28px;
+    padding-left: 100px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.reply_title > img {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.reviewBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    width: 200px;
+    height: 60px;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    background-color: rgba(40, 203, 139, 0.7);
+    box-shadow: 0 3px rgba(0, 0, 0, 0.2);
+}
+
+/* 덧글입력폼 */
+
+#commentText {
+    width: 1000px;
+    margin-top: 50px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* 덧글 입력창 스타일 */
+.comment_input {
+    margin-top: 20px;
+}
+
+.comment_input form {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment_input textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.comment_input button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment_input button:hover {
+    background-color: #0056b3;
+}
+
+/* 덧글 목록 스타일 */
+.comment_list {
+    margin-top: 20px;
+    display: flex;
+    padding: 100px;
+    flex-direction: column;
+    font-size: 25px;
+    width: 60%;
+}
+
+.comment_item {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.comment_item p {
+    margin: 0;
+}

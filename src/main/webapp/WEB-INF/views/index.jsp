@@ -60,7 +60,7 @@
             <button class="button" onclick="location.href='/customLogin'">
               로그인
             </button>
-            <button class="button" onclick="location.href='regMember.html'">
+            <button class="button" onclick="location.href='/regMember'">
               회원가입
             </button>
           </div>

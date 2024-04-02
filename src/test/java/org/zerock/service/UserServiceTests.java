@@ -30,7 +30,7 @@ public class UserServiceTests {
 		log.info(service);
 		assertNotNull(service);
 		UserVO vo = new UserVO();
-		vo.setId("sssss");
+		vo.setUsername("sssss");
 		vo.setPassword("asdasd");
 		vo.setUsername("newbie");
 		vo.setPhone("sds");

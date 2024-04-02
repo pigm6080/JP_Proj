@@ -1,0 +1,72 @@
+body {
+  background-image: url(../../img/planer_bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow-y: hidden;
+}
+section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.them_main {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.them_title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+.them_title > h1 {
+  font-size: 88px;
+  color: #c8e6c9;
+}
+
+.them_title > p {
+  font-size: 48px;
+  color: white;
+}
+
+.them_subtitle {
+  font-size: 62px;
+  color: white;
+  padding: 50px;
+  text-align: center;
+}
+
+.them_subtitle_span1 {
+  color: #66bb69;
+}
+
+.them_subtitle_span2 {
+  color: #66bb69;
+}
+
+.them_button {
+  display: flex;
+  width: 400px;
+  background-color: #28cb8b;
+  height: 2px;
+  border-radius: 30px;
+  padding: 50px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 40px;
+  border: none;
+  font-weight: bold;
+  margin-bottom: 100px;
+  margin-top: 50px;
+  cursor: pointer;
+}

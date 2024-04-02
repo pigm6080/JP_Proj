@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- FilesMapper.xml -->
+<mapper namespace="org.zerock.mapper.FilesMapper">
+    <select id="getAllFiles" resultType="org.zerock.domain.FilesVO">
+        SELECT * FROM files
+    </select>
+    <select id="getFilesByTravelId" parameterType="int" resultType="org.zerock.domain.FilesVO">
+        SELECT * FROM files WHERE travel_id = #{travel_id}
+    </select>
+    <insert id="insertFiles" parameterType="org.zerock.domain.FilesVO">
+        INSERT INTO files (file_name, travel_id) VALUES (#{file_name}, #{travel_id})
+    </insert>
+    <update id="updateFiles" parameterType="org.zerock.domain.FilesVO">
+        UPDATE files SET file_name = #{file_name}, travel_id = #{travel_id} WHERE file_id = #{file_id}
+    </update>
+    <delete id="deleteFiles" parameterType="int">
+        DELETE FROM files WHERE file_id = #{file_id}
+    </delete>
+</mapper>
+  

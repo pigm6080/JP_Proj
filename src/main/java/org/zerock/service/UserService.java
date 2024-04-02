@@ -10,13 +10,13 @@ public interface UserService {
 	public void register(UserVO vo);
 	
 	//한개 출력
-	public UserVO get(String id);
+	public UserVO get(String username);
 	
 	//수정
 	public boolean modify(UserVO vo);
 	
 	//지우기
-	public boolean remove(String id);
+	public boolean remove(String username);
 	
 	//회원 전체 리스트 출력
 	public List<UserVO> getList();
