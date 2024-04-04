@@ -36,9 +36,9 @@ public class KakaoTokenVO {
    refresh_token varchar(255) not null,
    expires_in INT not null,
    scope varchar(255) not null,
-   refresh_token_expires_in INT not null
+   refresh_token_expires_in INT not null,
    PRIMARY KEY (access_token)
- )
+ );
  
  */
  

@@ -1,12 +1,10 @@
 package org.zerock.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -16,16 +14,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
+@Service
 public class KakaoOauthServiceImpl implements KakaoOauthService {
 
 	// 서비스에 필요한 상수
 	private static final String REST_API_KEY = "994f98607830bcba0c9fe0ab6e02f5f5"; // client-id
-	private static final String REDIRECT_URL = "http://localhost:8082/Oauth/kakao/getcode"; // https://
-	private static final String VALIDATION_URL = "https://kapi.kakao.com/v1/user/access_token_info";
+	private static final String REDIRECT_URL = "http://localhost:8082/Oauth/kakao/getAuth"; 
+	private static final String VALIDATION_URL = "https://kapi.kakao.com/v1/user/access_token_info"; // https://
 	private static final String KAPI_PREFIX = "https://kapi.kakao.com/";
 	private static final String LOGOUT_URL = "https://kauth.kakao.com/oauth/logout";
-	
-	
+	private static final String AUTHRIZATION_URL = "https://kauth.kakao.com/oauth/authorize";
+
 	@Override
 	public int tokenValidation(KakaoTokenVO token) {
 		// For Info Get
@@ -133,7 +133,7 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 	
 	@Override
 	public String kakaoUrl() {
-		String kakaoURL = "kauth.kakao.com/oauth/authorize?" + "client_id=" + REST_API_KEY + "&REDIRECT_URL="
+		String kakaoURL = "https://kauth.kakao.com/oauth/authorize?" + "client_id=" + REST_API_KEY + "&redirect_uri="
 				+ REDIRECT_URL + "&response_type=code";
 		return kakaoURL;
 	}

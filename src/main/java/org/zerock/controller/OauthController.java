@@ -26,6 +26,12 @@ public class OauthController {
 	private final UserServiceImpl userSrv;
 	private final KakaoOauthServiceImpl kakaoSrv;
 	
+//	@Autowired
+//	UserServiceImpl userSrv;
+//
+//	@Autowired
+//	KakaoOauthServiceImpl kakaoSrv;
+	
 	
 	public OauthController(UserServiceImpl srv ,KakaoOauthServiceImpl kakaoSrv) {
 		this.userSrv = srv;
@@ -34,12 +40,12 @@ public class OauthController {
 	
 	@RequestMapping(value = "/kakao/login")
 	public String kakaoOauthStart() {
-		String goTo = kakaoSrv.kakaoUrl();
-		return "redirect:https://" + goTo;
+		System.out.println(kakaoSrv.kakaoUrl());
+		return "redirect:" + kakaoSrv.kakaoUrl();
 	}
 
-	@GetMapping(value = "/kakao/getcode")
-	public @ResponseBody String kakaoGetCode(String code) throws IOException {
+	@GetMapping(value = "/kakao/getAuth")
+	public @ResponseBody String kakaoGetCode(String code, Model model) throws IOException {
 
 		KakaoTokenVO token = kakaoSrv.getToken(code);
 		ResponseEntity<String> UserInfoRes = kakaoSrv.getKakaoUserInfo(token);
@@ -57,13 +63,22 @@ public class OauthController {
 			}
 		}
 		
-		UserVO kakaoUser = new UserVO();
-		kakaoUser.setName(kuif.getNickname());
-		kakaoUser.setPassword(OTPgenerator.generateTemporaryPassword());
-		kakaoUser.setName(kuif.getNickname());
-		kakaoUser.setPhone("null");
+		if (userSrv.get(kuif.getNickname()) != null) {
+			
+			
+			
+			
+		} else if (userSrv.get(kuif.getNickname()) == null) {
+			UserVO kakaoUser = new UserVO();
+			kakaoUser.setUsername(Long.toString(kuif.getId()));  // Long형 Kakao User Info를 String으로 형 변환
+			kakaoUser.setPassword(OTPgenerator.generateTemporaryPassword());
+			kakaoUser.setName(kuif.getNickname());
+			kakaoUser.setPhone("null");
+			
+			userSrv.register(kakaoUser);		
+		}
 		
-		userSrv.register(kakaoUser);
+	
 		
 		return "community";
 
@@ -72,7 +87,7 @@ public class OauthController {
 
 	}
 	
-	@RequestMapping(value="/logout") //kakao login 회원인 경우 로그아웃 수행
+	@RequestMapping(value="/kakao/logout") //kakao login 회원인 경우 로그아웃 수행
 	public String logOut(String accessToken, Model model) throws IOException {
 		
 		String token = (String) model.getAttribute("access_token");
