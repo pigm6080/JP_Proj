@@ -1,0 +1,244 @@
+#info_board {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.board_header {
+    display: flex;
+    width: 1500px;
+    height: 80px;
+    margin-top: 100px;
+    justify-content: space-between;
+}
+
+.board_category {
+    display: flex;
+    width: 280px;
+    height: 80px;
+    font-size: 47px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(42, 193, 188, 0.5);
+    border-radius: 20px 20px 20px 0;
+}
+
+/* 드롭다운 메뉴 디자인 */
+/* 드롭다운 버튼 */
+.dropbtn {
+    background-color: #d9d9d9;
+    color: #2ac1bc;
+    padding: 20px;
+    font-size: 20px;
+    font-family: 'maplestoryBold';
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 드롭다운 내용 (기본으로 숨김) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
+    z-index: 1;
+}
+
+/* 드롭다운 내용 링크 */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* 드롭다운 내용 링크 호버 효과 */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* 드롭다운 보이기/숨기기 */
+.show {
+    display: block;
+}
+
+.dropdown_icon {
+    z-index: 100;
+    padding-left: 10px;
+}
+
+/* 보드리스트 css */
+
+.board_list {
+    display: flex;
+    width: 1500px;
+    background-color: rgba(232, 245, 233, 0.1);
+    flex-direction: column;
+}
+
+.board_container {
+    margin-top: 30px;
+    height: 380px;
+    display: flex;
+}
+
+.board_item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 600px;
+    height: 380px;
+}
+
+.board_item > img {
+    width: 364px;
+    height: 364px;
+    border-radius: 10px;
+}
+
+.board_info {
+    display: flex;
+    width: 100%;
+    height: 380px;
+    flex-direction: column;
+}
+
+/* 게시물 타이틀부분 */
+
+.board_title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+    height: 100px;
+    padding: 50px;
+}
+.board_title > h1 {
+    font-size: 52px;
+    color: #2ac1bc;
+}
+
+.rating-text {
+    display: flex;
+    font-size: 25px;
+    color: #2ac1bc;
+}
+.info_num {
+    padding-right: 10px;
+}
+
+.star-rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: left;
+}
+.star-rating .star {
+    display: inline-block;
+    font-size: 25px; /* 별 아이콘의 크기 조절 */
+    color: rgb(228, 228, 97);
+}
+
+/* 게시물 서브타이틀부분 */
+
+.board_subtitle {
+    display: flex;
+    font-size: 30px;
+    padding-left: 50px;
+    color: #2ac1bc;
+}
+
+.board_add {
+    display: flex;
+    font-size: 28px;
+    color: #66bb69;
+    padding-top: 30px;
+    padding-left: 50px;
+}
+
+/*후기등록 버튼*/
+.add_review {
+    display: flex;
+    font-size: 32px;
+    padding-top: 30px;
+    padding-left: 50px;
+    justify-content: flex-end;
+    align-items: center;
+}
+.add_review > a {
+    color: #a5d6a7;
+    text-decoration: underline;
+    padding-right: 80px;
+}
+
+/* 게시물 이미지 하트 */
+
+.heart_container {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    background-color: #fff;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 5%;
+    left: 70%;
+}
+
+.heart > i {
+    font-size: 50px;
+    color: #2ac1bc;
+    cursor: pointer;
+    transition: color 1s ease; /* 색상 변경에 대한 트랜지션 추가 */
+}
+
+.fa-solid.fa-heart {
+    display: none; /* 기본적으로 채워진 하트는 숨겨둠 */
+}
+
+.animate-heart {
+    display: inline-block !important; /* 애니메이션을 위해 강제로 보이도록 함 */
+    animation: fillHeart 0.3s ease; /* fillHeart 애니메이션 적용 */
+}
+
+@keyframes fillHeart {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 배경색 토글을 위한 클래스 만들었음 */
+.highlighted {
+    background-color: #e8f5e9;
+}
+
+/* CSS 게시물 목록 애니메이션 */
+
+.fade-in {
+    animation: fadeInAnimation 0.7s ease-in-out forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

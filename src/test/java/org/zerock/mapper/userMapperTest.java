@@ -37,7 +37,7 @@ public class userMapperTest {
 	public void testInsert() {
 		
 		UserVO vo = new UserVO();
-		vo.setId("sky1");
+	//	vo.setId("sky1");
 		vo.setPassword(pwecoderEncoder.encode("pw"));
 		vo.setUsername("하늘");
 		vo.setPhone("010-0000-0000");
@@ -58,7 +58,7 @@ public class userMapperTest {
 		
 		UserVO vo = new UserVO();
 		
-		vo.setId("sky1");
+	//	vo.setId("sky1");
 		vo.setPassword(pwecoderEncoder.encode("pw"));
 		vo.setUsername("하늘1");
 		vo.setPhone("010-0000-0000");

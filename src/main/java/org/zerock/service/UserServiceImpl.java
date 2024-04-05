@@ -3,6 +3,8 @@ package org.zerock.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.UserVO;
 import org.zerock.mapper.UserMapper;
@@ -18,12 +20,19 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserMapper mapper;
 	
+	@Autowired
+	private PasswordEncoder pwecoderEncoder;
+	
 	@Override
 	public void register(UserVO vo) {
+		
+		vo.setPassword(pwecoderEncoder.encode(vo.getPassword()));
 		
 		log.info("register 입니다." + vo);
 		
 		mapper.insert(vo);
+		mapper.insertAuth(vo.getUsername());
+		
 	}
 
 	@Override

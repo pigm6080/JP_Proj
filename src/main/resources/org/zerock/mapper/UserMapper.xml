@@ -26,29 +26,34 @@
   
   <select id="read" resultMap="memberMap">
       SELECT
-        mem.id , password  ,username , phone  ,createday , auth
+        mem.username , password  ,name , phone  ,createday , auth
       FROM
-        user mem Left outer Join user_auth a on mem.id = a.id 
-      WHERE mem.id = #{id}
+        user mem Left outer Join user_auth a on mem.username = a.username 
+      WHERE mem.username = #{username}
   </select>
   
   
  	<insert id="insert" parameterType="org.zerock.domain.UserVO">
-		insert into user(id, password, username, phone)
-		values (#{id}, #{password}, #{username}, #{phone})
+		insert into user(username, password, name, phone)
+		values (#{username}, #{password}, #{name}, #{phone})
+	</insert>
+	
+	<insert id="insertAuth" parameterType="String">
+		insert into user_auth(username)
+		values (#{username})
 	</insert>
 	
 	<delete id="delete" parameterType="String">
-		delete from user where id = #{id}
+		delete from user where username = #{username}
 	</delete>
 	
 	<update id="update" parameterType="org.zerock.domain.UserVO">
 		update user
-		set id = #{id},
+		set username = #{username},
 		password = #{password},
-		username = #{username},
+		name = #{name},
 		phone = #{phone}
-		where id = #{id}
+		where username = #{username}
 	</update>
 	
 	<select id="getList" resultType="org.zerock.domain.UserVO">
