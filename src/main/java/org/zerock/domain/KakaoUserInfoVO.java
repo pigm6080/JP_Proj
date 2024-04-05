@@ -1,20 +1,57 @@
 package org.zerock.domain;
 
-import java.sql.Date;
-
 import lombok.Data;
+
+import java.util.Map;
 
 @Data
 public class KakaoUserInfoVO {
-	private Long id;
-	private Date connected_at;
-	private String nickname;
-	private String profile_image;
-	private String thumbnail_image;
-	private int profile_nickname_needs_agreement;  //boolean type parsing need
-	private int profile_image_needs_agreement;  //boolean type parsing need
-	private int is_default_image;  //boolean type parsing need
-	private int is_default_nickname;  //boolean type parsing need
+    private long id;
+    private String connectedAt;
+    private KakaoAccount kakaoAccount;
+    private Map<String, String> properties;
+    private ForPartner forPartner;
+}
+
+@Data
+class KakaoAccount {
+    private boolean profileNicknameNeedsAgreement;
+    private boolean profileImageNeedsAgreement;
+    private Profile profile;
+    private boolean nameNeedsAgreement;
+    private String name;
+    private boolean emailNeedsAgreement;
+    private boolean isEmailValid;
+    private boolean isEmailVerified;
+    private String email;
+    private boolean ageRangeNeedsAgreement;
+    private String ageRange;
+    private boolean birthyearNeedsAgreement;
+    private String birthyear;
+    private boolean birthdayNeedsAgreement;
+    private String birthday;
+    private String birthdayType;
+    private boolean genderNeedsAgreement;
+    private String gender;
+    private boolean phoneNumberNeedsAgreement;
+    private String phoneNumber;
+    private boolean ciNeedsAgreement;
+    private String ci;
+    private String ciAuthenticatedAt;
+}
+
+@Data
+class Profile {
+    private String nickname;
+    private String thumbnailImageUrl;
+    private String profileImageUrl;
+    private boolean isDefaultImage;
+    private boolean isDefaultNickname;
+}
+
+@Data
+class ForPartner {
+    private String uuid;
 }
 
 
