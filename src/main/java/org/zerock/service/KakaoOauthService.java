@@ -1,15 +1,17 @@
 package org.zerock.service;
 
-import org.springframework.http.ResponseEntity;
 import org.zerock.domain.KakaoTokenVO;
 import org.zerock.domain.UserVO;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 public interface KakaoOauthService {
 	String kakaoUrl(); //login page url injector
 	
 	KakaoTokenVO getToken(String code); //access-token get
 	
-	ResponseEntity<String> getKakaoUserInfo(KakaoTokenVO token); //user-info get by access-token
+	UserVO getKakaoUserInfo(KakaoTokenVO token) throws JsonMappingException, JsonProcessingException; //user-info get by access-token
 	
 	String tokenValidation(KakaoTokenVO token); //token validation
 	

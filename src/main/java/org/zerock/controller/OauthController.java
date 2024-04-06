@@ -46,44 +46,14 @@ public class OauthController {
 	}
 
 	@RequestMapping(value = "/getAuth", method = RequestMethod.GET)
-	public @ResponseBody String kakaoGetCode(@RequestParam String code) throws IOException {
+	public @ResponseBody String kakaoGetCodeAndRegist(@RequestParam String code) throws IOException {
 
 		KakaoTokenVO token_ = kakaoSrv.getToken(code);
-		ResponseEntity<String> UserInfoRes = kakaoSrv.getKakaoUserInfo(token_);
-
-		ObjectMapper kuifmapper = new ObjectMapper();
-		KakaoUserInfoVO kuif = null;
-
-		if (kakaoSrv.tokenValidation(token_).equals("200 OK")) {
-		}
-		System.out.println("응답 자체 "+UserInfoRes);
-		System.out.println("응답 투스트링 "+UserInfoRes.toString());
-		System.out.println("응답 헤더 "+UserInfoRes.getHeaders());
-		System.out.println("응답 바디 "+UserInfoRes.getBody());
+//		ResponseEntity<String> UserInfoRes = kakaoSrv.getKakaoUserInfo(token_);
+		UserVO KakaoUserInfo = kakaoSrv.getKakaoUserInfo(token_);
 		
-		/*
-		try {
-			kuif = kuifmapper.readValue(UserInfoRes.getBody(), KakaoUserInfoVO.class);
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-
+		kakaoSrv.kakaoRegist(KakaoUserInfo, userSrv);
 		
-		if (userSrv.get(kuif.getNickname()) == null) { // 기존 회원 확인
-			UserVO kakaoUser = new UserVO();
-			kakaoUser.setUsername(Long.toString(kuif.getId())); // Long형 Kakao User Info를 String으로 형 변환
-			kakaoUser.setPassword(OTPgenerator.generateTemporaryPassword());
-			kakaoUser.setName(kuif.getNickname());
-			kakaoUser.setPhone("null");
-
-			userSrv.register(kakaoUser);
-		} */
-
-//		return "카카오인증완료 : "+ response;
-//		return kakaoUserInfoVO.getBody();
-
 		return "redirect:/";
 	}
 

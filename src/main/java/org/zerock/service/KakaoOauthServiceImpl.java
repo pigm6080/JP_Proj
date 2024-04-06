@@ -1,5 +1,8 @@
 package org.zerock.service;
 
+import java.util.Iterator;
+
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpEntity;
@@ -9,39 +12,39 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.client.RestTemplate;
 import org.zerock.domain.KakaoTokenVO;
 import org.zerock.domain.UserVO;
+import org.zerock.oauthutil.OTPgenerator;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.log4j.Log4j;
 
-
 @Service
 @Log4j
-@PropertySource("classpath:oauth/KakaoOautClient.properties")
+@PropertySource("classpath:/oauth/KakaoOauthClient.properties")
 public class KakaoOauthServiceImpl implements KakaoOauthService {
 
 	// 서비스에 필요한 상수
-	
-	private static final String REDIRECT_URI = "http://localhost:8082/Oauth/kakao/getAuth"; 
+
+	private static final String REDIRECT_URI = "http://localhost:8082/Oauth/kakao/getAuth";
 	private static final String VALIDATION_URL = "https://kapi.kakao.com/v1/user/access_token_info"; // https://
 	private static final String KAPI_PREFIX = "https://kapi.kakao.com/";
 	private static final String LOGOUT_URL = "https://kauth.kakao.com/oauth/logout";
 	private static final String AUTHRIZATION_URL = "https://kauth.kakao.com/oauth/authorize";
-	private static final String TOKEN_REQUEST_URL = "https://kauth.kakao.com/oauth/token"; 
-	
-	
+	private static final String TOKEN_REQUEST_URL = "https://kauth.kakao.com/oauth/token";
+
 	@Value("${client_id}")
 	private String REST_API_KEY; // client_id
-	
+
 	@Value("${client_secret}")
 	private String CLIENT_SECRET; // client_secret
-	
-	
+
 	@Override
 	public String tokenValidation(KakaoTokenVO token) {
 		// For Info Get
@@ -58,10 +61,10 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 				kakaoTokenReq, // 요청할 때 보낼 데이터
 				String.class // 요청 시 반환되는 데이터 타입
 		);
-		log.info("토큰 유효성검사 resp 응답코드 :" + rsVal.getStatusCodeValue()+"그리고"+ rsVal.getStatusCode().toString());
+		log.info("토큰 유효성검사 resp 응답코드 :" + rsVal.getStatusCodeValue() + "그리고" + rsVal.getStatusCode().toString());
 
 		if (rsVal.getStatusCode().value() != 200) {
-			log.info("응답 상태 코드 200이 아니래!!!!"+ rsVal.getStatusCode().toString());
+			log.info("응답 상태 코드 200이 아니래!!!!" + rsVal.getStatusCode().toString());
 			return rsVal.getStatusCode().toString();
 		}
 
@@ -69,7 +72,6 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		return rsVal.getStatusCode().toString();
 	}
 
-	
 	@Override
 	public KakaoTokenVO getToken(String code) {
 		RestTemplate rt = new RestTemplate();
@@ -87,10 +89,9 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		params.add("client_secret", CLIENT_SECRET);
 
 		HttpEntity<MultiValueMap<String, String>> kakaoTokenReq = new HttpEntity<>(params, headers);
-	
+
 		log.info(kakaoTokenReq);
-		ResponseEntity<String> response = rt.exchange(
-				TOKEN_REQUEST_URL, // https://{요청할 서버 주소}
+		ResponseEntity<String> response = rt.exchange(TOKEN_REQUEST_URL, // https://{요청할 서버 주소}
 				HttpMethod.POST, // 요청할 방식
 				kakaoTokenReq, // 요청할 때 보낼 데이터
 				String.class // 요청 시 반환되는 데이터 타입
@@ -126,62 +127,140 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		return token;
 	}
 
-	
 	@Override
-	public ResponseEntity<String> getKakaoUserInfo(KakaoTokenVO token) {
+	public UserVO getKakaoUserInfo(@ModelAttribute KakaoTokenVO token)
+			throws JsonMappingException, JsonProcessingException {
 		// For Info Get
 		RestTemplate rt2 = new RestTemplate();
 
 		// Header ADD
 		HttpHeaders headers2 = new HttpHeaders(); // org.springframework.http.HttpHeaders IMPORT ! ! !
 		headers2.add("Authorization", "Bearer " + token.getAccess_token()); // token.getToken_type() =
-																								// "Bearer"
+																			// "Bearer"
 		headers2.add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
 
 		HttpEntity<MultiValueMap<String, String>> kakaoTokenReq2 = new HttpEntity<>(headers2);
 
-		ResponseEntity<String> response2 = rt2.exchange(
-				KAPI_PREFIX + "v2/user/me", // https://{요청할 서버 주소}
+		ResponseEntity<String> response2 = rt2.exchange(KAPI_PREFIX + "v2/user/me", // https://{요청할 서버 주소}
 				HttpMethod.POST, // 요청할 방식
 				kakaoTokenReq2, // 요청할 때 보낼 데이터
 				String.class // 요청 시 반환되는 데이터 타입
 		);
+
 		log.info("resp2 응답코드 :" + response2.getStatusCodeValue());
-		return response2;
+
+		// 문제 발생
+		ObjectMapper omp = new ObjectMapper();
+		JSONParser jParser = new JSONParser();
+		JsonNode bodyJson = null;
+
+		String bodyString = response2.getBody();
+		System.out.println("response2 : " + response2);
+		System.out.println();
+		System.out.println("response2 : " + response2.getBody());
+		System.out.println();
+		System.out.println("bodyString : " + bodyString);
+
+		bodyJson = omp.readTree(bodyString);
+		System.out.println("bodyJson : " + bodyJson);
+
+		JsonNode propertiesJson = bodyJson.get("properties");
+		JsonNode kakaoAccount = bodyJson.get("kakao_account");
+		JsonNode kakaoProfile = kakaoAccount.get("profile");
+		/*
+		 * Iterator<String> fieldNames = bodyJson.fieldNames();
+		 * 
+		 * 
+		 * while (fieldNames.hasNext()) { String fieldName = fieldNames.next(); JsonNode
+		 * fieldValue = bodyJson.get(fieldName);
+		 * 
+		 * // 필드 이름과 값을 출력 또는 원하는 작업 수행 System.out.println("Field: " + fieldName);
+		 * System.out.println("Value: " + fieldValue); }
+		 */
+		System.out.println("properties 순회");
+		Iterator<String> fieldNames = propertiesJson.fieldNames();
+
+		while (fieldNames.hasNext()) {
+			String fieldName = fieldNames.next();
+			JsonNode fieldValue = propertiesJson.get(fieldName);
+
+			// 필드 이름과 값을 출력 또는 원하는 작업 수행
+			System.out.println("Field: " + fieldName);
+			System.out.println("Value: " + fieldValue);
+		}
+		System.out.println("kakao_account 순회");
+		Iterator<String> fieldNames2 = kakaoAccount.fieldNames();
+
+		while (fieldNames2.hasNext()) {
+			String fieldName2 = fieldNames2.next();
+			JsonNode fieldValue2 = kakaoAccount.get(fieldName2);
+
+			// 필드 이름과 값을 출력 또는 원하는 작업 수행
+			System.out.println("Field: " + fieldName2);
+			System.out.println("Value: " + fieldValue2);
+		}
+		System.out.println("kakao_account의 프로필 순회");
+		Iterator<String> fieldNames3 = kakaoProfile.fieldNames();
+
+		while (fieldNames3.hasNext()) {
+			String fieldName3 = fieldNames3.next();
+			JsonNode fieldValue3 = kakaoProfile.get(fieldName3);
+
+			// 필드 이름과 값을 출력 또는 원하는 작업 수행
+			System.out.println("Field: " + fieldName3);
+			System.out.println("Value: " + fieldValue3);
+		}
+//		TODO id to STring working.... 04 05 17: 36 ######$$$$$$$$$$$$$$$$$$$$$$$4
+//		String username = String.par   bodyJson.get("id").asLong();
+		
+		
+		
+		
+		
+//		String password = OTPgenerator.generateTemporaryPassword();
+//		String name = bodyJson.get("nickname").asText();
+//		String phone = "null";
+//		
+//		System.out.println(" username : " + username + "\n password : " + password + "\n name : "+ name + "\n phone : "+ phone);
+
+		// bodyJson <- 결과 JSON
+
+		UserVO vo = new UserVO(bodyJson.get("id").asText(), // username
+				OTPgenerator.generateTemporaryPassword(), // password
+				bodyJson.get("nickname").asText(), // name
+				"null" // phone
+		);
+		return vo;
 	}
-	
-	
+
 	@Override
 	public String kakaoUrl() {
 		String kakaoURL = "https://kauth.kakao.com/oauth/authorize?" + "client_id=" + REST_API_KEY + "&redirect_uri="
 				+ REDIRECT_URI + "&response_type=code";
 		return kakaoURL;
 	}
-	
-	
 
-	
 	@Override
 	public int kakaoLogOut(String access_token) {
 		int result = 0;
-		
+
 		RestTemplate rt = new RestTemplate();
 		HttpHeaders logOutHeader = new HttpHeaders();
-		logOutHeader.add("Authorization","bearer "+ access_token);
+		logOutHeader.add("Authorization", "bearer " + access_token);
 
 		HttpEntity<MultiValueMap<String, String>> logOutReq = new HttpEntity<>(logOutHeader);
-		
+
 		ResponseEntity<String> logOutResponse = rt.exchange(KAPI_PREFIX + "v1/user/logout", // https://{요청할 서버 주소}
-					HttpMethod.POST, // 요청할 방식
-					logOutReq, // 요청할 때 보낼 데이터
-					String.class // 요청 시 반환되는 데이터 타입
-			);
+				HttpMethod.POST, // 요청할 방식
+				logOutReq, // 요청할 때 보낼 데이터
+				String.class // 요청 시 반환되는 데이터 타입
+		);
 		log.info("resp 응답코드 :" + logOutResponse.getStatusCodeValue());
-		
-		if(logOutResponse.getStatusCode().value() != 200) {
+
+		if (logOutResponse.getStatusCode().value() != 200) {
 			result = 1;
 			return result;
-		}else {
+		} else {
 			result = -1;
 			return result;
 		}
@@ -195,5 +274,4 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		userSrv.register(vo);
 
 	}
-
 }
