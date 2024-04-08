@@ -1,0 +1,64 @@
+#팀프로젝트
+
+# db 생성
+CREATE database JP;
+use JP;
+
+#User 테이블 생성
+CREATE TABLE user (
+    username VARCHAR(100) NOT NULL PRIMARY KEY,
+    password VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    phone VARCHAR(50) NOT NULL,
+    createday TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+#User_auth 테이블 생성
+CREATE TABLE user_auth(
+    username VARCHAR(100) NOT NULL,
+    auth VARCHAR(50) default 'ROLE_MEMBER' NOT NULL,
+    CONSTRAINT user_auth FOREIGN KEY (username) REFERENCES user (username)
+);
+
+---------------------------------------------------------------
+# 카테고리 테이블: 여행 정보를 카테고리로 분류하기 위한 테이블
+CREATE TABLE categories (
+    category_id INT AUTO_INCREMENT PRIMARY KEY, -- 카테고리의 고유 식별자
+    category_name VARCHAR(255) NOT NULL -- 카테고리 이름
+);
+INSERT INTO categories (category_name) VALUES 
+    ('카페'),
+    ('맛집'),
+    ('체험'),
+    ('공원'),
+    ('테마'),
+    ('공방'),
+    ('축제'),
+    ('전시'),
+    ('야경');
+    
+    
+# 여행 정보 테이블: 여행 정보를 저장하는 테이블
+CREATE TABLE travel_info (
+    travel_id INT AUTO_INCREMENT PRIMARY KEY, -- 여행 정보의 고유 식별자
+    destination VARCHAR(255) NOT NULL, -- 여행지
+    description TEXT, -- 여행에 대한 설명
+    category_id INT, -- 해당 여행 정보가 속한 카테고리를 나타내는 외래 키
+    FOREIGN KEY (category_id) REFERENCES categories(category_id) -- 카테고리 테이블의 외래 키 제약 조건
+);
+
+# 파일 테이블: 여행 정보에 관련된 파일을 저장하는 테이블
+CREATE TABLE files (
+    file_id INT AUTO_INCREMENT PRIMARY KEY, -- 파일의 고유 식별자
+    file_name VARCHAR(255) NOT NULL, -- 파일 이름
+    travel_id INT, -- 해당 파일이 속한 여행 정보를 나타내는 외래 키
+    FOREIGN KEY (travel_id) REFERENCES travel_info(travel_id) -- 여행 정보 테이블의 외래 키 제약 조건
+);
+
+# 댓글 테이블: 여행 정보에 달린 댓글을 저장하는 테이블
+CREATE TABLE comments (
+    comment_id INT AUTO_INCREMENT PRIMARY KEY, -- 댓글의 고유 식별자
+    travel_id INT, -- 해당 댓글이 속한 여행 정보를 나타내는 외래 키
+    comment_text TEXT, -- 댓글 내용
+    FOREIGN KEY (travel_id) REFERENCES travel_info(travel_id) -- 여행 정보 테이블의 외래 키 제약 조건
+);
