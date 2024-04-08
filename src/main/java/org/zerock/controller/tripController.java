@@ -2,6 +2,7 @@ package org.zerock.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,7 +47,10 @@ public class tripController {
 	}
 	
 	@GetMapping("/tripInfoUpload")
-	public String tripInfoUpload() {
-		return "redirect:/tripInfoUpload";
+	public String tripInfoUpload(Model model) {
+	    // 필요한 데이터를 모델에 추가
+	    model.addAttribute("message", "Upload your trip information here!");
+	    // 해당 뷰로 이동
+	    return "tripInfoUpload"; // 예시: tripInfoUploadView는 해당 페이지의 뷰 이름
 	}
 }
