@@ -44,4 +44,9 @@ public class tripController {
 	    
 	    return "redirect:/";
 	}
+	
+	@GetMapping("/tripInfoUpload")
+	public String tripInfoUpload() {
+		return "redirect:/tripInfoUpload";
+	}
 }
