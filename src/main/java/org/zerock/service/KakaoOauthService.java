@@ -18,5 +18,5 @@ public interface KakaoOauthService {
 	
 	int kakaoLogOut(String access_token); // access_token needs..
 
-	void kakaoRegist(UserVO vo, UserServiceImpl userSrv);
+	UserVO kakaoRegist(UserVO vo, UserServiceImpl userSrv);
 }

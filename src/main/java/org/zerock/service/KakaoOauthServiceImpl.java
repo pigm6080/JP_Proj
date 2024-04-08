@@ -155,14 +155,14 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		JsonNode bodyJson = null;
 
 		String bodyString = response2.getBody();
-		System.out.println("response2 : " + response2);
-		System.out.println();
-		System.out.println("response2 : " + response2.getBody());
-		System.out.println();
-		System.out.println("bodyString : " + bodyString);
+		log.info("response2 : " + response2);
+
+		log.info("response2 : " + response2.getBody());
+
+		log.info("bodyString : " + bodyString);
 
 		bodyJson = omp.readTree(bodyString);
-		System.out.println("bodyJson : " + bodyJson);
+		log.info("bodyJson : " + bodyJson);
 
 		JsonNode propertiesJson = bodyJson.get("properties");
 		JsonNode kakaoAccount = bodyJson.get("kakao_account");
@@ -174,61 +174,65 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		 * while (fieldNames.hasNext()) { String fieldName = fieldNames.next(); JsonNode
 		 * fieldValue = bodyJson.get(fieldName);
 		 * 
-		 * // 필드 이름과 값을 출력 또는 원하는 작업 수행 System.out.println("Field: " + fieldName);
-		 * System.out.println("Value: " + fieldValue); }
+		 * // 필드 이름과 값을 출력 또는 원하는 작업 수행 log.info("Field: " + fieldName);
+		 * log.info("Value: " + fieldValue); }
 		 */
-		System.out.println("properties 순회");
-		Iterator<String> fieldNames = propertiesJson.fieldNames();
-
-		while (fieldNames.hasNext()) {
-			String fieldName = fieldNames.next();
-			JsonNode fieldValue = propertiesJson.get(fieldName);
-
-			// 필드 이름과 값을 출력 또는 원하는 작업 수행
-			System.out.println("Field: " + fieldName);
-			System.out.println("Value: " + fieldValue);
-		}
-		System.out.println("kakao_account 순회");
-		Iterator<String> fieldNames2 = kakaoAccount.fieldNames();
-
-		while (fieldNames2.hasNext()) {
-			String fieldName2 = fieldNames2.next();
-			JsonNode fieldValue2 = kakaoAccount.get(fieldName2);
-
-			// 필드 이름과 값을 출력 또는 원하는 작업 수행
-			System.out.println("Field: " + fieldName2);
-			System.out.println("Value: " + fieldValue2);
-		}
-		System.out.println("kakao_account의 프로필 순회");
-		Iterator<String> fieldNames3 = kakaoProfile.fieldNames();
-
-		while (fieldNames3.hasNext()) {
-			String fieldName3 = fieldNames3.next();
-			JsonNode fieldValue3 = kakaoProfile.get(fieldName3);
-
-			// 필드 이름과 값을 출력 또는 원하는 작업 수행
-			System.out.println("Field: " + fieldName3);
-			System.out.println("Value: " + fieldValue3);
-		}
+		
+		
+//		log.info("properties 순회");
+//		Iterator<String> fieldNames = propertiesJson.fieldNames();
+//
+//		while (fieldNames.hasNext()) {
+//			String fieldName = fieldNames.next();
+//			JsonNode fieldValue = propertiesJson.get(fieldName);
+//
+//			// 필드 이름과 값을 출력 또는 원하는 작업 수행
+//			log.info("Field: " + fieldName);
+//			log.info("Value: " + fieldValue);
+//		}
+		
+//		log.info("kakao_account 순회");
+//		Iterator<String> fieldNames2 = kakaoAccount.fieldNames();
+//
+//		while (fieldNames2.hasNext()) {
+//			String fieldName2 = fieldNames2.next();
+//			JsonNode fieldValue2 = kakaoAccount.get(fieldName2);
+//
+//			// 필드 이름과 값을 출력 또는 원하는 작업 수행
+//			log.info("Field: " + fieldName2);
+//			log.info("Value: " + fieldValue2);
+//		}
+		
+		
+//		log.info("kakao_account의 프로필 순회");
+//		Iterator<String> fieldNames3 = kakaoProfile.fieldNames();
+//
+//		while (fieldNames3.hasNext()) {
+//			String fieldName3 = fieldNames3.next();
+//			JsonNode fieldValue3 = kakaoProfile.get(fieldName3);
+//
+//			// 필드 이름과 값을 출력 또는 원하는 작업 수행
+//			log.info("Field: " + fieldName3);
+//			log.info("Value: " + fieldValue3);
+//		}
 //		TODO id to STring working.... 04 05 17: 36 ######$$$$$$$$$$$$$$$$$$$$$$$4
-//		String username = String.par   bodyJson.get("id").asLong();
 		
+		log.info(bodyJson.get("id").asText());
 		
-		
-		
-		
-//		String password = OTPgenerator.generateTemporaryPassword();
-//		String name = bodyJson.get("nickname").asText();
-//		String phone = "null";
+		String username = bodyJson.get("id").asText(); // Numberic ID
+		String password = OTPgenerator.generateTemporaryPassword();  //Temporary password (20) add
+		String name = propertiesJson.get("nickname").asText();
+		String phone = "null";
 //		
-//		System.out.println(" username : " + username + "\n password : " + password + "\n name : "+ name + "\n phone : "+ phone);
+		log.info(" username : " + username + "\n password : " + password + "\n name : "+ name + "\n phone : "+ phone);
 
 		// bodyJson <- 결과 JSON
+		
 
-		UserVO vo = new UserVO(bodyJson.get("id").asText(), // username
-				OTPgenerator.generateTemporaryPassword(), // password
-				bodyJson.get("nickname").asText(), // name
-				"null" // phone
+		UserVO vo = new UserVO(username, 	// username
+				password, 					// password
+				name, 						// name
+				phone						// phone
 		);
 		return vo;
 	}
@@ -268,10 +272,20 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 
 	// 유저 정보를 토대로 자동 회원가입을 진행시킴
 	@Override
-	public void kakaoRegist(UserVO vo, UserServiceImpl userSrv) {
+	public UserVO kakaoRegist(UserVO vo, UserServiceImpl userSrv) {
 		// TODO Auto-generated method stub
 		log.info("Kakao User정보를 토대로 회원가입을 진행시킵니다.");
-		userSrv.register(vo);
+		UserVO returnVO = null;
+		
+		if(userSrv.get(vo.getUsername()) != null) {
+			returnVO = userSrv.get(vo.getUsername());
+		}
+		else if (userSrv.get(vo.getUsername()) == null) {
+			userSrv.register(vo);
+			returnVO = vo;
+		}
+		
+		return returnVO;
 
 	}
 }

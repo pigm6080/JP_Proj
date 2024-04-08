@@ -62,6 +62,9 @@
 
         <a href="#"><img src="resources/img/naver.png" alt="네이버" /></a>
         <a href="#"><img src="resources/img/facebook.png" alt="구글" /></a>
+        <a href="/Oauth/kakao/checkSession"><img src="resources/img/checkboxIcon.png" alt="세션체크" />세션체크</a>
+     
+        
       </div>
       
       <div class="login_footer">
