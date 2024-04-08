@@ -207,7 +207,7 @@ public class tripController {
             }
         }
 
-        return "redirect:/result?hashtag=" + URLEncoder.encode(hashtag, "UTF-8");
+        return "redirect:/trip/home"; //result?hashtag=" + URLEncoder.encode(hashtag, "UTF-8");
 
 
 
