@@ -144,7 +144,7 @@
                     <img src="../resources/img/infoimg09.png" alt="">
                     <p class="hashtag_title_text">#야경</p></div>
             </div>
-            <a href="/tripInfoUpload">여행정보 작성</a>
+            <a href="/trip/detailInsert">여행정보 작성</a>
         </div>
           </section>
 

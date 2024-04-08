@@ -14,29 +14,32 @@
 
 
 <form action="/addUserAndFile" method="post" enctype="multipart/form-data">
-
-        <label for="destination">여행지:</label><br>
-        <input type="text" id="destination" name="destination" required><br>
-        
-        <label for="description">설명:</label><br>
-        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br>
-        
-        <label for="category_id">카테고리:</label><br>
-        <select id="category_id" name="category_id" required>
-            <option value="">카테고리 선택</option>
-            <option value="1">카테고리 1</option>
-            <option value="2">카테고리 2</option>
-            <option value="3">카테고리 3</option>
-            <!-- 필요한 만큼 카테고리 옵션을 추가하세요 -->
-        </select><br>
-        
-        <!-- 파일 업로드 입력 필드 -->
-        <label for="file">파일 업로드:</label><br>
-
+	<label for="username">사용자:</label>
+	<input type="text" id="username" name="username"><br><br>
+    <label for="placeName">여행지명:</label>
+    <input type="text" id="placeName" name="placeName"><br><br>
+    <label for="hashtag">해시태그:</label>
+    <input type="text" id="hashtag" name="hashtag"><br><br>
+    <label for="description">한줄소개:</label>
+    <input type="text" id="description" name="description"><br><br>
+    <label for="address">주소:</label>
+    <input type="text" id="address" name="address"><br><br>
+    <label for="rating">별점:</label>
+    <input type="number" id="rating" name="rating" min="0" max="5" step="1"><br><br>
+    <label for="author">작성자:</label>
+    <input type="text" id="author" name="author"><br><br>
+    <label for="phone_number">매장번호:</label>
+    <input type="text" id="phone_number" name="phone_number"><br><br>
+    <label for="sns_url">SNS 주소:</label>
+    <input type="text" id="sns_url" name="sns_url"><br><br>
+    <label for="other_info">기타정보:</label>
+    <input type="text" id="other_info" name="other_info"><br><br>
+    <label for="file">파일업로드:</label>
     <input type="file" id="file" name="file" multiple><br><br>
-     <input type ="hidden" name ="${_csrf.parameterName}" value = "${_csrf.token}"/>
     <button type="submit">Submit</button>
+      <input type ="hidden" name ="${_csrf.parameterName}" value = "${_csrf.token}"/>
 </form>
+
 
 
 

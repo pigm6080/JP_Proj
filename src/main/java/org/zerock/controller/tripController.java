@@ -52,20 +52,10 @@ public class tripController {
 		
 		return "/trip/trip_detail";
 	}
-	@GetMapping("/datailInsert")
+	@GetMapping("/detailInsert")
 	public String tripInsertForm() {
-		
-		System.out.println("디테일 인서트폼 왔음.");
-		
-		return "/trip/trip_insert";
+	    System.out.println("디테일 인서트폼 왔음.");
+	    return "/trip/trip_insert";
 	}
-	
-	
-	@GetMapping("/tripInfoUpload")
-	public String tripInfoUpload(Model model) {
-	    // 필요한 데이터를 모델에 추가
-	    model.addAttribute("message", "Upload your trip information here!");
-	    // 해당 뷰로 이동
-	    return "tripInfoUpload"; // 예시: tripInfoUploadView는 해당 페이지의 뷰 이름
-	}
+
 }
