@@ -60,8 +60,8 @@ public class OauthController {
 		
 		UserVO kakaoUser = kakaoSrv.kakaoRegist(KakaoUserInfo, userSrv); //UserVO vo Return
 		
-		session.setAttribute("KakaoUser",kakaoUser);
-		session.setMaxInactiveInterval(3600);
+//		session.setAttribute("KakaoUser",kakaoUser);
+//		session.setMaxInactiveInterval(3600);
 		
 		return "redirect:/"; //home으로 리다이렉트
 	}

@@ -17,7 +17,7 @@ public class AuthVO implements GrantedAuthority {
 	private String auth;
 
 	
-    public AuthVO(String auth) {
+    public AuthVO(String username, String auth) {
         this.auth = auth;
     }
 

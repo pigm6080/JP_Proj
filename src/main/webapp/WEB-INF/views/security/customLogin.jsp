@@ -32,6 +32,7 @@
 	        </div>
 	        <p>J발 P야? 회원가입으로 모든 서비스를 이용할 수 있어요</p>
 	      </div>
+	      <p class="loginFailMsg">${requestScope.loginFailMsg}</p>
 	      <div class="login_form">
 		<form action="/login" method="post">
 	        <div class="inputBox">

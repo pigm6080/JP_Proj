@@ -17,6 +17,10 @@
 <!--	<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')" />
 	<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')" /> -->
 	
+	<!-- FIXME -->
+<!-- 	<security:intercept-url pattern="/파일저장페이지 ,글쓰기 페이지URI" access="hasRole('ROLE_MEMBER')" />  파일 저장 페이지 로그인한 유저만 접근 가능하게 <<<-->
+<!-- 	<security:intercept-url pattern="/파일저장페이지 ,글쓰기 페이지URI" access="hasRole('ROLE_MEMBER')" />  파일 저장 페이지 로그인한 유저만 접근 가능하게 <<<-->
+
 	<security:intercept-url pattern="/reg" access="permitAll" />
 	
 	<security:intercept-url pattern="/customLogin" access="isAnonymous()"/>
@@ -27,10 +31,13 @@
 			password-parameter="password"
 			login-processing-url="/login"
 			login-page="/customLogin"
-			authentication-failure-url="/customLogin"
-			default-target-url="/"
-			authentication-success-handler-ref="customLoginSuccess" /> <!-- 로그인 실패시 페이지or 컨트롤러 구현 -->
 			
+			default-target-url="/"
+			authentication-success-handler-ref="CustomLoginSuccessHandler"
+			authentication-failure-handler-ref="CustomLoginFailureHandler" /> <!-- 로그인 실패시 페이지or 컨트롤러 구현 -->
+<!-- 			authentication-failure-url="/customLogin" -->
+
+
 	<security:logout 
 			logout-url="/customLogout"
 			logout-success-url="/"
@@ -41,7 +48,7 @@
 	
 <!-- 위로 통합 <security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/> -->
 
-	<security:access-denied-handler ref="customAccesDenid"/> 
+	<security:access-denied-handler ref="CustomAccessDeniedHandler"/> 
 	 
 <!--  위로 통합 	<security:logout logout-url="/customLogout" invalidate-session="true"/> -->
 	
@@ -52,11 +59,15 @@
 		
 <security:authentication-manager>
 
-	<security:authentication-provider user-service-ref="customUserDetailsService">
+<!-- 	<security:authentication-provider user-service-ref="customUserDetailsService"> -->
 		
-		<security:password-encoder ref="bcryptPasswordEncoder" />
+<!-- 		<security:password-encoder ref="bcryptPasswordEncoder" /> -->
 		
+<!-- 	</security:authentication-provider> -->
+		
+	<security:authentication-provider ref="userLoginAuthenticationProvider">
 	</security:authentication-provider>
+	
 	
 </security:authentication-manager>
 
