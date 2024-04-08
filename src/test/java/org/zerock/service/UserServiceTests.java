@@ -30,7 +30,11 @@ public class UserServiceTests {
 		log.info(service);
 		assertNotNull(service);
 		UserVO vo = new UserVO();
+<<<<<<< HEAD
 		vo.setUsername("sssss");
+=======
+	//	vo.setId("sssss");
+>>>>>>> mergeTest
 		vo.setPassword("asdasd");
 		vo.setUsername("newbie");
 		vo.setPhone("sds");

@@ -15,6 +15,7 @@ public class UserVO {
 	private String phone;
 	private Date createday;
 	private List<AuthVO> authList;
+<<<<<<< HEAD
 
 
 	public UserVO(String username, String password, String name, String phone) {
@@ -25,3 +26,8 @@ public class UserVO {
 		this.phone = phone;
 	}
 }
+=======
+	
+	
+}
+>>>>>>> mergeTest
