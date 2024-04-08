@@ -26,7 +26,7 @@ navButtons.forEach((button) => {
 });
 
 // 슬라이드쇼 제어
-/*
+
 document.addEventListener("DOMContentLoaded", function () {
   const slides = document.querySelectorAll(".inner");
   const prevBtn = document.querySelector(".them_prevBtn");
@@ -77,4 +77,3 @@ document.addEventListener("DOMContentLoaded", function () {
   showSlide(currentSlide);
 });
 
-*/
