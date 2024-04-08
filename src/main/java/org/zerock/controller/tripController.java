@@ -44,4 +44,19 @@ public class tripController {
 	    
 	    return "redirect:/";
 	}
+	@GetMapping("/detail")
+	public String tripdetail() {
+		
+		System.out.println("디테일 폼 왔음.");
+		
+		return "/trip/trip_detail";
+	}
+	@GetMapping("/datailInsert")
+	public String tripInsertForm() {
+		
+		System.out.println("디테일 인서트폼 왔음.");
+		
+		return "/trip/trip_insert";
+	}
+	
 }
