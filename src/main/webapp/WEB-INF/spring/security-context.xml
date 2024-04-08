@@ -19,9 +19,11 @@
 	-->
 	
 	
+	<security:intercept-url pattern="/trip/detailInsert" access="hasRole('ROLE_ADMIN')" />
+	
 	<security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/>
 
-	<security:access-denied-handler ref="customAccesDenid"/> 
+<!-- 	<security:access-denied-handler ref="customAccesDenid"/>  -->
 	 
 	<security:logout logout-url="/customLogout" invalidate-session="true"/>
 	

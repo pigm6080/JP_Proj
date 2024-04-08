@@ -13,7 +13,7 @@
 <h1>여행정보 업로드</h1>
 
 
-<form action="/addUserAndFile" method="post" enctype="multipart/form-data">
+<form action="/trip/addUserAndFile" method="post" enctype="multipart/form-data">
 	<label for="username">사용자:</label>
 	<input type="text" id="username" name="username"><br><br>
     <label for="placeName">여행지명:</label>
