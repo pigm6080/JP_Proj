@@ -1,4 +1,5 @@
-@media screen and (min-width: 601px) {
+
+@media screen and (min-width: 1200px) {
 
   body {
     overflow-x: hidden;
@@ -7,15 +8,15 @@
 
   #adContainer{
     display: none;
-    opacity: 0; 
-    transition: opacity 1s ease-in-out; 
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
   }
 
   .main {
     display: flex;
     background-color: #e8f5e9;
   }
-  
+
   header {
     color: #fff;
     padding: 20px;
@@ -24,57 +25,56 @@
     display: flex;
     flex-direction: column;
   }
-  
+
   .logo > a {
     display: flex;
     align-items: center;
   }
-  
+
   .logo img {
-    margin-right: 10px; /* ·Î°í¿Í ÇÁ·ÎÁ§Æ®¸í »çÀÌ °£°İ Á¶Á¤ */
+    margin-right: 10px;
   }
-  
+
   .project-name {
-    font-family: "MaplestoryBold", sans-serif; /* MaplestoryBold ÆùÆ® Àû¿ë */
-    font-size: 48px;
+    font-family: "MaplestoryBold", sans-serif;
+    font-size: 28px;
   }
-  
+
   .nav {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
     position: fixed;
     background-color: #2ac1bc;
     width: 100%;
     height: 100px;
-    flex-direction: row;
-    justify-content: space-around;
     z-index: 100;
+    opacity: 0.7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   }
-  
+
   .nav-buttons,
   .auth-buttons {
     display: flex;
   }
-  
+
   .nav-buttons > button {
     margin-right: 40px;
     padding: 10px 20px;
   }
-  
+
   .auth-buttons > button {
     padding: 10px 20px;
   }
-  
+
   /* Common button styles */
   .button {
-    font-family: "MaplestoryBold", sans-serif; /* MaplestoryBold ÆùÆ® Àû¿ë */
-  
+    font-family: "MaplestoryBold", sans-serif; /* MaplestoryBold í°íŠ¸ ì ìš© */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-  
+    font-size: 22px;
     border: none;
     background: none;
     color: inherit;
@@ -83,24 +83,25 @@
     z-index: 1;
     cursor: pointer;
   }
+
   .button:focus {
     outline: none;
   }
   .button > span {
     vertical-align: middle;
   }
-  
-  /* Çì´õ > ¸ŞÀÎ È¨ ¿µ¿ª */
-  
+
+  /* í—¤ë” > ë©”ì¸ í™ˆ ì˜ì—­ */
+
   .main_home {
     display: flex;
     width: 100%;
     height: 800px;
     margin-top: 100px;
     background-color: #e8f5e9;
-    font-family: "MaplestoryBold", sans-serif; /* MaplestoryBold ÆùÆ® Àû¿ë */
+    font-family: "MaplestoryBold", sans-serif; /* MaplestoryBold í°íŠ¸ ì ìš© */
   }
-  
+
   .home_textBox {
     display: flex;
     margin-top: 400px;
@@ -110,7 +111,7 @@
     flex-direction: column;
     position: relative;
   }
-  
+
   .home_textBox > h2 {
     font-size: 39px;
     color: #2ac1bc;
@@ -127,7 +128,7 @@
     margin-top: 40px;
     padding-left: 32px;
   }
-  
+
   .home_textBox_decBox {
     width: 252px;
     height: 30px;
@@ -150,7 +151,7 @@
     top: -50px;
     left: 30px;
   }
-  
+
   .container p {
     margin-left: 20px;
     padding: 5px;
@@ -161,14 +162,14 @@
     padding-left: 6px; /* Adjust as needed */
     padding-top: 5px; /* Adjust as needed */
   }
-  
-  /* ¸ŞÀÎ È¨ »çÁø¿µ¿ª */
-  
+
+  /* ë©”ì¸ í™ˆ ì‚¬ì§„ì˜ì—­ */
+
   .main_home_slide {
     display: flex;
     overflow: hidden;
   }
-  
+
   .main_home_pic {
     display: flex;
     margin-top: 170px;
@@ -178,9 +179,9 @@
     border: 1px solid black;
     border-radius: 50px;
   }
-  
-  /* ½½¶óÀÌµå °¡ÀÌµå */
-  
+
+  /* ìŠ¬ë¼ì´ë“œ ê°€ì´ë“œ */
+
   .slide {
     display: flex;
     box-sizing: border-box;
@@ -189,22 +190,22 @@
     position: relative;
     overflow: hidden;
   }
-  
+
   .slide_box {
     display: flex;
   }
-  
+
   .slide_item {
-    flex: 0 0 100%; /* ½½¶óÀÌµå ¾ÆÀÌÅÛ ³Êºñ ¼³Á¤ */
+    flex: 0 0 100%; /* ìŠ¬ë¼ì´ë“œ ì•„ì´í…œ ë„ˆë¹„ ì„¤ì • */
   }
-  
+
   .slide_item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* ÀÌ¹ÌÁö°¡ È­¸é¿¡ ¸ÂÃß¾î º¸ÀÌµµ·Ï ¼³Á¤ */
+    object-fit: cover; /* ì´ë¯¸ì§€ê°€ í™”ë©´ì— ë§ì¶”ì–´ ë³´ì´ë„ë¡ ì„¤ì • */
   }
-  
-  /* CSS ½ºÅ¸ÀÏ */
+
+  /* CSS ìŠ¤íƒ€ì¼ */
   .button {
     background-color: transparent;
     border: none;
@@ -214,18 +215,246 @@
     margin-right: 10px;
     transition: color 0.3s ease;
   }
-  
+
   .on {
     color: #fbc02d;
   }
-  
+
   .button:hover {
     color: #fbc02d;
   }
+
+}
+
+@media screen and (min-width: 601px) and (max-width: 1199px) {
+
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
   }
-  /* */
-  
-  @media screen and (max-width: 600px) {
+
+  #adContainer{
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .main {
+    display: flex;
+    background-color: #e8f5e9;
+  }
+
+  header {
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo > a {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo img {
+    margin-right: 10px;
+  }
+
+  .project-name {
+    font-family: "MaplestoryBold", sans-serif;
+    font-size: 18px;
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    background-color: #2ac1bc;
+    width: 100%;
+    height: 100px;
+    z-index: 100;
+    opacity: 0.7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+
+  .nav-buttons,
+  .auth-buttons {
+    display: flex;
+  }
+
+  .nav-buttons > button {
+    margin-right: 40px;
+    padding: 10px 20px;
+  }
+
+  .auth-buttons > button {
+    padding: 10px 20px;
+  }
+
+  /* Common button styles */
+  .button {
+    font-family: "MaplestoryBold", sans-serif; /* MaplestoryBold í°íŠ¸ ì ìš© */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border: none;
+    background: none;
+    color: inherit;
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  .button:focus {
+    outline: none;
+  }
+  .button > span {
+    vertical-align: middle;
+  }
+
+  /* í—¤ë” > ë©”ì¸ í™ˆ ì˜ì—­ */
+
+  .main_home {
+    display: flex;
+    width: 100%;
+    height: 800px;
+    margin-top: 100px;
+    background-color: #e8f5e9;
+    font-family: "MaplestoryBold", sans-serif; /* MaplestoryBold í°íŠ¸ ì ìš© */
+  }
+
+  .home_textBox {
+    display: flex;
+    margin-top: 400px;
+    margin-left: 350px;
+    width: 560px;
+    height: 400px;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .home_textBox > h2 {
+    font-size: 39px;
+    color: #2ac1bc;
+    text-align-last: left;
+    padding-left: 30px;
+    margin-top: 20px;
+    line-height: 55px;
+  }
+  .home_textBox > a {
+    text-decoration: underline;
+    color: #a5d6a7;
+    font-size: 26px;
+    text-align-last: left;
+    margin-top: 40px;
+    padding-left: 32px;
+  }
+
+  .home_textBox_decBox {
+    width: 252px;
+    height: 30px;
+    position: absolute;
+    left: 229.5px;
+    top: 269.5px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: rgba(42, 193, 188, 0.5);
+  }
+  .container {
+    width: 280px;
+    height: 40px;
+    border-radius: 20px;
+    background: rgba(42, 193, 188, 0.5);
+    align-items: center;
+    display: flex;
+    position: absolute;
+    top: -50px;
+    left: 30px;
+  }
+
+  .container p {
+    margin-left: 20px;
+    padding: 5px;
+    font-size: 25px;
+    font-weight: 300;
+    text-align: left;
+    color: #fff;
+    padding-left: 6px; /* Adjust as needed */
+    padding-top: 5px; /* Adjust as needed */
+  }
+
+  /* ë©”ì¸ í™ˆ ì‚¬ì§„ì˜ì—­ */
+
+  .main_home_slide {
+    display: flex;
+    overflow: hidden;
+  }
+
+  .main_home_pic {
+    display: flex;
+    margin-top: 170px;
+    margin-left: 70px;
+    width: 900px;
+    height: 700px;
+    border: 1px solid black;
+    border-radius: 50px;
+  }
+
+  /* ìŠ¬ë¼ì´ë“œ ê°€ì´ë“œ */
+
+  .slide {
+    display: flex;
+    box-sizing: border-box;
+    height: 800px;
+    margin-top: 100px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide_box {
+    display: flex;
+  }
+
+  .slide_item {
+    flex: 0 0 100%; /* ìŠ¬ë¼ì´ë“œ ì•„ì´í…œ ë„ˆë¹„ ì„¤ì • */
+  }
+
+  .slide_item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ì´ë¯¸ì§€ê°€ í™”ë©´ì— ë§ì¶”ì–´ ë³´ì´ë„ë¡ ì„¤ì • */
+  }
+
+  /* CSS ìŠ¤íƒ€ì¼ */
+  .button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+  }
+
+  .on {
+    color: #fbc02d;
+  }
+
+  .button:hover {
+    color: #fbc02d;
+  }
+}
+/* */
+
+
+@media screen and (max-width: 600px) {
   
     body{
       overflow-x: hidden;
@@ -238,8 +467,8 @@
     
     #adContainer{
       display: none;
-      opacity: 0; /* ÃÊ±â Åõ¸íµµ ¼³Á¤ */
-      transition: opacity 1s ease-in-out; /* Åõ¸íµµ º¯°æ¿¡ ´ëÇÑ ÀüÈ¯ È¿°ú Àû¿ë */
+      opacity: 0; /* ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+      transition: opacity 1s ease-in-out; /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½æ¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
     }
   
     #adScreen{
@@ -333,7 +562,7 @@
     }
   
     .button {
-      font-family: "Maplestory Light", sans-serif; /* MaplestoryBold ÆùÆ® Àû¿ë */
+      font-family: "Maplestory Light", sans-serif; /* MaplestoryBold ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ */
       top: 10px;
       font-size: 12px;
       border: none;
