@@ -19,8 +19,8 @@ public interface UserMapper {
 	//로그인
 	public void insertAuth(String username);
 	
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> mergeTest
+
+
+

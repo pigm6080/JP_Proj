@@ -27,7 +27,6 @@ public class tripController {
 		
 		return "trip";
 	}
-<<<<<<< HEAD
 	
 	/*
 	 * @Autowired private TravelInfoService infoService;
@@ -101,7 +100,6 @@ public class tripController {
 	 */
 
 
-=======
 	@GetMapping("/regMember")
 	public String regMember() {
 		
@@ -119,5 +117,4 @@ public class tripController {
 	    
 	    return "redirect:/";
 	}
->>>>>>> mergeTest
 }
