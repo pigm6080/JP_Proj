@@ -24,3 +24,9 @@ Y
 )src/main/webapp/resources/styles/home.css,7\8\78ef0a5e2221c9262dfdb3a94a96708353b54381
 [
 +src/main/webapp/resources/styles/Header.css,c\0\c07351f12d95dd1b8e99a6ae5b291efd88a0100e
+m
+=src/test/java/com/study/erum/persistence/DataSourceTests.java,f\e\fe0997210c6ec4b2c9163067648ed621c06edd1c
+U
+%src/main/webapp/resources/js/slide.js,c\a\caa5fbd8e3f2dc1a8ab1e4882c477954a9039bc0
+T
+$src/main/webapp/resources/js/home.js,d\1\d1e605507684cea7cbe2dc84216dde5ad320bb71

@@ -10,22 +10,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0623a4d8-8b0a-4252-ad97-f830060600e8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" afterPath="$PROJECT_DIR$/.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.component" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.component" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.project.facet.core.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.project.facet.core.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.validation.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.wst.validation.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/a/caa5fbd8e3f2dc1a8ab1e4882c477954a9039bc0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/1/d1e605507684cea7cbe2dc84216dde5ad320bb71" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/e/fe0997210c6ec4b2c9163067648ed621c06edd1c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/a/caa5fbd8e3f2dc1a8ab1e4882c477954a9039bc0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/1/d1e605507684cea7cbe2dc84216dde5ad320bb71" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/f/e/fe0997210c6ec4b2c9163067648ed621c06edd1c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/0/305b3bb8194d08e1e32b17ac5f1d53c1cf0118c1" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/0/305b3bb8194d08e1e32b17ac5f1d53c1cf0118c1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/0/c07351f12d95dd1b8e99a6ae5b291efd88a0100e" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/0/c07351f12d95dd1b8e99a6ae5b291efd88a0100e" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/styles/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/styles/Header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/styles/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/styles/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/slide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/slide.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/zerock/controller/CommonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/zerock/controller/CommonController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/zerock/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/zerock/controller/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/zerock/controller/SampleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/zerock/controller/SampleController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/zerock/domain/AuthVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/zerock/domain/AuthVO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/zerock/domain/MemberVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/zerock/domain/MemberVO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/zerock/security/CustomAccessDeniedHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/zerock/security/CustomAccessDeniedHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/zerock/security/CustomLoginSuccessHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/zerock/security/CustomLoginSuccessHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/zerock/security/CustomUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/zerock/security/CustomUserDetailsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/org.zerock/controller/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/org.zerock/controller/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/zerock/security/domain/CustomUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/zerock/security/domain/CustomUser.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +93,8 @@
     &quot;Tomcat Server.index.jsp (2).executor&quot;: &quot;Run&quot;,
     &quot;Tomcat Server.index.jsp.executor&quot;: &quot;Run&quot;,
     &quot;Tomcat Server.planner.jsp.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;result&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/project/JP_Proj&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -218,6 +228,8 @@
       <workItem from="1711931581332" duration="400000" />
       <workItem from="1711938227053" duration="4313000" />
       <workItem from="1712017636193" duration="616000" />
+      <workItem from="1712559290952" duration="866000" />
+      <workItem from="1712560417623" duration="238000" />
     </task>
     <servers />
   </component>
