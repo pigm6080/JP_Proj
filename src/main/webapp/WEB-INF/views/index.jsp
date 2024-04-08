@@ -54,6 +54,8 @@
                 <span class="project-name">너 J발 P야?</span>
               </a>
             </div>
+            <div class="hamburger">
+            </div> <!-- 햄버거 추가 예정 -->
           </div>
           <div class="nav-buttons">
             <button class="button" data-section="home">홈</button>
@@ -171,10 +173,10 @@
         </div>
         <div class="slide_bar_container">
           <div class="slide_bar_info">
-            <progress id="progress" value="5" min="0" max="5"></progress>
+            <progress id="progress" value="20" max="100"></progress>
             <div class="slide_bar_info_num">
               <p class="info_num">01</p>
-              <p class="info_maxnum">/ 10</p>
+              <p class="info_maxnum">/ 05</p>
             </div>
             <div class="slide_bar_button">
               <a href="#" id="leftArrow">
