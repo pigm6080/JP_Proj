@@ -13,7 +13,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.zerock.domain.UserVO;
 
-public class userLoginAuthenticationProvider implements AuthenticationProvider {
+public class UserLoginAuthenticationProvider implements AuthenticationProvider {
 	
 	
 	@Autowired

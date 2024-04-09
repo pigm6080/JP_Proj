@@ -1,5 +1,6 @@
 package org.zerock.service;
 
+import java.util.EnumSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.zerock.domain.AuthVO;
 import org.zerock.domain.UserVO;
 import org.zerock.mapper.UserMapper;
+import org.zerock.security.domain.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -28,21 +30,12 @@ public class UserServiceImpl implements UserService{
 		
 		vo.setPassword(pwecoderEncoder.encode(vo.getPassword()));
 		
-		String default_Auth = "ROLE_USER";
-		
-		
-		AuthVO auth = new AuthVO( 
-				vo.getUsername(),
-				default_Auth
-				);
-		
-		
 		log.info("register 입니다." + vo);
 		
 		mapper.insert(vo);
 		mapper.insertAuth(vo.getUsername());
-		this.grantAuth(auth);
-		log.info("auth " + auth.getAuthority() + " 를  유저 "+ auth.getUsername() + "에게 부여하였습니다.");
+		this.grantAuth(vo.getAuth());
+		log.info( vo.getName() + "님의  역할은 "+ vo.getAuth() + "입니다...");
 	}
 
 	@Override

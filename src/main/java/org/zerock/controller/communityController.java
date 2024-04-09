@@ -1,12 +1,16 @@
 package org.zerock.controller;
 
+import java.util.EnumSet;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.zerock.domain.AuthVO;
 import org.zerock.domain.UserVO;
+import org.zerock.security.domain.Role;
 import org.zerock.service.UserService;
 
 import lombok.AllArgsConstructor;
@@ -64,8 +68,11 @@ public class communityController {
 	
 	@PostMapping("/reg")
 	public String regmember(@ModelAttribute UserVO vo) {
+		//일반회원 회원가입임
 		
+		AuthVO authVO = new AuthVO(vo.getUsername(),Role.MEMBER.name());
 	    System.out.println("회원가입 정보: " + vo);
+	    vo.setAuth(authVO); //FIXME
 	    
 	    service.register(vo);
 	    

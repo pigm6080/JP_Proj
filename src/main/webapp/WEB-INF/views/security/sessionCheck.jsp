@@ -9,6 +9,15 @@
 <body>
 	<h1>SESSION CHECK</h1>
 	
-	<p>${session}</p>
+	<p>${check}</p>
+	
+	
+	
+	<br>
+	<hr>
+	<br>
+	<p>${principalCheck}</p>
+
+	
 </body>
 </html>

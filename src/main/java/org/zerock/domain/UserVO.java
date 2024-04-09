@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.zerock.security.domain.Role;
 
 import lombok.Data;
 
@@ -21,7 +23,7 @@ public class UserVO implements UserDetails{
 	private String name;
 	private String phone;
 	private Date createday;
-	private List<AuthVO> authList;
+	private AuthVO auth;
 
 
 
@@ -62,17 +64,14 @@ public class UserVO implements UserDetails{
 
 		return true;
 	}
-	
-	
+
+
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-	    List<GrantedAuthority> authorities = new ArrayList<>();
-	    for (AuthVO auth : authList) {
-	        authorities.add(new SimpleGrantedAuthority(auth.getAuthority()));
-	    }
-	    return authorities;
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
 
 }
 
