@@ -193,7 +193,7 @@ public class tripController {
         tripInfo.setPlaceName(placeName); 
         tripInfo.setHashtag(hashtag);
         tripInfoService.insertTripInfo(tripInfo);
-        System.out.println(tripInfo);
+        System.out.println("tripInfo = "+tripInfo);
         
         // 파일 정보 삽입
         for (int i = 0; i < files.length; i++) {
@@ -205,9 +205,12 @@ public class tripController {
                 e.printStackTrace();
                 // 파일 저장 실패 처리
             }
+            
         }
 
-        return "redirect:/trip/home"; //result?hashtag=" + URLEncoder.encode(hashtag, "UTF-8");
+        return "redirect:/trip/home?hashtag=" + URLEncoder.encode(hashtag, "UTF-8");
+
+
 
 
 
@@ -286,31 +289,24 @@ public class tripController {
    
     
 
-    @GetMapping("/uploaded-images/{filename:.+}")
-    @ResponseBody
-    public byte[] getImage(@PathVariable String filename) throws IOException {
-        return Files.readAllBytes(Paths.get("C:/upload/" + filename));
-    }
-
-
-    @RequestMapping("/result")
-    public String showResult(@RequestParam("hashtag") String hashtag,  Model model) { // @RequestParam("place_name")String place_name
-        System.out.println("hashtag: " + hashtag); // hashtag 출력하여 확인
+    @RequestMapping("/trip")
+    public String showResult(@RequestParam("hashtag") String hashtag, Model model) {
         // 여행 정보 및 파일 정보 조회
-        TripInfoVO tripInfo = tripInfoService.getTripInfoByHashTag(hashtag);  //해쉬태그 get 메서드 서비스/ 서비스 임플 / 매퍼 모두 작성
+        System.out.println("showResult실행됨");
+        TripInfoVO tripInfo = tripInfoService.getTripInfoByHashTag(hashtag);
         if (tripInfo == null) {
             System.out.println("No trip info found for place: " + hashtag);
         }
-        List<FileVO> files = fileService.getFilesByHashTag(hashtag);  // 이미지 파일은 여행지명과 연관있으므로 가만히 냅둔다
+        List<FileVO> fileList = fileService.getFilesByHashTag(hashtag);
 
         // 모델에 데이터 추가
         model.addAttribute("tripInfo", tripInfo);
-        System.out.println("tripInfo왜null이냐"+tripInfo);
-        System.out.println("files:"+files);
-        model.addAttribute("files", files);
-        return "result"; // 결과 페이지로 이동
+        System.out.println("tripInfo: " + tripInfo);
+        model.addAttribute("files", fileList);
+        System.out.println("files: " + fileList);
+
+        return "trip/home"; // 결과 페이지로 이동
     }
-    
     
  
 	
