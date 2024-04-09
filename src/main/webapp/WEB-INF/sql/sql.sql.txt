@@ -19,3 +19,73 @@ CREATE TABLE user_auth(
     CONSTRAINT user_auth FOREIGN KEY (username) REFERENCES user (username)
 );
 #유저 인증 테이블 생성
+
+
+-------------------------------
+use JP;
+CREATE TABLE user (
+    username VARCHAR(100) NOT NULL PRIMARY KEY,
+    password VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    phone VARCHAR(50) NOT NULL,
+    createday TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+CREATE TABLE user_auth(
+    username VARCHAR(100) NOT NULL,
+    auth VARCHAR(50) default 'ROLE_MEMBER' NOT NULL,
+    CONSTRAINT user_auth FOREIGN KEY (username) REFERENCES user (username)
+);
+
+
+CREATE TABLE file_users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE trip_info (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    hashtag VARCHAR(255),
+    placeName VARCHAR(255)
+  
+);
+
+
+
+
+CREATE TABLE file (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    placeName VARCHAR(255),
+    filename VARCHAR(255) NOT NULL,
+    filepath VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    hashtag varchar(100) NOT null,
+     description VARCHAR(255),   
+    address VARCHAR(255),
+    rating int,
+    author VARCHAR(255),
+    phone_number VARCHAR(20),
+    sns_url VARCHAR(255),
+    other_info VARCHAR(255)
+);
+
+       UPDATE file
+    SET place_name = "동백동백",
+        description = "동백동백",
+        address = "동백동백",
+        rating = 4,
+        author = "동백동백",
+        phone_number = "동백동백",
+        sns_url = "동백동백",
+        other_info = "동백동백"
+       WHERE id = 2
+
+insert into user values("dd2558","12345","하동원","01094955089",now());      
+       
+select * from user;     
+select * from user_auth;     
+select * from file_users;
+select * from file;
+select * from trip_info;

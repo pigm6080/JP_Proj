@@ -199,15 +199,9 @@ public class tripController {
                 e.printStackTrace();
                 // 파일 저장 실패 처리
             }
-            
         }
 
         return "redirect:/trip/home?hashtag=" + URLEncoder.encode(hashtag, "UTF-8");
-
-
-
-
-
     }
 
 
@@ -240,7 +234,7 @@ public class tripController {
     private String saveFile(MultipartFile file) throws IOException {
         String originalFilename = file.getOriginalFilename();
         String filename = generateFilenameWithExtension(originalFilename); // 파일명에 확장자 추가
-        String filepath = "C:/uploaded-images/" + filename;
+        String filepath = "/Users/myhome/Documents/uppup/" + filename;
         file.transferTo(new java.io.File(filepath));
         return filename;
     }
@@ -282,7 +276,7 @@ public class tripController {
     @ResponseBody
     public byte[] getImage(@PathVariable String filename) throws IOException {
     	System.out.println("getImage실행됨");
-        return Files.readAllBytes(Paths.get("C:/uploaded-images/" + filename));
+        return Files.readAllBytes(Paths.get("/Users/myhome/Documents/uppup/" + filename));
     }
 
 
