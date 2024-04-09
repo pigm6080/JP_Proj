@@ -15,6 +15,7 @@
 	<security:intercept-url pattern="/*" access="permitAll" />
 	<security:intercept-url pattern="/**" access="permitAll" />
 	<security:intercept-url pattern="/trip" access="permitAll" />
+	<security:intercept-url pattern="/uploaded-images/**" access="permitAll" />
 <!-- 	<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')" />
 	<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')" />
 	
@@ -29,7 +30,6 @@
 	<security:access-denied-handler ref="customAccesDenid"/> 
 	 
 	<security:logout logout-url="/customLogout" invalidate-session="true"/>
-	
 	
 	 
 </security:http>

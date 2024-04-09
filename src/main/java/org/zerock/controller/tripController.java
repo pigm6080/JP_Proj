@@ -83,7 +83,7 @@ public class tripController {
 	    
 	    return "redirect:/";
 	}
-	@GetMapping("/showdetail")
+	@GetMapping("/showdetails")
 	public String tripdetail() {
 		
 		System.out.println("디테일 폼 왔음.");
@@ -148,7 +148,7 @@ public class tripController {
 
     
     
-    @GetMapping("/detail")
+    @GetMapping("/showdetail")
     public String showDetailPage(@RequestParam("placeName") String placeName, 
                                  @RequestParam("hashtag") String hashtag, 
                                  Model model) {
@@ -248,7 +248,7 @@ public class tripController {
     private String saveFile(MultipartFile file) throws IOException {
         String originalFilename = file.getOriginalFilename();
         String filename = generateFilenameWithExtension(originalFilename); // 파일명에 확장자 추가
-        String filepath = "C:/upload/" + filename;
+        String filepath = "C:/uploaded-images/" + filename;
         file.transferTo(new java.io.File(filepath));
         return filename;
     }
@@ -290,7 +290,7 @@ public class tripController {
     @ResponseBody
     public byte[] getImage(@PathVariable String filename) throws IOException {
     	System.out.println("getImage실행됨");
-        return Files.readAllBytes(Paths.get("C:/upload/" + filename));
+        return Files.readAllBytes(Paths.get("C:/uploaded-images/" + filename));
     }
 
 
@@ -312,7 +312,8 @@ public class tripController {
         System.out.println("tripInfo: " + tripInfo);
         model.addAttribute("files", fileList);
         System.out.println("files: " + fileList);
-
+        
+        
         return "trip";
     }
 

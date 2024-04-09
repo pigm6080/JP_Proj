@@ -198,7 +198,7 @@
                         <img src="${file.filepath}" style="width:150px;">
                   <div class="board_container">
                     <div class="board_item">
-                    <a href="/detail?placeName=${file.placeName}&hashtag=${file.hashtag}"></a>
+                   
                       <div class="heart_container">
                         <div class="heart" onclick="toggleHeart()">
                           <i class="fa-regular fa-heart"></i>
@@ -207,17 +207,21 @@
                     </div>
                   <div class="board_info">
                       <div class="board_title">
-                         <p>여행지명: ${tripInfo.placeName}</p>
+                        
+                         <h1>여행지명:
+                         <a href="/showdetail?placeName=${file.placeName}&hashtag=${file.hashtag}"> ${file.placeName}
+                         
+                         </h1>
+                        
                         <div class="star-rating">
                           <span class="star">&#9733;</span>
                           <span class="star">&#9733;</span>
                           <span class="star">&#9733;</span>
                           <span class="star">&#9733;</span>
                           <span class="star">&#9733;</span>
-                           <p>평점: ${file.rating}/5</p>
                       </div>
                           <div class="rating-text">
-                            <p class="info_num">5</p>
+                            <p class="info_num">${file.rating}</p>
                             <p class="info_maxnum">/ 5</p>
                           </div>
                       </div>
