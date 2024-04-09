@@ -65,4 +65,18 @@ public class UserServiceImpl implements UserService{
 		return mapper.getList();
 	}
 
+	@Override
+	public String emailcheck(String username) {
+		
+		UserVO vo = mapper.read(username);
+		
+		System.out.println("id check :" + username + " : " + vo);
+		
+		if(vo == null) {
+			return "ok";
+		}else {
+			return "no";
+		}
+	}
+
 }

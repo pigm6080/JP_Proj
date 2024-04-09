@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.zerock.domain.UserVO;
 import org.zerock.service.UserService;
 
@@ -72,6 +74,14 @@ public class HomeController {
 	    
 	    return "redirect:/";
 	}
+	
+	   
+	  @PostMapping("/email-check")
+	   public @ResponseBody String emailCheck(@RequestParam("username")String username) {
+		   System.out.println("username = " + username);
+		   String checkResultString = service.emailcheck(username);
+		   return checkResultString;
+	   }
 	
 }
 	

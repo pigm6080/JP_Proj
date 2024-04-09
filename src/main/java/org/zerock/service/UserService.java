@@ -20,6 +20,7 @@ public interface UserService {
 	
 	//회원 전체 리스트 출력
 	public List<UserVO> getList();
-
+	
+	public String emailcheck(String username);
 
 }
