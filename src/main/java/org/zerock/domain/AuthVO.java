@@ -1,10 +1,6 @@
 package org.zerock.domain;
 
-import java.util.EnumSet;
-import java.util.Set;
-
 import org.springframework.security.core.GrantedAuthority;
-import org.zerock.security.domain.Role;
 
 import lombok.Data;
 

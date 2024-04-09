@@ -23,7 +23,7 @@ public class UserVO implements UserDetails{
 	private String name;
 	private String phone;
 	private Date createday;
-	private AuthVO auth;
+	private AuthVO authList;
 
 
 

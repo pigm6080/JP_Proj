@@ -22,10 +22,9 @@ public class CustomUser extends User{
 	}
 
 	public CustomUser(UserVO vo) {
-//FIXME  권한 가져오는 부분 수정 ,, ㅅ게터부분도 수정해줘야함
-		super(vo.getUsername(), vo.getPassword(), vo.getAuthList().stream()
-		.map(auth -> new SimpleGrantedAuthority(auth.getAuth())).collect(Collectors.toList()));
-		
+
+		super(vo.getUsername(), vo.getPassword(), vo.getAuthorities().stream()
+		.map(auth -> new SimpleGrantedAuthority(auth.getAuthority())).collect(Collectors.toList()));
 		this.user = vo;
 	}
 }

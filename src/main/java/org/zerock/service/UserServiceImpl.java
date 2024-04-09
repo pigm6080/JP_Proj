@@ -34,8 +34,8 @@ public class UserServiceImpl implements UserService{
 		
 		mapper.insert(vo);
 		mapper.insertAuth(vo.getUsername());
-		this.grantAuth(vo.getAuth());
-		log.info( vo.getName() + "님의  역할은 "+ vo.getAuth() + "입니다...");
+		this.grantAuth(vo.getAuthList());
+		log.info( vo.getName() + "님의  역할은 "+ vo.getAuthList() + "입니다...");
 	}
 
 	@Override

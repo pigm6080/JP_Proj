@@ -1,8 +1,5 @@
 package org.zerock.service;
 
-import java.util.EnumSet;
-import java.util.Iterator;
-
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -283,13 +280,13 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		if(userSrv.get(vo.getUsername()) != null) {
 			AuthVO authVO = new AuthVO(vo.getUsername(), Role.SNSMEMBER.name());
 			returnVO = userSrv.get(vo.getUsername());
-			returnVO.setAuth(authVO);	
+			returnVO.setAuthList(authVO);	
 			//있다면 권한만 설정해준다
 		}
 		else if (userSrv.get(vo.getUsername()) == null) {
 			AuthVO authVO = new AuthVO(vo.getUsername(), Role.SNSMEMBER.name());
 			returnVO = vo;
-			returnVO.setAuth(authVO);
+			returnVO.setAuthList(authVO);
 			userSrv.register(returnVO);
 			//없다면 등록하여야하고
 		}
