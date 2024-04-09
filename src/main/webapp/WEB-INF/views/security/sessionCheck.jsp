@@ -23,7 +23,13 @@
 <hr>
 <h2>@AuthenticationPrincipal을 통한 확인</h2>
 
-<p>유저이름 : ${@userNm}</p>
-<p>유저비밀번호 : ${@userPw}</p>
+<p>유저이름 : ${userNm}</p>
+<p>유저비밀번호 : ${principal}</p>
+
+
+<p>princ : ${princ}</p>
+
+<h2>auth을 통한 확인</h2>
+<p>auth : ${auth}</p>
 </body>
 </html>

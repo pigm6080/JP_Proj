@@ -1,6 +1,9 @@
 package org.zerock.service;
 
+import java.util.Map;
+
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpEntity;
@@ -15,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import org.zerock.domain.AuthVO;
 import org.zerock.domain.KakaoTokenVO;
 import org.zerock.domain.UserVO;
+import org.zerock.mapper.UserMapper;
 import org.zerock.oauthutil.OTPgenerator;
 import org.zerock.security.domain.Role;
 
@@ -44,6 +48,11 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 
 	@Value("${client_secret}")
 	private String CLIENT_SECRET; // client_secret
+	
+	@Autowired
+	private UserMapper mapper;
+	
+	
 
 	@Override
 	public String tokenValidation(KakaoTokenVO token) {
@@ -128,7 +137,7 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 	}
 
 	@Override
-	public UserVO getKakaoUserInfo(@ModelAttribute KakaoTokenVO token)
+	public Map<UserVO, AuthVO> getKakaoUserInfo(@ModelAttribute KakaoTokenVO token)
 			throws JsonMappingException, JsonProcessingException {
 		// For Info Get
 		RestTemplate rt2 = new RestTemplate();
@@ -228,13 +237,19 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 
 		// bodyJson <- 결과 JSON
 		
-
-		UserVO vo = new UserVO(username, 	// username
-				password, 					// password
-				name, 						// name
-				phone						// phone
-		);
-		return vo;
+		AuthVO authvo = new AuthVO(username, "KakaoUser");
+		
+		//TODO
+		Map<String, Object> 
+	        
+	    // 여기서 사용자의 권한을 설정합니다.
+	    
+	        
+		UserVO vo = new UserVO( username, password );
+		
+		vo.setName(name);		// name
+		vo.setPhone(phone);		// phone
+		return vo ,;
 	}
 
 	@Override
@@ -278,16 +293,20 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		UserVO returnVO = null;
 		
 		if(userSrv.get(vo.getUsername()) != null) {
-			AuthVO authVO = new AuthVO(vo.getUsername(), Role.SNSMEMBER.name());
-			returnVO = userSrv.get(vo.getUsername());
-			returnVO.setAuthList(authVO);	
+			
+			UserVO returnUserName = userSrv.get(vo.getUsername());
+			String thisUserName = returnUserName.getUsername();
+			AuthVO newAuthVO = new AuthVO(thisUserName, Role.SNSMEMBER.name());
+			
+			userSrv.grantAuth(newAuthVO);
 			//있다면 권한만 설정해준다
 		}
 		else if (userSrv.get(vo.getUsername()) == null) {
 			AuthVO authVO = new AuthVO(vo.getUsername(), Role.SNSMEMBER.name());
 			returnVO = vo;
-			returnVO.setAuthList(authVO);
-			userSrv.register(returnVO);
+
+			
+			userSrv.register(returnVO, authVO);
 			//없다면 등록하여야하고
 		}
 		

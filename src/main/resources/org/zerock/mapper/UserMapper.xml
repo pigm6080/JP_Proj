@@ -14,12 +14,12 @@
     <result property="username" column="username"/>
     <result property="phone" column="phone"/>
     <result property="createday" column="createday"/>
-    <collection property="authList" resultMap="authMap">
-    </collection> 
+<!--     <collection property="authList" resultMap="authMap"> -->
+<!--     </collection>  -->
   </resultMap>
   
   <resultMap type="org.zerock.domain.AuthVO" id="authMap">
-    <result property="id" column="id"/>
+    <result property="username" column="username"/>
     <result property="auth" column="auth"/>
   </resultMap>
   
@@ -61,8 +61,17 @@
 			select * from user
 		]]>
 	</select>
+	<!-- by kgh 권한추가 부분 업데이트로 구현 -->
+	<update id="grantAuth" parameterType="org.zerock.domain.AuthVO">
+		UPDATE user_auth
+		SET
+		auth = #{auth}
+		WHERE username = #{username}
+	</update>
 	
-	
+	<select id="getUserAuth" parameterType= "String" resultType="String">
+		SELECT auth from user_aut where username = #{username}
+	</select>
 	
 
 </mapper>

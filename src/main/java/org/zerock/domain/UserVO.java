@@ -1,21 +1,25 @@
 package org.zerock.domain;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.zerock.security.domain.Role;
+import org.springframework.security.core.userdetails.User;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
-public class UserVO implements UserDetails{
+@Getter @Setter
+@ToString
+
+public class UserVO{ //extends User{
 	
+//	public UserVO(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+//		super(username, password, authorities);
+//	}
+
+
 	private static final long serialVersionUID = 1L;
 	
 	private String username;
@@ -23,60 +27,35 @@ public class UserVO implements UserDetails{
 	private String name;
 	private String phone;
 	private Date createday;
-	private AuthVO authList;
-
-
-
-	public UserVO(String username, String password, String name, String phone) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.name = name;
-		this.phone = phone;
-	}
-	
-	public UserVO(String username, String password, AuthVO authList) {
-		this.username = username;
-		this.password = password;
-		this.authList = authList;
-	}
 
 	
 
-	@Override
+//	@Override
 	// 계정이 만료 되지 않았는가?
 	public boolean isAccountNonExpired() {
 
 		return true;
 	}
 
-	@Override
+//	@Override
 	// 계정이 잠기지 않았는가?
 	public boolean isAccountNonLocked() {
 
 		return true;
 	}
 
-	@Override
+//	@Override
 	// 패스워드가 만료되지 않았는가?
 	public boolean isCredentialsNonExpired() {
 
 		return true;
 	}
 
-	@Override
+//	@Override
 	// 계정이 활성화 되었는가?
 	public boolean isEnabled() {
 
 		return true;
-	}
-
-
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
