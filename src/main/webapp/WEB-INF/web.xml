@@ -21,7 +21,8 @@
 	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml
+		<param-value>
+		/WEB-INF/spring/root-context.xml
 		/WEB-INF/spring/security-context.xml
 		</param-value>
 	</context-param>
@@ -58,4 +59,14 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+<!-- multipart filter 추가하기 -->
+	<filter>
+		<display-name>springMultipartFilter</display-name>
+		<filter-name>springMultipartFilter</filter-name>
+		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springMultipartFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,9 @@
 <h1>여행정보 업로드</h1>
 
 
-<form action="/addUserAndFile" method="post" enctype="multipart/form-data">
+<form action="/trip/addUserAndFile" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+<%-- 	<sec:csrfInput/> --%>
 	<label for="username">사용자:</label>
 	<input type="text" id="username" name="username"><br><br>
     <label for="placeName">여행지명:</label>
@@ -37,7 +40,7 @@
     <label for="file">파일업로드:</label>
     <input type="file" id="file" name="file" multiple><br><br>
     <button type="submit">Submit</button>
-      <input type ="hidden" name ="${_csrf.parameterName}" value = "${_csrf.token}"/>
+	
 </form>
 
 
