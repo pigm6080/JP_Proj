@@ -1,5 +1,6 @@
 package org.zerock.service;
 
+import java.util.EnumSet;
 import java.util.Iterator;
 
 import org.json.simple.parser.JSONParser;
@@ -14,9 +15,11 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.client.RestTemplate;
+import org.zerock.domain.AuthVO;
 import org.zerock.domain.KakaoTokenVO;
 import org.zerock.domain.UserVO;
 import org.zerock.oauthutil.OTPgenerator;
+import org.zerock.security.domain.Role;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -278,11 +281,17 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		UserVO returnVO = null;
 		
 		if(userSrv.get(vo.getUsername()) != null) {
+			AuthVO authVO = new AuthVO(vo.getUsername(), Role.SNSMEMBER.name());
 			returnVO = userSrv.get(vo.getUsername());
+			returnVO.setAuth(authVO);	
+			//있다면 권한만 설정해준다
 		}
 		else if (userSrv.get(vo.getUsername()) == null) {
-			userSrv.register(vo);
+			AuthVO authVO = new AuthVO(vo.getUsername(), Role.SNSMEMBER.name());
 			returnVO = vo;
+			returnVO.setAuth(authVO);
+			userSrv.register(returnVO);
+			//없다면 등록하여야하고
 		}
 		
 		return returnVO;

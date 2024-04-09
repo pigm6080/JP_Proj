@@ -63,6 +63,9 @@
             <button class="button" onclick="location.href='/regMember'">
               회원가입
             </button>
+<!--             <script type="text/javascript"> -->
+<%--             	var session = '<%=(String)session.getAttribute("")%>' --%>
+<!--             </script> -->
           </div>
         </div>
         <!-- 사이드 퀵nav-->

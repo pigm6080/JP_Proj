@@ -2,6 +2,7 @@ package org.zerock.service;
 
 import java.util.List;
 
+import org.zerock.domain.AuthVO;
 import org.zerock.domain.UserVO;
 
 public interface UserService {
@@ -20,6 +21,8 @@ public interface UserService {
 	
 	//회원 전체 리스트 출력
 	public List<UserVO> getList();
-
+	
+	//권한 부여 추가 k - private 처리
+//	String grantAuth(AuthVO authVO);
 
 }

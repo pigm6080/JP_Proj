@@ -1,5 +1,7 @@
 package org.zerock.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,10 +27,19 @@ public class CommonController {
 	}
 	
 	@GetMapping("/customLogin")
-	public String loginInput(String error ,String logout ,Model model) {
+	public String loginInput(String error ,String logout ,Model model,HttpServletRequest request) {
 
 		log.info("error :" + error);
 		log.info("logout :" + logout);
+		
+		//by KGH 로그인 버튼 누른 시점 uri 저장
+		String uri = request.getHeader("Referer");
+		
+		if(!uri.contains("/customLogin")) {  //로그인 실패로인한 리턴시 요청시점uri가 로그인 페이지가 되지않게 설정
+			request.getSession().setAttribute("prevPage",
+					request.getHeader("Referer"));
+		}
+		
 		
 		if(error != null) {
 			model.addAttribute("error" , "Login Error Check Your Account");

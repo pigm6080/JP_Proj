@@ -18,6 +18,7 @@ import org.zerock.domain.KakaoTokenVO;
 import org.zerock.domain.KakaoUserInfoVO;
 import org.zerock.domain.UserVO;
 import org.zerock.oauthutil.OTPgenerator;
+import org.zerock.oauthutil.SessionChecker;
 import org.zerock.service.KakaoOauthServiceImpl;
 import org.zerock.service.UserServiceImpl;
 
@@ -60,8 +61,8 @@ public class OauthController {
 		
 		UserVO kakaoUser = kakaoSrv.kakaoRegist(KakaoUserInfo, userSrv); //UserVO vo Return
 		
-		session.setAttribute("KakaoUser",kakaoUser);
-		session.setMaxInactiveInterval(3600);
+//		session.setAttribute("KakaoUser",kakaoUser);
+//		session.setMaxInactiveInterval(3600);
 		
 		return "redirect:/"; //home으로 리다이렉트
 	}
@@ -86,19 +87,24 @@ public class OauthController {
         String result = null;
         if (session != null) {
             // 세션에 저장된 데이터 조회
-            Object userData = session.getAttribute("KakaoUser");
+            Object userData = session.getAttribute("Check");
             if (userData != null) {
                 System.out.println("User data found in session: " + userData.toString());
-                model.addAttribute("session", userData.toString());
+                model.addAttribute("Check", userData.toString());
             } else {
             	System.out.println("User data not found in session"); 
             	result = "User data not found in session";
-            	model.addAttribute("session", result);
+            	model.addAttribute("Check", result);
             }
         } else {
         	result =  "Session not found";
-        	model.addAttribute("session", result);
+        	model.addAttribute("Check", result);
         }
+        
+        SessionChecker sChecker = new SessionChecker();
+        model.addAttribute("principalCheck",sChecker.principanView().toString());
+        
+        
 		return "security/sessionCheck";
     }
 
