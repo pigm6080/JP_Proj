@@ -34,6 +34,12 @@ public class UserVO implements UserDetails{
 		this.name = name;
 		this.phone = phone;
 	}
+	
+	public UserVO(String username, String password, AuthVO authList) {
+		this.username = username;
+		this.password = password;
+		this.authList = authList;
+	}
 
 	
 

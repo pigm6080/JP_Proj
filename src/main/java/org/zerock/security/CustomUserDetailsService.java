@@ -4,10 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.zerock.domain.AuthVO;
 import org.zerock.domain.UserVO;
 import org.zerock.mapper.UserMapper;
 import org.zerock.security.domain.CustomUser;
+//import org.zerock.oauthutil.UserAdapter;
+
 
 import lombok.extern.log4j.Log4j;
 
@@ -29,6 +30,9 @@ public class CustomUserDetailsService implements UserDetailsService{
 		log.warn("queried by member mapper vo에서 가져온 값은 !!!!!!!!!!:" + vo);
 		
 		return vo == null ? null : new CustomUser(vo);
+		
+		
+//		return UserAdapter(vo);
 	}
 	
 	

@@ -5,6 +5,8 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -74,7 +76,7 @@ public class OauthController {
 	}
 	
 	@GetMapping("/checkSession")
-    public String checkSession(HttpServletRequest request , Model model) {
+    public String checkSession(HttpServletRequest request , Model model, @AuthenticationPrincipal User user) {
         HttpSession session = request.getSession(false); // 세션이 없으면 null 반환
         String result = null;
         if (session != null) {
@@ -94,7 +96,10 @@ public class OauthController {
         }
         
         SessionChecker sChecker = new SessionChecker();
-        model.addAttribute("principalCheck",sChecker.principanView().toString());
+        model.addAttribute("sChecker", sChecker.principanView().toString());
+        
+        model.addAttribute("@userNm" + user.getUsername());
+        model.addAttribute("@userPw" + user.getPassword());
         
         
 		return "security/sessionCheck";
