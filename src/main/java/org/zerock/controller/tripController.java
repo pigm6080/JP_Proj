@@ -3,8 +3,6 @@ package org.zerock.controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,12 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.FileUserVO;
 import org.zerock.domain.FileVO;
 import org.zerock.domain.TripInfoVO;
@@ -90,11 +87,6 @@ public class tripController {
 	}
 
 
-    @RequestMapping("/")
-    public String uploadForm() {
-        return "form";
-    }
-
     @GetMapping("/delete")
     public String deleteFiles(@RequestParam("filename") String filename) {
         // 파일 삭제 로직을 구현합니다.
@@ -133,7 +125,7 @@ public class tripController {
         return "updateForm";
     }
 
-    @PostMapping(value = "/updateFileTest")
+    @PostMapping(value = "/updateFile")
     public String updateFile(@ModelAttribute("file") FileVO file){
     	
     	System.out.println("컨트롤러 단 리퀘스트 파라미터 확인!!!!!"+ file +"file.toString() !!!!!"+ file.toString());
@@ -208,7 +200,7 @@ public class tripController {
             
         }
 
-        return "redirect:/trip/home?hashtag=" + URLEncoder.encode(hashtag, "UTF-8");
+        return "redirect:/trip/result?hashtag=" + URLEncoder.encode(hashtag, "UTF-8");
 
 
 
@@ -289,8 +281,8 @@ public class tripController {
    
     
 
-    @RequestMapping("/trip")
-    public String showResult(@RequestParam("hashtag") String hashtag, Model model) {
+    @RequestMapping(value="/trip/result")
+    public String showResult(@RequestParam("hashtag") String hashtag, RedirectAttributes redirectAttributes) throws UnsupportedEncodingException{
         // 여행 정보 및 파일 정보 조회
         System.out.println("showResult실행됨");
         TripInfoVO tripInfo = tripInfoService.getTripInfoByHashTag(hashtag);
@@ -300,13 +292,14 @@ public class tripController {
         List<FileVO> fileList = fileService.getFilesByHashTag(hashtag);
 
         // 모델에 데이터 추가
-        model.addAttribute("tripInfo", tripInfo);
+        redirectAttributes.addFlashAttribute("tripInfo", tripInfo);
         System.out.println("tripInfo: " + tripInfo);
-        model.addAttribute("files", fileList);
+        redirectAttributes.addFlashAttribute("files", fileList);
         System.out.println("files: " + fileList);
 
-        return "trip/home"; // 결과 페이지로 이동
+        return "redirect:/trip/home?hashtag=" + URLEncoder.encode(hashtag, "UTF-8");
     }
+
     
  
 	

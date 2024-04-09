@@ -145,20 +145,21 @@
                     <img src="../resources/img/infoimg09.png" alt="">
                     <p class="hashtag_title_text">#야경</p></div>
             </div>
-             <script type="text/javascript">
-				  var hashtagCircles = document.querySelectorAll(".hashtag_circle1");
-				
-				  for (var i = 0; i < hashtagCircles.length; i++) {
-				    hashtagCircles[i].addEventListener("click", function(event) {
-				      event.preventDefault(); // 기본 해시 변경 방지
-				      var clickedElement = this;
-				      var hashtagText = clickedElement.querySelector(".hashtag_title_text").textContent.slice(1);
-				      var url = window.location.href.split('#')[0]; // 해시 없는 URL 가져오기
-				      var newUrl = url + "#" + hashtagText;
-				      window.location.href = newUrl;
-				    });
-				  }
-</script>
+            <script type="text/javascript">
+			    var hashtagCircles = document.querySelectorAll(".hashtag_circle1");
+			
+			    for (var i = 0; i < hashtagCircles.length; i++) {
+			        hashtagCircles[i].addEventListener("click", function(event) {
+			            event.preventDefault(); // 기본 해시 변경 방지
+			            var clickedElement = this;
+			            var hashtagText = clickedElement.querySelector(".hashtag_title_text").textContent.slice(1);
+			            var url = window.location.origin + "/trip/home"; // trip/home으로 이동할 URL
+			            var newUrl = url + "?hashtag=" + hashtagText;
+			            window.location.href = newUrl;
+			        });
+			    }
+			</script>
+
             <a href="/trip/detailInsert">여행정보 작성</a>
         </div>
           </section>
@@ -194,9 +195,7 @@
 <c:forEach var="file" items="${files}" varStatus="loop">
                   <!-- 세번째 게시물-->
                    <c:if test="${loop.first or file.placeName ne files[loop.index - 1].placeName}">
-                <li>
                         <img src="${file.filepath}" style="width:150px;">
-                </li>
                   <div class="board_container">
                     <div class="board_item">
                     <a href="/detail?placeName=${tripInfo.placeName}&hashtag=${tripInfo.hashtag}"></a>
