@@ -27,20 +27,14 @@
     ></script>
 
     <style>
-		@font-face {
-		  font-family: "MaplestoryBold";
-		  src: url("/resources/font/Maplestory Bold.ttf") format("truetype");
-		}
-		
-		@font-face {
-		  font-family: "Maplestory Light";
-		  src: url("/resources/font/Maplestory Light.ttf") format("truetype");
-		}
-		
-		body {
-		  font-family: "MaplestoryBold", "MaplestoryLight", sans-serif;
-		}
+      @font-face {
+        font-family: "MaplestoryBold";
+        src: url("resources/font/Maplestory\ Bold.ttf") format("truetype");
+      }
 
+      body {
+        font-family: "MaplestoryBold", sans-serif;
+      }
     </style>
   </head>
   <body id="body-pd">
@@ -49,13 +43,11 @@
         <div class="nav">
           <div class="logo-group">
             <div class="logo">
-              <a href="/">
+              <a href="resources/index.html">
                 <img src="resources/img/로고02.png" alt="로고" />
                 <span class="project-name">너 J발 P야?</span>
               </a>
             </div>
-            <div class="hamburger">
-            </div> <!-- 햄버거 추가 예정 -->
           </div>
           <div class="nav-buttons">
             <button class="button" data-section="home">홈</button>
@@ -176,10 +168,10 @@
         </div>
         <div class="slide_bar_container">
           <div class="slide_bar_info">
-            <progress id="progress" value="20" max="100"></progress>
+            <progress id="progress" value="10" min="0" max="100"></progress>
             <div class="slide_bar_info_num">
               <p class="info_num">01</p>
-              <p class="info_maxnum">/ 05</p>
+              <p class="info_maxnum">/ 10</p>
             </div>
             <div class="slide_bar_button">
               <a href="#" id="leftArrow">
@@ -308,12 +300,12 @@
           <div class="instagram-layout">
             <img
               class="instagram-image"
-              src="/resources/img/커뮤니티이미지레이아웃.png"
+              src="resources/img/커뮤니티이미지레이아웃.png"
               alt=""
             />
             <img
               class="community-image"
-              src="/resources/img/커뮤니티이미지.jpg"
+              src="resources/img/커뮤니티이미지.jpg"
               alt=""
             />
           </div>
@@ -334,13 +326,13 @@
           </div>
           <div class="icon">
             <img
-              src="/resources/img/gihub.png"
+              src="resources/img/gihub.png"
               style="width: 65px; height: 65px; object-fit: cover"
             /><img
-              src="/resources/img/facebook.png"
+              src="resources/img/facebook.png"
               style="width: 64px; height: 64px; object-fit: cover"
             /><img
-              src="/resources/img/instagram.png"
+              src="resources/img/instagram.png"
               style="width: 62px; height: 62px; object-fit: cover"
             />
           </div>

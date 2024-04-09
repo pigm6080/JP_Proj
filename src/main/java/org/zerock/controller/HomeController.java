@@ -57,15 +57,6 @@ public class HomeController {
 	    
 	    return "redirect:/";
 	}
-	@PostMapping("/addUserAndFile")
-	public String regmember2() {
-		
-	    System.out.println("여기옴.");
-	    
-	   
-	    
-	    return "redirect:/";
-	}
 	
 }
 	

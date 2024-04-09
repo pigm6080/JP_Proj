@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="kr">
   <head>
@@ -145,39 +144,16 @@
                     <img src="../resources/img/infoimg09.png" alt="">
                     <p class="hashtag_title_text">#야경</p></div>
             </div>
-             <script type="text/javascript">
-				  var hashtagCircles = document.querySelectorAll(".hashtag_circle1");
-				
-				  for (var i = 0; i < hashtagCircles.length; i++) {
-				    hashtagCircles[i].addEventListener("click", function(event) {
-				      event.preventDefault(); // 기본 해시 변경 방지
-				      var clickedElement = this;
-				      var hashtagText = clickedElement.querySelector(".hashtag_title_text").textContent.slice(1);
-				      var url = window.location.href.split('#')[0]; // 해시 없는 URL 가져오기
-				      var newUrl = url + "#" + hashtagText;
-				      window.location.href = newUrl;
-				    });
-				  }
-</script>
-            <a href="/trip/detailInsert">여행정보 작성</a>
         </div>
           </section>
- 
+
         <!--여행정보 하단 게시판부분-->
 
         
 
 
                       <!-- 두번째 게시물-->
-             <!-- 이미지를 차례로 표시 -->
-       
-            <!-- 현재 파일의 placeName과 이전 파일의 placeName이 같은지 확인 -->
-           
-               
-                
-                
             
-      
                     <!-- 세번째 게시물-->
                 
                   <!-- 맛집 관련 게시물 -->
@@ -186,20 +162,16 @@
               
                   <!-- 테마 관련 게시물 -->
                
-    
+
 
 
 
             
-<c:forEach var="file" items="${files}" varStatus="loop">
+
                   <!-- 세번째 게시물-->
-                   <c:if test="${loop.first or file.placeName ne files[loop.index - 1].placeName}">
-                <li>
-                        <img src="${file.filepath}" style="width:150px;">
-                </li>
                   <div class="board_container">
                     <div class="board_item">
-                    <a href="/detail?placeName=${tripInfo.placeName}&hashtag=${tripInfo.hashtag}"></a>
+                      <img src="../resources/img/thempark03.jpeg" alt="카페이미지">
                       <div class="heart_container">
                         <div class="heart" onclick="toggleHeart()">
                           <i class="fa-regular fa-heart"></i>
@@ -208,14 +180,13 @@
                     </div>
                   <div class="board_info">
                       <div class="board_title">
-                         <p>여행지명: <a href="/detail?placeName=${file.placeName}&hashtag=${file.hashtag}">${file.placeName}</a></p>
+                        <h1>바랭이 공방</h1>
                         <div class="star-rating">
                           <span class="star">&#9733;</span>
                           <span class="star">&#9733;</span>
                           <span class="star">&#9733;</span>
                           <span class="star">&#9733;</span>
                           <span class="star">&#9733;</span>
-                           <p>평점: ${file.rating}/5</p>
                       </div>
                           <div class="rating-text">
                             <p class="info_num">5</p>
@@ -223,21 +194,15 @@
                           </div>
                       </div>
                       <div class="board_subtitle">
-                        <p>한줄소개: ${file.description}</p>
+                        <p>자유로운 주제로 만들고싶은 도자기를 만들어 볼 수 있는 곳</p>
                       </div>
                       <div class="board_add">
-                       <p>주소: ${file.address}</p>
+                        <p>경기도 용인시 기흥구 보정동 878-6번지</p>
                       </div>
                       <div class="add_review"><a href="#">후기 등록</a></div>
                   </div>
                 </div>
-                   
-                <a href="/delete?filename=${file.filename}">삭제하기</a>
-                <a href="/update?id=${file.id}">수정하기</a>
 
-
-            </c:if>
- </c:forEach>
                 </div>
                     <div class="board_list" id="fest_board" style="display: none;">
                   <div class="board_container">
@@ -525,12 +490,10 @@
                         <p>용인시 기흥구 동백동과 포곡읍 마성리, 유림동</p>
                       </div>
                       <div class="add_review"><a href="#">후기 등록</a></div>
-                    
                   </div>
                 </div>
                 </div>
             </div>
-           
           </section>
     </div>
   </body>
