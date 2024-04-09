@@ -3,6 +3,9 @@ package org.zerock.controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,11 +17,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.FileUserVO;
 import org.zerock.domain.FileVO;
 import org.zerock.domain.TripInfoVO;
@@ -52,10 +56,16 @@ public class tripController {
 	UserService service; 
 	
 	@GetMapping("/home")
-	public String home() {
-		
-		return "trip";
+	public String handleHomeRequest(@RequestParam(value = "hashtag", required = false) String hashtag, Model model) {
+	    if (hashtag != null) {
+	        // hashtag가 존재하는 경우, showResult 메서드 호출
+	        return showResult(hashtag, model);
+	    } else {
+	        // 리다이렉트로 매핑이 아닌 경우, trip 페이지로 바로 리턴
+	        return "trip";
+	    }
 	}
+
 	@GetMapping("/regMember")
 	public String regMember() {
 		
@@ -200,7 +210,7 @@ public class tripController {
             
         }
 
-        return "redirect:/trip/result?hashtag=" + URLEncoder.encode(hashtag, "UTF-8");
+        return "redirect:/trip/home?hashtag=" + URLEncoder.encode(hashtag, "UTF-8");
 
 
 
@@ -276,13 +286,19 @@ public class tripController {
         return hashtag; // 해시태그를 리턴
     }
 
+    @GetMapping("/uploaded-images/{filename:.+}")
+    @ResponseBody
+    public byte[] getImage(@PathVariable String filename) throws IOException {
+    	System.out.println("getImage실행됨");
+        return Files.readAllBytes(Paths.get("C:/upload/" + filename));
+    }
 
 
    
     
 
-    @RequestMapping(value="/trip/result")
-    public String showResult(@RequestParam("hashtag") String hashtag, RedirectAttributes redirectAttributes) throws UnsupportedEncodingException{
+    @RequestMapping("/home")
+    public String showResult(@RequestParam("hashtag") String hashtag,Model model)  {
         // 여행 정보 및 파일 정보 조회
         System.out.println("showResult실행됨");
         TripInfoVO tripInfo = tripInfoService.getTripInfoByHashTag(hashtag);
@@ -292,12 +308,12 @@ public class tripController {
         List<FileVO> fileList = fileService.getFilesByHashTag(hashtag);
 
         // 모델에 데이터 추가
-        redirectAttributes.addFlashAttribute("tripInfo", tripInfo);
+        model.addAttribute("tripInfo", tripInfo);
         System.out.println("tripInfo: " + tripInfo);
-        redirectAttributes.addFlashAttribute("files", fileList);
+        model.addAttribute("files", fileList);
         System.out.println("files: " + fileList);
 
-        return "redirect:/trip/home?hashtag=" + URLEncoder.encode(hashtag, "UTF-8");
+        return "trip";
     }
 
     
