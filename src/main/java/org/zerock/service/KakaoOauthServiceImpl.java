@@ -1,5 +1,8 @@
 package org.zerock.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,6 +11,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -235,12 +240,16 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 
 		// bodyJson <- 결과 JSON
 		
+		AuthVO authvo = new AuthVO(username, "KakaoUser");
+		
+	        
+	    // 여기서 사용자의 권한을 설정합니다.
+	    
+	        
+		UserVO vo = new UserVO( username, password , authvo.getAuthorities());
+		vo.setName(name);		// name
+		vo.setPhone(phone);		// phone
 
-		UserVO vo = new UserVO(username, 	// username
-				password, 					// password
-				name, 						// name
-				phone						// phone
-		);
 		return vo;
 	}
 
@@ -285,16 +294,20 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		UserVO returnVO = null;
 		
 		if(userSrv.get(vo.getUsername()) != null) {
-			AuthVO authVO = new AuthVO(vo.getUsername(), Role.SNSMEMBER.name());
-			returnVO = userSrv.get(vo.getUsername());
-			returnVO.setAuthList(authVO);	
+			
+			UserVO returnUserName = userSrv.get(vo.getUsername());
+			String thisUserName = returnUserName.getUsername();
+			AuthVO newAuthVO = new AuthVO(thisUserName, Role.SNSMEMBER.name());
+			
+			userSrv.grantAuth(newAuthVO);
 			//있다면 권한만 설정해준다
 		}
 		else if (userSrv.get(vo.getUsername()) == null) {
 			AuthVO authVO = new AuthVO(vo.getUsername(), Role.SNSMEMBER.name());
 			returnVO = vo;
-			returnVO.setAuthList(authVO);
-			userSrv.register(returnVO);
+
+			
+			userSrv.register(returnVO, authVO);
 			//없다면 등록하여야하고
 		}
 		

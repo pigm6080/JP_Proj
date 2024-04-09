@@ -22,7 +22,8 @@ public interface UserMapper {
 	
 	
 	//권한 부여 추가 k
-	String grantAuth(AuthVO authVO);
+	boolean grantAuth(AuthVO authVO);
+	AuthVO getUserAuth(String username);
 
 }
 

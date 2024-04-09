@@ -4,15 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.zerock.domain.AuthVO;
 import org.zerock.domain.UserVO;
 import org.zerock.mapper.UserMapper;
 import org.zerock.security.domain.CustomUser;
 //import org.zerock.oauthutil.UserAdapter;
 
-
 import lombok.extern.log4j.Log4j;
 
 @Log4j
+@Service
 public class CustomUserDetailsService implements UserDetailsService{
 
 	@Autowired
@@ -25,11 +27,22 @@ public class CustomUserDetailsService implements UserDetailsService{
 		
 		//usernamemeans userid
 		
-		UserVO vo = userMapper.read(username);
-
-		log.warn("queried by member mapper vo에서 가져온 값은 !!!!!!!!!!:" + vo);
+		UserVO user = userMapper.read(username);
+		AuthVO userAuth = userMapper.getUserAuth(username);
+		if (user == null) {
+            throw new UsernameNotFoundException("User not found with username: " + username);
+        }
 		
-		return vo == null ? null : new CustomUser(vo);
+		 // UserDetails 객체를 생성하여 사용자 정보 설정
+        UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .roles() // 사용자의 역할 설정
+                .build();
+
+		log.warn("queried by member mapper vo에서 가져온 값은 !!!!!!!!!!:" + user);
+		
+		return user == null ? null : new CustomUser(user);
 		
 		
 //		return UserAdapter(vo);

@@ -43,14 +43,14 @@ public class OauthController {
 		this.kakaoSrv = kakaoSrv;
 	};
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/kakaologin", method = RequestMethod.GET)
 	public String kakaoOauthStart() {
 		System.out.println(kakaoSrv.kakaoUrl());
 		return "redirect:" + kakaoSrv.kakaoUrl();
 	}
 
 	@RequestMapping(value = "/getAuth", method = RequestMethod.GET)
-	public String kakaoGetCodeAndRegist(@RequestParam String code , @ModelAttribute("KakaoUser") UserVO vo, HttpSession session) throws IOException { // 
+	public String kakaoGetCodeAndRegist(@RequestParam String code ,  @ModelAttribute UserVO vo, Model model) throws IOException { // 
 
 		KakaoTokenVO token_ = kakaoSrv.getToken(code);
 //		ResponseEntity<String> UserInfoRes = kakaoSrv.getKakaoUserInfo(token_);
@@ -60,10 +60,13 @@ public class OauthController {
 		
 		UserVO kakaoUser = kakaoSrv.kakaoRegist(KakaoUserInfo, userSrv); //UserVO vo Return
 		
+		model.addAttribute("username", kakaoUser.getName());
+		model.addAttribute("password", kakaoUser.getPassword());
+		
 //		session.setAttribute("KakaoUser",kakaoUser);
 //		session.setMaxInactiveInterval(3600);
 		
-		return "redirect:/"; //home으로 리다이렉트
+		return "/customLogin/login"; //home으로 리다이렉트
 	}
 	
 	
