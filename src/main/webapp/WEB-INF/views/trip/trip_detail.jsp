@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="kr">
     <head>
@@ -73,31 +74,31 @@
                         ></ion-icon>
                         <a href="../resources/index.html" class="nav__logo">너 J발 P야?</a>
                       </div>
-                      <div class="nav__list">
-                        <a href="../resources/index.html" class="nav__link ">
-                          <ion-icon name="home-outline" class="nav__icon"></ion-icon>
-                          <span class="nav_name">홈</span>
-                        </a>
-                        <a href="../resources/them.html" class="nav__link collapse ">
-                          <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
-                          <span class="nav_name">테마</span>
-                        </a>
-            
-                        <a href="../resources/planer.html" class="nav__link " >
-                          <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
-                          <span class="nav_name">플래너</span>
-                        </a>
-            
-                        <a href="../resources/tripInfo.html" class="nav__link active">
-                          <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
-                          <span class="nav_name">여행정보</span>
-                        </a>
-            
-                        <a href="../resources/community.html" class="nav__link collapse">
-                          <ion-icon name="people-outline" class="nav__icon"></ion-icon>
-                          <span class="nav_name">커뮤니티</span>
-                        </a>
-                    </div>
+                       <div class="nav__list">
+	                  <a href="/" class="nav__link ">
+	                    <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+	                    <span class="nav_name">홈</span>
+	                  </a>
+	                  <a href="/tema/home" class="nav__link collapse active">
+	                    <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
+	                    <span class="nav_name">테마</span>
+	                  </a>
+	      
+	                  <a href="/planner/home" class="nav__link " >
+	                    <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
+	                    <span class="nav_name">플래너</span>
+	                  </a>
+	      
+	                  <a href="/trip/home" class="nav__link">
+	                    <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+	                    <span class="nav_name">여행정보</span>
+	                  </a>
+	      
+	                  <a href="/community/home" class="nav__link collapse">
+	                    <ion-icon name="people-outline" class="nav__icon"></ion-icon>
+	                    <span class="nav_name">커뮤니티</span>
+	                  </a>
+	              </div>
                   </nav>
                 </div>
           </header>
@@ -142,16 +143,28 @@
           </section>
           <!--상세조회 영역-->
           <section id="detail_main">
-                <div class="detail_title_container">
-                    <h1 class="detail_title">목리459</h1>
-                    <p class="detail_sub_title">용인 처인구 카페 갤러리 같았던 자연속의 카페</p>
-                </div>
-           
-                <div class="detail_img_container">
-                    <img src="../resources/img/night02.png" alt="" style="opacity: 0.5;">
-                </div>
+       <!-- 파일 목록을 순회하며 이미지 출력 -->
+			            <div class="detail_title_container">
+			    <c:forEach var="file" items="${files}">
+			        <!-- 현재 파일이 선택한 장소와 같은 장소일 때 -->
+			        <c:if test="${file.placeName eq placeName}">
+			            <!-- 이미지 출력 -->
+			                <h1 class="detail_title">${file.placeName }</h1>
+			                <p class="detail_sub_title">${file.description }</p>
+			                <img src="${file.filepath}" style="width:1250px; height:800px; opacity:0.7; padding-bottom:30px;">
+			        </c:if>
+			    </c:forEach>
+			            </div>
           </section>
-
+		 <c:set var="placeInfoDisplayed" value="false" />
+        <!-- 파일 목록을 다시 순회하며 장소 정보 출력 -->
+        <c:forEach var="file" items="${files}">
+            <!-- 현재 파일이 선택한 장소와 같은 장소일 때 -->
+            <c:if test="${file.placeName eq placeName}">
+                <!-- 장소 정보가 아직 출력되지 않았다면 -->
+                <c:if test="${not placeInfoDisplayed}">
+                    <!-- 장소 정보 출력 -->
+                    <!-- placeInfoDisplayed 변수를 true로 설정하여 다른 장소 정보를 더이상 출력하지 않도록 함 -->
           <section id="detail_info">
                 <div class="detail_info_title">
                     <h1>상세정보</h1>
@@ -159,22 +172,26 @@
                 <div class="detail_info_content">
                     <div class="info_address info">
                         <i class="fa-solid fa-location-dot fa-xl"></i>
-                        <p class="address">경기 용인시 처인구 포곡읍 곡현로133번길 21 노브133</p>
+                        <p class="address">${file.address}</p>
                     </div>
                     <div class="phone info">
                         <i class="fa-solid fa-phone fa-xl"></i>
-                        <p class="phone_num">031-333-3333</p>
+                        <p class="phone_num">${file.phone_number}</p>
                     </div>
                     <div class="site info">
                         <i class="fa-solid fa-globe fa-xl"></i>
-                        <p class="site_url">https://www.naver.com</p>
+                        <p class="site_url">${file.sns_url}</p>
                     </div>
                     <div class="noti info">
                         <i class="fa-solid fa-exclamation-circle fa-xl"></i>
-                        <p class="noti_text">단체 이용 가능, 주차, 무선 인터넷, 남녀화장실 구분</p>
+                        <p class="noti_text">${file.other_info}</p>
                     </div>
                  </div>
           </section>
+                    <c:set var="placeInfoDisplayed" value="true" />
+                </c:if>
+            </c:if>
+        </c:forEach>
 
           <section id="reply">
                 <div class="reply_title">
