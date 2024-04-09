@@ -207,7 +207,7 @@
                     </div>
                   <div class="board_info">
                       <div class="board_title">
-                         <p>여행지명: <a href="/detail?placeName=${file.placeName}&hashtag=${file.hashtag}">${file.placeName}</a></p>
+                         <p>여행지명: ${tripInfo.placeName}</p>
                         <div class="star-rating">
                           <span class="star">&#9733;</span>
                           <span class="star">&#9733;</span>

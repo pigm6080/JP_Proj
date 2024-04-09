@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -288,6 +289,7 @@ public class tripController {
     @GetMapping("/uploaded-images/{filename:.+}")
     @ResponseBody
     public byte[] getImage(@PathVariable String filename) throws IOException {
+    	System.out.println("getImage실행됨");
         return Files.readAllBytes(Paths.get("C:/upload/" + filename));
     }
 
