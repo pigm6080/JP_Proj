@@ -59,6 +59,7 @@
       </div>
       <div class="sns_icon">
         <a href="/Oauth/kakao/login"><img src="resources/img/kakao.png" alt="카카오" /></a>
+        <a href="/Oauth/kakao/checkSession"><img src="resources/img/kakao.png" alt="카카오" />세션체크용</a>
 
         <a href="#"><img src="resources/img/naver.png" alt="네이버" /></a>
         <a href="#"><img src="resources/img/facebook.png" alt="구글" /></a>

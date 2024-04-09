@@ -40,6 +40,8 @@ public class UserVO implements UserDetails{
 		this.password = password;
 		this.authList = authList;
 	}
+	
+	public UserVO() {}
 
 	
 

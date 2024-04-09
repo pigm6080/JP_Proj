@@ -199,6 +199,7 @@
                   <div class="board_container">
                     <div class="board_item">
                     <a href="/detail?placeName=${file.placeName}&hashtag=${file.hashtag}"></a>
+                    <a href="/detail?placeName=${ImgFile}&hashtag=${file.hashtag}"></a>
                       <div class="heart_container">
                         <div class="heart" onclick="toggleHeart()">
                           <i class="fa-regular fa-heart"></i>

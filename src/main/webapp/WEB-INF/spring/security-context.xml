@@ -17,6 +17,7 @@
 	
 
 	<security:intercept-url pattern="/*" access="permitAll" />
+	<security:intercept-url pattern="/uploaded-images/*" access="permitAll" />
 <!--	<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')" />
 	<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')" /> -->
 	

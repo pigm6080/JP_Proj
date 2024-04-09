@@ -1,6 +1,7 @@
 package org.zerock.service;
 
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import org.zerock.domain.AuthVO;
 import org.zerock.domain.KakaoTokenVO;
 import org.zerock.domain.UserVO;
+import org.zerock.mapper.UserMapper;
 import org.zerock.oauthutil.OTPgenerator;
 import org.zerock.security.domain.Role;
 
@@ -44,6 +46,11 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 
 	@Value("${client_secret}")
 	private String CLIENT_SECRET; // client_secret
+	
+	@Autowired
+	private UserMapper mapper;
+	
+	
 
 	@Override
 	public String tokenValidation(KakaoTokenVO token) {

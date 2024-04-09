@@ -1,12 +1,16 @@
 package org.zerock.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.zerock.domain.KakaoTokenVO;
 import org.zerock.domain.UserVO;
 import org.zerock.oauthutil.SessionChecker;
@@ -75,34 +80,59 @@ public class OauthController {
 
 	}
 	
+	
+	
+	
 	@GetMapping("/checkSession")
-    public String checkSession(HttpServletRequest request , Model model, @AuthenticationPrincipal User user) {
-        HttpSession session = request.getSession(false); // 세션이 없으면 null 반환
-        String result = null;
-        if (session != null) {
-            // 세션에 저장된 데이터 조회
-            Object userData = session.getAttribute("Check");
-            if (userData != null) {
-                System.out.println("User data found in session: " + userData.toString());
-                model.addAttribute("Check", userData.toString());
-            } else {
-            	System.out.println("User data not found in session"); 
-            	result = "User data not found in session";
-            	model.addAttribute("Check", result);
-            }
-        } else {
-        	result =  "Session not found";
-        	model.addAttribute("Check", result);
-        }
-        
-        SessionChecker sChecker = new SessionChecker();
-        model.addAttribute("sChecker", sChecker.principanView().toString());
-        
-        model.addAttribute("@userNm" + user.getUsername());
-        model.addAttribute("@userPw" + user.getPassword());
-        
-        
-		return "security/sessionCheck";
-    }
+	public String checkSession(HttpServletRequest request, Model model,Principal princ ) {
+	    HttpSession session = request.getSession(false);
+	    String result = null;
+	    if (session != null) {
+	        Object userData = session.getAttribute("Check");
+	        if (userData != null) {
+	            System.out.println("User data found in session: " + userData.toString());
+	            model.addAttribute("Check", userData.toString());
+	        } else {
+	            System.out.println("User data not found in session");
+	            result = "User data not found in session";
+	            model.addAttribute("Check", result);
+	        }
+	    } else {
+	        result = "Session not found";
+	        model.addAttribute("Check", result);
+	    }
+
+	    SessionChecker sChecker = new SessionChecker();
+	    model.addAttribute("sChecker", sChecker.principanView().toString());
+
+	    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	    if (principal instanceof UserDetails) {
+	        UserDetails userDetails = (UserDetails) principal;
+	        String username = userDetails.getUsername();
+	        model.addAttribute("userNm", username);
+	        model.addAttribute("principal", principal);
+	    } else {
+	        // 주의: principal이 UserDetails의 인스턴스가 아닐 경우 처리 로직
+	        model.addAttribute("userNm", principal.toString());
+	        model.addAttribute("principal", "Anonymous");
+	    }
+	    
+	    model.addAttribute("princ", princ);
+	    
+	    if (isAuthenticated()) {
+	    	 model.addAttribute("auth", "auth success");
+	    }
+
+	    return "/security/sessionCheck";
+	}
+	
+	private boolean isAuthenticated() {
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+	        return false;
+	    }
+	    return authentication.isAuthenticated();
+	}
+
 
 }
