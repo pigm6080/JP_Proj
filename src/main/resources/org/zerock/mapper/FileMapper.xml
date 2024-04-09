@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="org.zerock.mapper.FileMapper">
+
+    <insert id="insertFile" parameterType="org.zerock.domain.FileVO">
+        INSERT INTO file ( username, placeName, filename, filepath, hashtag,description, address, rating, author, phone_number, sns_url, other_info)
+        VALUES ( #{username}, #{placeName}, #{filename}, #{filepath}, #{hashtag}, #{description}, #{address}, #{rating}, #{author}, #{phone_number}, #{sns_url}, #{other_info})
+    </insert>
+    
+    <select id="getFilesByPlaceName" parameterType="String" resultType="org.zerock.domain.FileVO">
+       SELECT * FROM file WHERE placeName = #{placeName}
+    </select>
+    
+     <select id="getFilesByHashTag" parameterType="String" resultType="org.zerock.domain.FileVO">
+       SELECT * FROM file WHERE hashtag = #{hashtag}
+    </select>
+    
+     <select id="getAllImageUrls" resultType="string" >
+        SELECT filepath
+        FROM file;
+    </select>
+    
+    <select id="getFile" parameterType="Long" resultType="org.zerock.domain.FileVO">
+        SELECT * FROM file WHERE id = #{id}
+    </select>
+    
+    <select id="getFileById" parameterType="long" resultType="org.zerock.domain.FileVO">
+        SELECT *
+        FROM file
+        WHERE id = #{fileId}
+    </select>
+    
+	
+	
+<update id="updateFile" parameterType="org.zerock.domain.FileVO">
+    UPDATE file
+    SET
+        placeName = #{placeName},
+        description = #{description},
+        address = #{address},
+        rating = #{rating},
+        author = #{author},
+        phone_number = #{phone_number},
+        sns_url = #{sns_url},
+        other_info = #{other_info}
+    WHERE id = #{id}
+</update>
+    
+    <delete id="deleteFileByName" parameterType="String">
+        DELETE FROM file
+        WHERE filename = #{filename}
+    </delete>
+    
+</mapper>        
