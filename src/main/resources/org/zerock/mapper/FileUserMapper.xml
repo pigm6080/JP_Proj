@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.FileUserMapper">
+    <insert id="insertUser" parameterType="org.zerock.domain.FileUserVO">
+        INSERT INTO file_users (username) VALUES (#{username})
+    </insert>
+    
+   <select id="getUserByUsername" parameterType="String" resultType="org.zerock.domain.FileUserVO">
+    SELECT * FROM file_users WHERE username = #{username} LIMIT 1
+</select>
+    
+</mapper>
