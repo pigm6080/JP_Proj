@@ -43,16 +43,6 @@
 		values (#{username})
 	</insert>
 	
-<!-- by kgh 권한추가 부분 업데이트로 구현 -->
-	<update id="grantAuth" parameterType="org.zerock.domain.AuthVO">
-		UPDATE user_auth
-		SET
-		auth = #{auth}
-		WHERE username = #{username}
-	</update>
-	
-	
-	
 	<delete id="delete" parameterType="String">
 		delete from user where username = #{username}
 	</delete>
