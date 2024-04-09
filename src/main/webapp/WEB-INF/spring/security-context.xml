@@ -9,23 +9,27 @@
 <bean id = "customLoginSuccess" class ="org.zerock.security.CustomLoginSuccessHandler"></bean>
 <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>		
 <bean id="customUserDetailsService" class="org.zerock.security.CustomUserDetailsService"></bean>		
-	
+
 <security:http>
 	
-	<security:intercept-url pattern="/sample/all" access="permitAll" />
-	<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')" />
+	<security:intercept-url pattern="/*" access="permitAll" />
+<!-- 	<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')" />
 	<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')" />
 	
-	
+	-->
 	
 	
 	<security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/>
 
-	<security:access-denied-handler ref="customAccesDenid"/> 
+	<!-- <security:access-denied-handler ref="customAccesDenid"/> -->
 	 
 	<security:logout logout-url="/customLogout" invalidate-session="true"/>
+	
+	<security:csrf disabled="false"/>
+	
 	 
 </security:http>
+		
 		
 <security:authentication-manager>
 

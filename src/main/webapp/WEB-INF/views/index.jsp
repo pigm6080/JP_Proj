@@ -16,31 +16,46 @@
     <link rel="stylesheet" href="resources/styles/planer.css" />
     <link rel="stylesheet" href="resources/styles/them.css" />
     <link rel="stylesheet" href="resources/styles/home.css" />
+    <link rel="stylesheet" href="resources/styles/test.css" />
     <script defer src="resources/js/slide.js"></script>
     <script defer src="resources/js/home.js"></script>
+    <script defer src="resources/js/test.js"></script>
+    
+    <!-- IONICONS -->
+    <script
+      src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"
+    ></script>
 
     <style>
-      @font-face {
-        font-family: "MaplestoryBold";
-        src: url("resources/font/Maplestory\ Bold.ttf") format("truetype");
-      }
+		@font-face {
+		  font-family: "MaplestoryBold";
+		  src: url("/resources/font/Maplestory Bold.ttf") format("truetype");
+		}
+		
+		@font-face {
+		  font-family: "Maplestory Light";
+		  src: url("/resources/font/Maplestory Light.ttf") format("truetype");
+		}
+		
+		body {
+		  font-family: "MaplestoryBold", "MaplestoryLight", sans-serif;
+		}
 
-      body {
-        font-family: "MaplestoryBold", sans-serif;
-      }
     </style>
   </head>
-  <body>
-    <div id="wrap">
+  <body id="body-pd">
+    <div class="wrap">
       <header>
         <div class="nav">
           <div class="logo-group">
             <div class="logo">
-              <a href="resources/index.html">
+              <a href="/">
                 <img src="resources/img/로고02.png" alt="로고" />
                 <span class="project-name">너 J발 P야?</span>
               </a>
             </div>
+            <div class="hamburger">
+            </div> <!-- 햄버거 추가 예정 -->
           </div>
           <div class="nav-buttons">
             <button class="button" data-section="home">홈</button>
@@ -50,15 +65,83 @@
             <button class="button" data-section="community">커뮤니티</button>
           </div>
           <div class="auth-buttons">
-            <button class="button" onclick="location.href='customLogin'">
+            <button id = "loginButton" class="button" onclick="location.href='/customLogin'">
               로그인
             </button>
-            <button class="button" onclick="location.href='regMember'">
+            <button id = "registerButton" class="button" onclick="location.href='/regMember'">
               회원가입
             </button>
           </div>
+			<h1>${user.name}</h1>
+         	 <form action="/customLogout" method="post">
+				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
+				<button id = "logoutBtnton" class ="button">로그아웃</button>
+			</form>
+
+		<script>
+		  // 페이지 로드 후 호출되는 함수
+		  window.onload = function() {
+		    checkSession();
+		  };
+		
+		  // 세션에 값이 있는지 확인하는 함수
+		  function checkSession() {
+		    
+		   var sessionValue = '${user.name}';
+		    
+		    // 세션에 값이 있는 경우
+		    if (sessionValue) {
+		      // 버튼 숨기기
+		     	 document.getElementById("loginButton").style.display = "none";
+		     	 document.getElementById("registerButton").style.display = "none";
+		    } else{
+		    	document.getElementById("logoutBtnton").style.display = "none";
+		    }
+		  }
+		</script>
         </div>
+        <!-- 사이드 퀵nav-->
+        <div class="l-navbar" id="navbar">
+          <nav class="nav_t">
+            <div>
+              <div class="nav__brand">
+                <ion-icon
+                  name="menu-outline"
+                  class="nav__toggle"
+                  id="nav-toggle"
+                ></ion-icon>
+                <a href="/" class="nav__logo">너 J발 P야?</a>
+              </div>
+              <div class="nav__list">
+                <a href="/" class="nav__link active">
+                  <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                  <span class="nav_name">홈</span>
+                </a>
+                <a href="/tema/home" class="nav__link">
+                  <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
+                  <span class="nav_name">테마</span>
+                </a>
+    
+                <a href="/planner/home" class="nav__link collapse">
+                  <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
+                  <span class="nav_name">플래너</span>
+                </a>
+    
+                <a href="/trip/home" class="nav__link">
+                  <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                  <span class="nav_name">여행정보</span>
+                </a>
+    
+                <a href="/community/home" class="nav__link collapse">
+                  <ion-icon name="people-outline" class="nav__icon"></ion-icon>
+                  <span class="nav_name">커뮤니티</span>
+                </a>
+            </div>
+          </nav>
+        </div>
+    
       </header>
+
       <!-- 홈 영역 -->
 
       <section id="홈" class="home">
@@ -117,25 +200,26 @@
         </div>
         <div class="slide_bar_container">
           <div class="slide_bar_info">
-            <progress id="progress" value="10" min="0" max="100"></progress>
+            <progress id="progress" value="20" max="100"></progress>
             <div class="slide_bar_info_num">
               <p class="info_num">01</p>
-              <p class="info_maxnum">/ 10</p>
+              <p class="info_maxnum">/ 05</p>
             </div>
             <div class="slide_bar_button">
               <a href="#" id="leftArrow">
-                <img src="./img/arrow-left.png" alt=""
+                <img src="resources/img/arrow-left.png" alt=""
               /></a>
               <a href="#" id="playButton"
-                ><img src="./img/play.png" alt=""
+                ><img src="resources/img/play.png" alt=""
               /></a>
               <a href="#" id="rightArrow"
-                ><img src="./img/arrow-right.png" alt=""
+                ><img src="resources/img/arrow-right.png" alt=""
               /></a>
             </div>
           </div>
         </div>
       </section>
+
       <!-- 테마 영역 -->
       <section id="테마" class="content">
         <div class="home_container testcont" style="overflow: hidden">
@@ -151,7 +235,7 @@
                 <p class="them_subtitle">다양한 테마여행으로 떠나보아요</p>
                 <div class="them_button">
                   <p class="them_button_text">
-                    <a href="#">다양한 테마 보기</a>
+                    <a href="/tema/home">다양한 테마 보기</a>
                   </p>
                 </div>
               </div>
@@ -164,16 +248,17 @@
               </div>
             </div>
             <div class="inner">
-              <img src="resources/img/테스트이미지2.jpg" alt="" />
+            
             </div>
             <div class="inner">
-              <img src="resources/img/커뮤니티이미지.jpg" alt="" />
+            
             </div>
           </div>
         </div>
         <button class="them_prevBtn"></button>
         <button class="them_nextBtn"></button>
       </section>
+
       <!-- 여행 플래너 영역-->
 
       <section id="여행플래너" class="content_planner">
@@ -189,13 +274,14 @@
             </p>
             <div class="tripplanner_button">
               <p class="title">
-                <a href="resources/planer.html">코스만들기</a>
+                <a href="/planner/home">코스만들기</a>
               </p>
             </div>
           </div>
           <div class="tripplanner_img"></div>
         </div>
       </section>
+
       <!-- 여행정보 영역 -->
 
       <section id="여행정보" class="content_info">
@@ -228,6 +314,7 @@
           </div>
         </div>
       </section>
+
       <!-- 커뮤니티 영역 -->
 
       <section id="커뮤니티" class="content_footer">
@@ -245,17 +332,18 @@
           <div class="instagram-layout">
             <img
               class="instagram-image"
-              src="resources/img/커뮤니티이미지레이아웃.png"
+              src="/resources/img/커뮤니티이미지레이아웃.png"
               alt=""
             />
             <img
               class="community-image"
-              src="resources/img/커뮤니티이미지.jpg"
+              src="/resources/img/커뮤니티이미지.jpg"
               alt=""
             />
           </div>
         </div>
       </section>
+
       <!-- footer 영역 -->
 
       <footer>
@@ -270,13 +358,13 @@
           </div>
           <div class="icon">
             <img
-              src="resources/img/gihub.png"
+              src="/resources/img/gihub.png"
               style="width: 65px; height: 65px; object-fit: cover"
             /><img
-              src="resources/img/facebook.png"
+              src="/resources/img/facebook.png"
               style="width: 64px; height: 64px; object-fit: cover"
             /><img
-              src="resources/img/instagram.png"
+              src="/resources/img/instagram.png"
               style="width: 62px; height: 62px; object-fit: cover"
             />
           </div>

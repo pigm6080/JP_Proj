@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.log4j.Log4j;
 
+//시큐리티 확인 컨트롤러!
 @Log4j
 @RequestMapping("/sample/*")
 @Controller

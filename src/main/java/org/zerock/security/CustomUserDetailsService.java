@@ -1,12 +1,11 @@
 package org.zerock.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.zerock.domain.MemberVO;
-import org.zerock.mapper.MemberMapper;
+import org.zerock.domain.UserVO;
+import org.zerock.mapper.UserMapper;
 import org.zerock.security.domain.CustomUser;
 
 import lombok.extern.log4j.Log4j;
@@ -15,7 +14,7 @@ import lombok.extern.log4j.Log4j;
 public class CustomUserDetailsService implements UserDetailsService{
 
 	@Autowired
-	private MemberMapper memberMapper;
+	private UserMapper userMapper;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -24,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 		
 		//usernamemeans userid
 		
-		MemberVO vo = memberMapper.read(username);
+		UserVO vo = userMapper.read(username);
 		
 		log.warn("queried by member mapper vo에서 가져온 값은 !!!!!!!!!!:" + vo);
 		
