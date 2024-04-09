@@ -1,30 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="kr">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>여행정보 - 상세조회</title>
-        <link rel="icon" href="./img/JP.png" />
-        <link rel="stylesheet" href="./styles/Header.css" />
-        <link rel="stylesheet" href="./styles/test.css" />
-        <link rel="stylesheet" href="./styles/reset.css">
-        <link rel="stylesheet" href="./styles/infoDetailStyles/infoHash.css">
-        <link rel="stylesheet" href="./styles/infoDetailStyles/infoDetail.css">
+        <link rel="icon" href="../resources/img/JP.png" />
+        <link rel="stylesheet" href="../resources/styles/Header.css" />
+        <link rel="stylesheet" href="../resources/styles/test.css" />
+        <link rel="stylesheet" href="../resources/styles/reset.css">
+        <link rel="stylesheet" href="../resources/styles/infoDetailStyles/infoHash.css">
+        <link rel="stylesheet" href="../resources/styles/infoDetailStyles/infoDetail.css">
         <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       /> 
-        <script defer src="./js/test.js"></script>
+        <script defer src="../resources/js/test.js"></script>
 
         <!-- IONICONS -->
         <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
         <!-- JS -->
-        <script defer src="./js/test.js"></script>
+        <script defer src="../resources/js/test.js"></script>
 
         <style>
             @font-face {
                 font-family: 'MaplestoryBold';
-                src: url('./font/Maplestory\ Bold.ttf') format('truetype');
+                src: url('../resources/font/Maplestory\ Bold.ttf') format('truetype');
             }
 
             body {
@@ -37,8 +39,8 @@
             <div class="nav" style="opacity: 0.8;">
               <div class="logo-group">
                 <div class="logo">
-                  <a href="./index.html">
-                    <img src="./img/로고02.png" alt="로고" />
+                  <a href="../resources/index.html">
+                    <img src="../resources/img/로고02.png" alt="로고" />
                     <span class="project-name">너 J발 P야?</span></a
                   >
                 </div>
@@ -69,29 +71,29 @@
                           class="nav__toggle"
                           id="nav-toggle"
                         ></ion-icon>
-                        <a href="./index.html" class="nav__logo">너 J발 P야?</a>
+                        <a href="../resources/index.html" class="nav__logo">너 J발 P야?</a>
                       </div>
                       <div class="nav__list">
-                        <a href="./index.html" class="nav__link ">
+                        <a href="../resources/index.html" class="nav__link ">
                           <ion-icon name="home-outline" class="nav__icon"></ion-icon>
                           <span class="nav_name">홈</span>
                         </a>
-                        <a href="./them.html" class="nav__link collapse ">
+                        <a href="../resources/them.html" class="nav__link collapse ">
                           <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
                           <span class="nav_name">테마</span>
                         </a>
             
-                        <a href="./planer.html" class="nav__link " >
+                        <a href="../resources/planer.html" class="nav__link " >
                           <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
                           <span class="nav_name">플래너</span>
                         </a>
             
-                        <a href="./tripInfo.html" class="nav__link active">
+                        <a href="../resources/tripInfo.html" class="nav__link active">
                           <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
                           <span class="nav_name">여행정보</span>
                         </a>
             
-                        <a href="./community.html" class="nav__link collapse">
+                        <a href="../resources/community.html" class="nav__link collapse">
                           <ion-icon name="people-outline" class="nav__icon"></ion-icon>
                           <span class="nav_name">커뮤니티</span>
                         </a>
@@ -107,33 +109,33 @@
             </div>
             <div class="hashtag">
                 <div class="hashtag_circle1">
-                    <img src="./img/infoimg01.png" alt="">
+                    <img src="../resources/img/infoimg01.png" alt="">
                     <p class="hashtag_title_text">#카페</p>
                 </div>
                 <div class="hashtag_circle1">
-                    <img src="./img/infoimg02.png" alt="">
+                    <img src="../resources/img/infoimg02.png" alt="">
                     <p class="hashtag_title_text">#맛집</p>
                 </div>
                 <div class="hashtag_circle1">
-                    <img src="./img/infoimg03.png" alt="">
+                    <img src="../resources/img/infoimg03.png" alt="">
                     <p class="hashtag_title_text">#체험</p></div>
                 <div class="hashtag_circle1">
-                    <img src="./img/infoimg04.png" alt="">
+                    <img src="../resources/img/infoimg04.png" alt="">
                     <p class="hashtag_title_text">#공원</p></div>
                 <div class="hashtag_circle1">
-                    <img src="./img/infoimg05.png" alt="">
+                    <img src="../resources/img/infoimg05.png" alt="">
                     <p class="hashtag_title_text">#테마</p></div>
                 <div class="hashtag_circle1">
-                    <img src="./img/infoimg06.png" alt="">
+                    <img src="../resources/img/infoimg06.png" alt="">
                     <p class="hashtag_title_text">#공방</p></div>
                 <div class="hashtag_circle1">
-                    <img src="./img/infoimg07.png" alt="">
+                    <img src="../resources/img/infoimg07.png" alt="">
                     <p class="hashtag_title_text">#축제</p></div>
                 <div class="hashtag_circle1">
-                    <img src="./img/infoimg08.png" alt="">
+                    <img src="../resources/img/infoimg08.png" alt="">
                     <p class="hashtag_title_text">#전시</p></div> 
                 <div class="hashtag_circle1">
-                    <img src="./img/infoimg09.png" alt="">
+                    <img src="../resources/img/infoimg09.png" alt="">
                     <p class="hashtag_title_text">#야경</p></div>
             </div>
         </div>
@@ -146,7 +148,7 @@
                 </div>
            
                 <div class="detail_img_container">
-                    <img src="./img/night02.png" alt="" style="opacity: 0.5;">
+                    <img src="../resources/img/night02.png" alt="" style="opacity: 0.5;">
                 </div>
           </section>
 
@@ -178,7 +180,7 @@
                 <div class="reply_title">
                     <h1>여행지가 마음에 드시나요?</h1>
                     <h2>자세한 여행후기는 내 후기등록에서!</h2>
-                    <img src="./img/info_detail_icon01.png" alt="">
+                    <img src="../resources/img/info_detail_icon01.png" alt="">
                     <div class="reviewBtn"><p>내 후기등록</p></div>
                 </div>
                     <!-- 덧글 입력창 -->

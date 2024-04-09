@@ -12,6 +12,24 @@
 <bean id="UserLoginAuthenticationProvider" class ="org.zerock.security.UserLoginAuthenticationProvider"></bean>
 <bean id="CustomUserDetailsService" class="org.zerock.security.CustomUserDetailsService"></bean>		
 
+<<<<<<< HEAD
+=======
+<security:http use-expressions="true" auto-config="true">
+		<security:intercept-url pattern="/result" access="permitAll" />
+	<security:intercept-url pattern="/*" access="permitAll" />
+	<security:intercept-url pattern="/**" access="permitAll" />
+	<security:intercept-url pattern="/trip" access="permitAll" />
+<!-- 	<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')" />
+	<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')" />
+	
+	-->
+	 
+	<security:csrf disabled="false"/>
+	
+	<security:intercept-url pattern="/trip/detailInsert" access="hasRole('ROLE_ADMIN')" />
+	
+	<security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/>
+>>>>>>> zz
 
 <security:http auto-config="true" use-expressions="true">
 	
