@@ -67,23 +67,23 @@ public class tripController {
 	    }
 	}
 
-	@GetMapping("/regMember")
-	public String regMember() {
-		
-		System.out.println("회원가입 폼 왔음.");
-		
-		return "redirect:/regMember";
-	}
-	
-	@PostMapping("/reg")
-	public String regmember(@ModelAttribute UserVO vo) {
-		
-	    System.out.println("회원가입 정보: " + vo);
-	    
-	    service.register(vo);
-	    
-	    return "redirect:/";
-	}
+//	@GetMapping("/regMember")
+//	public String regMember() {
+//		
+//		System.out.println("회원가입 폼 왔음.");
+//		
+//		return "redirect:/regMember";
+//	}
+//	
+//	@PostMapping("/reg")
+//	public String regmember(@ModelAttribute UserVO vo) {
+//		
+//	    System.out.println("회원가입 정보: " + vo);
+//	    
+//	    service.register(vo);
+//	    
+//	    return "redirect:/";
+//	}
 	@GetMapping("/showdetail")
 	public String tripdetail() {
 		

@@ -1,7 +1,6 @@
 package org.zerock.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -140,7 +137,7 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 	}
 
 	@Override
-	public UserVO getKakaoUserInfo(@ModelAttribute KakaoTokenVO token)
+	public Map<UserVO, AuthVO> getKakaoUserInfo(@ModelAttribute KakaoTokenVO token)
 			throws JsonMappingException, JsonProcessingException {
 		// For Info Get
 		RestTemplate rt2 = new RestTemplate();
@@ -242,15 +239,17 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		
 		AuthVO authvo = new AuthVO(username, "KakaoUser");
 		
+		//TODO
+		Map<String, Object> 
 	        
 	    // 여기서 사용자의 권한을 설정합니다.
 	    
 	        
-		UserVO vo = new UserVO( username, password , authvo.getAuthorities());
+		UserVO vo = new UserVO( username, password );
+		
 		vo.setName(name);		// name
 		vo.setPhone(phone);		// phone
-
-		return vo;
+		return vo ,;
 	}
 
 	@Override

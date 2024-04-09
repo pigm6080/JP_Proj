@@ -1,5 +1,8 @@
 package org.zerock.service;
 
+import java.util.Map;
+
+import org.zerock.domain.AuthVO;
 import org.zerock.domain.KakaoTokenVO;
 import org.zerock.domain.UserVO;
 
@@ -11,7 +14,7 @@ public interface KakaoOauthService {
 	
 	KakaoTokenVO getToken(String code); //access-token get
 	
-	UserVO getKakaoUserInfo(KakaoTokenVO token) throws JsonMappingException, JsonProcessingException; //user-info get by access-token
+	Map<UserVO, AuthVO> getKakaoUserInfo(KakaoTokenVO token) throws JsonMappingException, JsonProcessingException; //user-info get by access-token
 	
 	String tokenValidation(KakaoTokenVO token); //token validation
 	

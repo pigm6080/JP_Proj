@@ -1,10 +1,14 @@
 package org.zerock.security;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.zerock.domain.AuthVO;
 import org.zerock.domain.UserVO;
 import org.zerock.mapper.UserMapper;
@@ -42,7 +46,13 @@ public class CustomUserDetailsService implements UserDetailsService{
 
 		log.warn("queried by member mapper vo에서 가져온 값은 !!!!!!!!!!:" + user);
 		
-		return user == null ? null : new CustomUser(user);
+		// HttpSession을 사용하여 사용자 정보를 세션에 저장 (선택사항)
+        HttpSession session = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest().getSession();
+        session.setAttribute("loggedInUser", userDetails);
+        
+        return userDetails;
+		
+//		return user == null ? null : new CustomUser(user);
 		
 		
 //		return UserAdapter(vo);

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.zerock.domain.AuthVO;
 import org.zerock.domain.UserVO;
 import org.zerock.service.UserService;
 
@@ -51,8 +52,8 @@ public class HomeController {
 	public String regmember(@ModelAttribute UserVO vo) {
 		
 	    System.out.println("회원가입 정보: " + vo);
-	    
-	    service.register(vo);
+	    AuthVO userAuth = new AuthVO(vo.getUsername(), "USER");
+	    service.register(vo , userAuth);
 	    
 	    return "redirect:/";
 	}

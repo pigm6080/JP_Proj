@@ -13,11 +13,11 @@ import lombok.ToString;
 @Getter @Setter
 @ToString
 
-public class UserVO extends User{
+public class UserVO{ //extends User{
 	
-	public UserVO(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-		super(username, password, authorities);
-	}
+//	public UserVO(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+//		super(username, password, authorities);
+//	}
 
 
 	private static final long serialVersionUID = 1L;
@@ -30,28 +30,28 @@ public class UserVO extends User{
 
 	
 
-	@Override
+//	@Override
 	// 계정이 만료 되지 않았는가?
 	public boolean isAccountNonExpired() {
 
 		return true;
 	}
 
-	@Override
+//	@Override
 	// 계정이 잠기지 않았는가?
 	public boolean isAccountNonLocked() {
 
 		return true;
 	}
 
-	@Override
+//	@Override
 	// 패스워드가 만료되지 않았는가?
 	public boolean isCredentialsNonExpired() {
 
 		return true;
 	}
 
-	@Override
+//	@Override
 	// 계정이 활성화 되었는가?
 	public boolean isEnabled() {
 
