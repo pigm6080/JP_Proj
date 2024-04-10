@@ -151,7 +151,7 @@
 			            <!-- 이미지 출력 -->
 			                <h1 class="detail_title">${file.placeName }</h1>
 			                <p class="detail_sub_title" style= padding-bottom:30px;>${file.description }</p>
-			                <img src="${file.filepath}" style="width:1250px; height:800px; opacity:0.7; padding-bottom:30px;">
+			                <img src="/trip${file.filepath}" style="width:1250px; height:800px; opacity:0.7; padding-bottom:30px;">
 			        </c:if>
 			    </c:forEach>
 			            </div>
