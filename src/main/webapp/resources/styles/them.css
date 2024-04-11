@@ -1,12 +1,13 @@
-/* Å×¸¶ ¹öÆ°µğÀÚÀÎ */
+/* í…Œë§ˆ ë²„íŠ¼ë””ìì¸ */
 @media screen and (min-width: 601px){
-#Å×¸¶ {
+#í…Œë§ˆ {
   position: relative;
 }
 
 .them__container {
   width: 300vw;
 }
+
 .inner {
   width: 100vw;
   height: 67vh;
@@ -87,7 +88,7 @@
   top: 0px;
 }
 
-/* Å×¸¶ ¹öÆ° */
+/* í…Œë§ˆ ë²„íŠ¼ */
 
 .them_button {
   width: 400px;
@@ -104,7 +105,7 @@
   font-size: 50px;
 }
 
-/*Å×¸¶ ÀÌ¹ÌÁö ¹Ú½º*/
+/*í…Œë§ˆ ì´ë¯¸ì§€ ë°•ìŠ¤*/
 
 .them_img_container {
   width: 50vw;
@@ -238,7 +239,6 @@
 .them_img_box5 {
   margin-right: 0;
 }
-
 
 .them_prevBtn,
 .them_nextBtn{

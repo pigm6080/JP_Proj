@@ -1,5 +1,5 @@
 /* 슬라이드바 */
-@media screen and (min-width: 601px){
+@media screen and (min-width: 731px){
 .slide_bar_container {
   width: 38%;
   height: 200px;
@@ -252,7 +252,7 @@
 }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 730px) {
 
 body{
   width: 100vw;
