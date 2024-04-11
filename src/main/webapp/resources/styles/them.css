@@ -1,5 +1,9 @@
 /* 테마 버튼디자인 */
+<<<<<<< HEAD
 
+=======
+@media screen and (min-width: 601px){
+>>>>>>> main
 #테마 {
   position: relative;
 }
@@ -7,6 +11,7 @@
 .them__container {
   width: 300vw;
 }
+
 .inner {
   width: 100vw;
   height: 67vh;
@@ -174,3 +179,78 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+<<<<<<< HEAD
+=======
+}
+
+@media screen and (max-width: 600px) {
+
+.content{
+  overflow-x: hidden;
+  width: 100vw;
+  height: 250px;
+}
+
+.home_container{
+  width: 100vw;
+  height: 250px;
+  background-color: rgb(255, 255, 255);
+}
+
+.them__container{
+  height: 250px;
+}
+
+.inner{
+  height: 250px;  
+}
+
+.inner_text > :not(.them_subtitle) {
+  display: none;
+}
+
+.them_subtitle{
+  position: relative;
+  top: 30px;
+  padding-left: 30px;
+  color: #2ac1bc;
+  font-size: 20px;
+  font-family: "Maplestory Light";
+  text-align: left;
+}
+
+.them_img_container {
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center; 
+  overflow-x: auto; 
+  overflow-y: hidden; 
+  white-space: nowrap;
+  margin-left: 30px;
+  width: 100vw;
+  height: 224px; 
+}
+
+.them_img_box1, .them_img_box2, .them_img_box3, .them_img_box4, .them_img_box5 {
+  flex: 0 0 auto; 
+  overflow: hidden;
+  width: 120px; 
+  height: 120px; 
+  margin-right: 10px; 
+  background-color: red; 
+  border-radius: 10px; 
+}
+
+
+.them_img_box5 {
+  margin-right: 0;
+}
+
+.them_prevBtn,
+.them_nextBtn{
+  display: none;
+}
+
+
+}
+>>>>>>> main

@@ -21,6 +21,7 @@
     <script defer src="resources/js/slide.js"></script>
     <script defer src="resources/js/home.js"></script>
     <script defer src="resources/js/test.js"></script>
+    <script defer src="resources/js/theme.js"></script>
     
     <!-- IONICONS -->
     <script
@@ -55,8 +56,6 @@
                 <span class="project-name">너 J발 P야?</span>
               </a>
             </div>
-            <div class="hamburger">
-            </div> <!-- 햄버거 추가 예정 -->
           </div>
           <div class="nav-buttons">
             <button class="button" data-section="home">홈</button>
@@ -73,8 +72,19 @@
               회원가입
             </button>
           </div>
+          <div class="hamburger">
+            <div class="line line-1"></div>
+            <div class="line line-2"></div>
+            <div class="line line-3"></div>
+          </div>
+          <div class="menu">
+            <ul>
+              <li><a href="/customLogin">로그인</a></li>
+              <li><a href="/regMember">회원가입</a></li>
+            </ul>
+          </div>
 			<h1>${user.name}</h1>
-         	 <form action="/customLogout" method="post">
+         	<form action="/customLogout" method="post">
 				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
 				<button id = "logoutBtnton" class ="button">로그아웃</button>
 			</form>

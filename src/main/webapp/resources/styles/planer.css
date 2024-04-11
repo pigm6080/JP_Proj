@@ -1,4 +1,8 @@
 /* 여행플래너 영역 */
+<<<<<<< HEAD
+=======
+@media screen and (min-width: 601px){
+>>>>>>> main
 .trip_container {
   position: relative;
   justify-content: space-between;
