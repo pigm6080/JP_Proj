@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="kr">
   <head>
@@ -144,35 +145,33 @@
                     <img src="../resources/img/infoimg09.png" alt="">
                     <p class="hashtag_title_text">#야경</p></div>
             </div>
-            <a href="/trip/detailInsert">여행정보 작성</a>
+            <script type="text/javascript">
+			    var hashtagCircles = document.querySelectorAll(".hashtag_circle1");
+			
+			    for (var i = 0; i < hashtagCircles.length; i++) {
+			        hashtagCircles[i].addEventListener("click", function(event) {
+			            event.preventDefault(); // 기본 해시 변경 방지
+			            var clickedElement = this;
+			            var hashtagText = clickedElement.querySelector(".hashtag_title_text").textContent.slice(1);
+			            var url = window.location.origin + "/trip/home"; // trip/home으로 이동할 URL
+			            var newUrl = url + "?hashtag=" + hashtagText;
+			            window.location.href = newUrl;
+			        });
+			    }
+			</script>
+
+            <a href="/trip/detailInsert" style=color:black;>여행정보 작성</a>
         </div>
           </section>
-
-        <!--여행정보 하단 게시판부분-->
-
-        
-
-
-                      <!-- 두번째 게시물-->
-            
-                    <!-- 세번째 게시물-->
-                
-                  <!-- 맛집 관련 게시물 -->
-                                       <!-- 첫번째 게시물-->
-                               
-              
-                  <!-- 테마 관련 게시물 -->
-               
-
-
-
+ 
 
             
-
-                  <!-- 세번째 게시물-->
+	<c:forEach var="file" items="${files}" varStatus="loop">
+                   <c:if test="${loop.first or file.placeName ne files[loop.index - 1].placeName}">
                   <div class="board_container">
                     <div class="board_item">
-                      <img src="../resources/img/thempark03.jpeg" alt="카페이미지">
+                   
+                        <img src="/trip${file.filepath}" style="width:350px;">
                       <div class="heart_container">
                         <div class="heart" onclick="toggleHeart()">
                           <i class="fa-regular fa-heart"></i>
@@ -181,7 +180,11 @@
                     </div>
                   <div class="board_info">
                       <div class="board_title">
-                        <h1>바랭이 공방</h1>
+                        
+                         <h1>여행지명:${file.placeName}</h1>
+                       <p> 
+                       <a href="/trip/showdetail?placeName=${file.placeName}&hashtag=${file.hashtag}" style=color:black;>${file.placeName }상세보기</a>
+                       </p>
                         <div class="star-rating">
                           <span class="star">&#9733;</span>
                           <span class="star">&#9733;</span>
@@ -190,312 +193,26 @@
                           <span class="star">&#9733;</span>
                       </div>
                           <div class="rating-text">
-                            <p class="info_num">5</p>
+                            <p class="info_num">${file.rating}</p>
                             <p class="info_maxnum">/ 5</p>
                           </div>
                       </div>
                       <div class="board_subtitle">
-                        <p>자유로운 주제로 만들고싶은 도자기를 만들어 볼 수 있는 곳</p>
+                        <p>한줄소개: ${file.description}</p>
                       </div>
                       <div class="board_add">
-                        <p>경기도 용인시 기흥구 보정동 878-6번지</p>
+                       <p>주소: ${file.address}</p>
                       </div>
                       <div class="add_review"><a href="#">후기 등록</a></div>
                   </div>
                 </div>
-
-                </div>
-                    <div class="board_list" id="fest_board" style="display: none;">
-                  <div class="board_container">
-                    <div class="board_item">
-                      <img src="../resources/img/make01.jpeg" alt="카페이미지">
-                      <div class="heart_container">
-                        <div class="heart" onclick="toggleHeart()">
-                          <i class="fa-regular fa-heart"></i>
-                        </div>
-                      </div>
-                    </div>
-                  <div class="board_info">
-                      <div class="board_title">
-                        <h1>뚝플레이스</h1>
-                        <div class="star-rating">
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                      </div>
-                          <div class="rating-text">
-                            <p class="info_num">5</p>
-                            <p class="info_maxnum">/ 5</p>
-                          </div>
-                      </div>
-                      <div class="board_subtitle">
-                        <p>예쁜 소품도 살 수 있고 공방 체험도 가능한 곳</p>
-                      </div>
-                      <div class="board_add">
-                        <p>경기도 용인시 처인구 원삼면 원양로 422 용담호수 광장</p>
-                      </div>
-                      <div class="add_review"><a href="#">후기 등록</a></div>
-                  </div>
-                 
-                </div>
+                   
+                <a href="/trip/delete?filename=${file.filename}" style=color:black;>삭제하기</a>
+                <a href="/trip/update?id=${file.id} " style=color:black;>수정하기</a>
 
 
-                    <!-- 두번째 게시물-->
-                <div class="board_container">
-                  <div class="board_item">
-                    <img src="../resources/img/make02.jpg" alt="카페이미지">
-                    <div class="heart_container">
-                      <div class="heart" onclick="toggleHeart()">
-                        <i class="fa-regular fa-heart"></i>
-                      </div>
-                    </div>
-                  </div>
-                <div class="board_info">
-                    <div class="board_title">
-                      <h1>소유화실</h1>
-                      <div class="star-rating">
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                    </div>
-                        <div class="rating-text">
-                          <p class="info_num">5</p>
-                          <p class="info_maxnum">/ 5</p>
-                        </div>
-                    </div>
-                    <div class="board_subtitle">
-                      <p>가족이나 연인 친구끼리 방문해서 원데이 클래스를 즐길수 있는 곳</p>
-                    </div>
-                    <div class="board_add">
-                      <p>경기 용인시 기흥구 죽전로 6 201호</p>
-                    </div>
-                    <div class="add_review"><a href="#">후기 등록</a></div>
-                </div>
-              </div>
-
-                  <!-- 세번째 게시물-->
-                  <div class="board_container">
-                    <div class="board_item">
-                      <img src="../resources/img/thempark03.jpeg" alt="카페이미지">
-                      <div class="heart_container">
-                        <div class="heart" onclick="toggleHeart()">
-                          <i class="fa-regular fa-heart"></i>
-                        </div>
-                      </div>
-                    </div>
-                  <div class="board_info">
-                      <div class="board_title">
-                        <h1>바랭이도자기공방</h1>
-                        <div class="star-rating">
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                      </div>
-                          <div class="rating-text">
-                            <p class="info_num">5</p>
-                            <p class="info_maxnum">/ 5</p>
-                          </div>
-                      </div>
-                      <div class="board_subtitle">
-                        <p>자유로운 주제로 만들고싶은 도자기를 만들어 볼 수 있는 곳</p>
-                      </div>
-                      <div class="board_add">
-                        <p>경기도 용인시 기흥구 보정동 878-6번지</p>
-                      </div>
-                      <div class="add_review"><a href="#">후기 등록</a></div>
-                  </div>
-                </div>
-                </div>
-                    <div class="board_list" id="show_board" style="display: none;">
-                  <div class="board_container">
-                    <div class="board_item">
-                      <img src="../resources/img/show01.jpg" alt="카페이미지">
-                      <div class="heart_container">
-                        <div class="heart" onclick="toggleHeart()">
-                          <i class="fa-regular fa-heart"></i>
-                        </div>
-                      </div>
-                    </div>
-                  <div class="board_info">
-                      <div class="board_title">
-                        <h1>백남준아트센터</h1>
-                        <div class="star-rating">
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                      </div>
-                          <div class="rating-text">
-                            <p class="info_num">5</p>
-                            <p class="info_maxnum">/ 5</p>
-                          </div>
-                      </div>
-                      <div class="board_subtitle">
-                        <p>세계적인 비디오 아티스트 고(故) 백남준 선생님의 작품을 소장 및 전시중</p>
-                      </div>
-                      <div class="board_add">
-                        <p>경기도 용인시 기흥구 상갈동 백남준로 10</p>
-                      </div>
-                      <div class="add_review"><a href="#">후기 등록</a></div>
-                  </div>
-                 
-                </div>
-
-
-                    <!-- 두번째 게시물-->
-                <div class="board_container">
-                  <div class="board_item">
-                    <img src="../resources/img/show02.jpeg" alt="카페이미지">
-                    <div class="heart_container">
-                      <div class="heart" onclick="toggleHeart()">
-                        <i class="fa-regular fa-heart"></i>
-                      </div>
-                    </div>
-                  </div>
-                <div class="board_info">
-                    <div class="board_title">
-                      <h1>어린이박물관</h1>
-                      <div class="star-rating">
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                    </div>
-                        <div class="rating-text">
-                          <p class="info_num">5</p>
-                          <p class="info_maxnum">/ 5</p>
-                        </div>
-                    </div>
-                    <div class="board_subtitle">
-                      <p>다양한 체험형 전시, 교육 활동, 놀이 공간이 있는 어린이 박물관입니다.</p>
-                    </div>
-                    <div class="board_add">
-                      <p>경기도 용인시 기흥구 상갈로 6</p>
-                    </div>
-                    <div class="add_review"><a href="#">후기 등록</a></div>
-                </div>
-              </div>
-
-                  <!-- 세번째 게시물-->
-                  <div class="board_container">
-                    <div class="board_item">
-                      <img src="../resources/img/show03.jpg" alt="카페이미지">
-                      <div class="heart_container">
-                        <div class="heart" onclick="toggleHeart()">
-                          <i class="fa-regular fa-heart"></i>
-                        </div>
-                      </div>
-                    </div>
-                  <div class="board_info">
-                      <div class="board_title">
-                        <h1>석주선 박물관</h1>
-                        <div class="star-rating">
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                      </div>
-                          <div class="rating-text">
-                            <p class="info_num">5</p>
-                            <p class="info_maxnum">/ 5</p>
-                          </div>
-                      </div>
-                      <div class="board_subtitle">
-                        <p>석주선 박사의 평생을 담은 유물들을 볼수 있는 곳</p>
-                      </div>
-                      <div class="board_add">
-                        <p> 경기도 용인시 수지구 죽전로 152 석주선기념박물관</p>
-                      </div>
-                      <div class="add_review"><a href="#">후기 등록</a></div>
-                  </div>
-                </div>
-                </div>
-                    <div class="board_list" id="night_board" style="display: none;">
-                  <div class="board_container">
-                    <div class="board_item">
-                      <img src="../resources/img/night01.jpg" alt="카페이미지">
-                      <div class="heart_container">
-                        <div class="heart" onclick="toggleHeart()">
-                          <i class="fa-regular fa-heart"></i>
-                        </div>
-                      </div>
-                    </div>
-                  <div class="board_info">
-                      <div class="board_title">
-                        <h1>동백호수공원</h1>
-                        <div class="star-rating">
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                      </div>
-                          <div class="rating-text">
-                            <p class="info_num">5</p>
-                            <p class="info_maxnum">/ 5</p>
-                          </div>
-                      </div>
-                      <div class="board_subtitle">
-                        <p>250개의 음악분수에서 내뿜는 알록달록 LED 조명이 화려한 용인의 밤을 연출</p>
-                      </div>
-                      <div class="board_add">
-                        <p>기흥구 동백중앙로 239</p>
-                      </div>
-                      <div class="add_review"><a href="#">후기 등록</a></div>
-                  </div>
-                 
-                </div>
-
-
-                    <!-- 두번째 게시물-->
-                
-
-                  <!-- 세번째 게시물-->
-                  <div class="board_container">
-                    <div class="board_item">
-                      <img src="../resources/img/night03.jpg" alt="카페이미지">
-                      <div class="heart_container">
-                        <div class="heart" onclick="toggleHeart()">
-                          <i class="fa-regular fa-heart"></i>
-                        </div>
-                      </div>
-                    </div>
-                  <div class="board_info">
-                      <div class="board_title">
-                        <h1>석성산</h1>
-                        <div class="star-rating">
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                          <span class="star">&#9733;</span>
-                      </div>
-                          <div class="rating-text">
-                            <p class="info_num">5</p>
-                            <p class="info_maxnum">/ 5</p>
-                          </div>
-                      </div>
-                      <div class="board_subtitle">
-                        <p>탁 트인 정상에서 바라보는 또다른 빛의 장관을 연출</p>
-                      </div>
-                      <div class="board_add">
-                        <p>용인시 기흥구 동백동과 포곡읍 마성리, 유림동</p>
-                      </div>
-                      <div class="add_review"><a href="#">후기 등록</a></div>
-                  </div>
-                </div>
-                </div>
-            </div>
-          </section>
-    </div>
+            </c:if>
+ </c:forEach>
+           
   </body>
 </html>
