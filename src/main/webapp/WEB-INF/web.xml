@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-=======
-
->>>>>>> features
 <web-app id="servlet-2_5" version="2.5"
               xmlns="http://java.sun.com/xml/ns/javaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-<<<<<<< HEAD
-=======
 
->>>>>>> features
 	<filter>
 		<!-- UTF-8 설정 -->
 		<filter-name>encoding</filter-name>
@@ -60,16 +53,9 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-<<<<<<< HEAD
-	
 	 
-			<!-- 시큐리티  잠시제거-->
- 	<filter>
-=======
-
 	<!-- 시큐리티 -->
 	<filter>
->>>>>>> features
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy
 		</filter-class>
@@ -80,22 +66,7 @@
 		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
-	
-<!-- 	파일업로드 필터처리 -->
-   <filter>
-      <display-name>springMultipartFilter</display-name>
-      <filter-name>springMultipartFilter</filter-name>
-      <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
-   </filter>
-   <filter-mapping>
-      <filter-name>springMultipartFilter</filter-name>
-      <url-pattern>/*</url-pattern>
-   </filter-mapping>
-	
-	
 
-<<<<<<< HEAD
-=======
 	<!-- multipart filter 추가하기 -->
 	<filter>
 		<display-name>springMultipartFilter</display-name>
@@ -113,5 +84,4 @@
 			org.springframework.web.context.request.RequestContextListener
 		</listener-class>
 	</listener>
->>>>>>> features
 </web-app>

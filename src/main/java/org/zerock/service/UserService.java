@@ -22,18 +22,9 @@ public interface UserService {
 	
 	//회원 전체 리스트 출력
 	public List<UserVO> getList();
-<<<<<<< HEAD
-	
-	//권한 부여 추가 k - private 처리
-//	String grantAuth(AuthVO authVO);
-=======
+	public String emailcheck(String username);
 
-	
-	
 	//권한 부여 추가 k - private 처리
 	boolean grantAuth(AuthVO authVO);
-	
 	AuthVO getUserAuth(String username);
->>>>>>> features
-
 }

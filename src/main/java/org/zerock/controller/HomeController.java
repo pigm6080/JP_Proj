@@ -1,5 +1,6 @@
 package org.zerock.controller;
 
+import java.security.Principal;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -18,6 +19,8 @@ import org.zerock.domain.AuthVO;
 import org.zerock.domain.UserVO;
 import org.zerock.service.UserService;
 
+import lombok.extern.log4j.Log4j;
+@Log4j
 @Controller
 public class HomeController {
 	
@@ -27,7 +30,7 @@ public class HomeController {
 	UserService service; 
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model,Principal principal) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -37,6 +40,19 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
+		log.info("마이프로필 창으로 이동");
+		
+		if (principal != null && principal.getName() != null) {
+		    log.info("유저아이디: " + principal.getName());
+		    String userid = principal.getName();
+		    UserVO vo = service.get(userid);
+		    String num = vo.getName()+" 님 환영합니다.";
+		    vo.setName(num);
+		    model.addAttribute("user", vo);
+		    System.out.println("유저 정보는"+vo);
+		}
+			
+			
 		return "index";
 	}
 	
@@ -67,6 +83,14 @@ public class HomeController {
 	    
 	    return "redirect:/";
 	}
+	
+	   
+	  @PostMapping("/email-check")
+	   public @ResponseBody String emailCheck(@RequestParam("username")String username) {
+		   System.out.println("username = " + username);
+		   String checkResultString = service.emailcheck(username);
+		   return checkResultString;
+	   }
 	
 }
 	

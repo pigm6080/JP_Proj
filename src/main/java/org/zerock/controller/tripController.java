@@ -110,7 +110,7 @@ public class tripController {
         }
 
         // 파일 삭제 후 리다이렉트할 페이지를 반환합니다. (예: 파일 삭제 후 목록 페이지 등)
-        return "redirect:/"; // 파일 삭제 후 홈 페이지로 리다이렉트
+        return "redirect:/trip/home"; // 파일 삭제 후 홈 페이지로 리다이렉트
     }
     
     @RequestMapping("/update")
@@ -133,7 +133,7 @@ public class tripController {
         model.addAttribute("other_info", file.getOther_info());
         
         // 수정 폼 페이지로 이동합니다.
-        return "updateForm";
+        return "trip/trip_update";
     }
 
     @PostMapping(value = "/updateFile")
@@ -149,21 +149,36 @@ public class tripController {
 
     
     
-    @GetMapping("/detail")
+    @GetMapping("/showdetail")
     public String showDetailPage(@RequestParam("placeName") String placeName, 
                                  @RequestParam("hashtag") String hashtag, 
                                  Model model) {
         // 여기에 해당 placeName에 대한 상세 정보를 가져와서 모델에 추가하는 로직을 구현합니다.
         // 예를 들어, 서비스나 DAO를 사용하여 데이터베이스에서 해당 placeName에 대한 정보를 가져와 모델에 추가합니다.
-        // 이후 detail.jsp 등의 뷰 페이지에서 모델에 담긴 정보를 사용하여 상세 정보를 보여줍니다.
+        // 이후 trip/trip_detail.jsp 등의 뷰 페이지에서 모델에 담긴 정보를 사용하여 상세 정보를 보여줍니다.
         List<FileVO> files = fileService.getFilesByHashTag(hashtag);
+        
+        FileVO match = null;
+        
+        for (FileVO file : files) {
+            if (file.getPlaceName().equals(placeName)) {
+            	match = file;
+                break; // 첫 번째 일치하는 파일을 찾으면 반복문을 종료합니다.
+            }
+        }
+        
+        
+        fileUserService.getUserByUsername("");
         // 예시로 모델에 placeName을 추가하는 코드를 작성하겠습니다.
         model.addAttribute("placeName", placeName); // 여기서 place_name을 placeName으로 수정
         model.addAttribute("files", files);
+        
+        model.addAttribute("id", match.getId());
+        
+        System.out.println("id :의 값은  :"  +  match);
         System.out.println(placeName);
         System.out.println(files);
-        // detail.jsp로 포워딩합니다.
-        return "detail";
+        return "trip/trip_detail";
     }
 
 
@@ -314,7 +329,8 @@ public class tripController {
         System.out.println("tripInfo: " + tripInfo);
         model.addAttribute("files", fileList);
         System.out.println("files: " + fileList);
-
+        
+        
         return "trip";
     }
 

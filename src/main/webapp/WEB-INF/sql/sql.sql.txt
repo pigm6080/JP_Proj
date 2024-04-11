@@ -1,10 +1,7 @@
 #팀프로젝트
 
-# db 생성
 CREATE database JP;
 use JP;
-
-#User 테이블 생성
 CREATE TABLE user (
     username VARCHAR(100) NOT NULL PRIMARY KEY,
     password VARCHAR(100) NOT NULL,
@@ -13,58 +10,122 @@ CREATE TABLE user (
     createday TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
-<<<<<<< HEAD
+
 #User_auth 테이블 생성
-=======
->>>>>>> mergeTest
+
+
 CREATE TABLE user_auth(
     username VARCHAR(100) NOT NULL,
     auth VARCHAR(50) default 'ROLE_MEMBER' NOT NULL,
     CONSTRAINT user_auth FOREIGN KEY (username) REFERENCES user (username)
-<<<<<<< HEAD
+
 );
 
----------------------------------------------------------------
-# 카테고리 테이블: 여행 정보를 카테고리로 분류하기 위한 테이블
-CREATE TABLE categories (
-    category_id INT AUTO_INCREMENT PRIMARY KEY, -- 카테고리의 고유 식별자
-    category_name VARCHAR(255) NOT NULL -- 카테고리 이름
-);
-INSERT INTO categories (category_name) VALUES 
-    ('카페'),
-    ('맛집'),
-    ('체험'),
-    ('공원'),
-    ('테마'),
-    ('공방'),
-    ('축제'),
-    ('전시'),
-    ('야경');
-    
-    
-# 여행 정보 테이블: 여행 정보를 저장하는 테이블
-CREATE TABLE travel_info (
-    travel_id INT AUTO_INCREMENT PRIMARY KEY, -- 여행 정보의 고유 식별자
-    destination VARCHAR(255) NOT NULL, -- 여행지
-    description TEXT, -- 여행에 대한 설명
-    category_id INT, -- 해당 여행 정보가 속한 카테고리를 나타내는 외래 키
-    FOREIGN KEY (category_id) REFERENCES categories(category_id) -- 카테고리 테이블의 외래 키 제약 조건
+SELECT mem.username , password  ,name ,phone  ,createday , auth
+From user mem Left outer Join user_auth a
+on mem.username = a.username;
+
+
+---------------------------------
+
+drop table trip_info ;
+CREATE TABLE file_users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-# 파일 테이블: 여행 정보에 관련된 파일을 저장하는 테이블
-CREATE TABLE files (
-    file_id INT AUTO_INCREMENT PRIMARY KEY, -- 파일의 고유 식별자
-    file_name VARCHAR(255) NOT NULL, -- 파일 이름
-    travel_id INT, -- 해당 파일이 속한 여행 정보를 나타내는 외래 키
-    FOREIGN KEY (travel_id) REFERENCES travel_info(travel_id) -- 여행 정보 테이블의 외래 키 제약 조건
+CREATE TABLE trip_info (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    hashtag VARCHAR(255),
+    placeName VARCHAR(255)
 );
 
-# 댓글 테이블: 여행 정보에 달린 댓글을 저장하는 테이블
-CREATE TABLE comments (
-    comment_id INT AUTO_INCREMENT PRIMARY KEY, -- 댓글의 고유 식별자
-    travel_id INT, -- 해당 댓글이 속한 여행 정보를 나타내는 외래 키
-    comment_text TEXT, -- 댓글 내용
-    FOREIGN KEY (travel_id) REFERENCES travel_info(travel_id) -- 여행 정보 테이블의 외래 키 제약 조건
-=======
->>>>>>> mergeTest
+CREATE TABLE file (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    placeName VARCHAR(255),
+    filename VARCHAR(255) NOT NULL,
+    filepath VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    hashtag varchar(100) NOT null,
+     description VARCHAR(255),   
+    address VARCHAR(255),
+    rating int,
+    author VARCHAR(255),
+    phone_number VARCHAR(20),
+    sns_url VARCHAR(255),
+    other_info VARCHAR(255)
 );
+
+--------------------------------------------
+
+CREATE TABLE tbl_reply (
+    rno INT(10) AUTO_INCREMENT,
+    bno INT(10) NOT NULL,
+    reply VARCHAR(1000) NOT NULL, 
+    replyer VARCHAR(50) NOT NULL, 
+    replyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (rno),
+    FOREIGN KEY (bno) REFERENCES file(id)
+);
+
+
+
+
+———————————————————————
+Oauth 설정 DB 쿼리
+
+CREATE TABLE `kakao_account` (
+  `id` bigint NOT NULL,
+  `profile_nickname_needs_agreement` tinyint(1) DEFAULT NULL,
+  `profile_image_needs_agreement` tinyint(1) DEFAULT NULL,
+  `name_needs_agreement` tinyint(1) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email_needs_agreement` tinyint(1) DEFAULT NULL,
+  `is_email_valid` tinyint(1) DEFAULT NULL,
+  `is_email_verified` tinyint(1) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `age_range_needs_agreement` tinyint(1) DEFAULT NULL,
+  `age_range` varchar(255) DEFAULT NULL,
+  `birthyear_needs_agreement` tinyint(1) DEFAULT NULL,
+  `birthyear` varchar(255) DEFAULT NULL,
+  `birthday_needs_agreement` tinyint(1) DEFAULT NULL,
+  `birthday` varchar(255) DEFAULT NULL,
+  `birthday_type` varchar(255) DEFAULT NULL,
+  `gender_needs_agreement` tinyint(1) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `phone_number_needs_agreement` tinyint(1) DEFAULT NULL,
+  `phone_number` varchar(255) DEFAULT NULL,
+  `ci_needs_agreement` tinyint(1) DEFAULT NULL,
+  `ci` varchar(255) DEFAULT NULL,
+  `ci_authenticated_at` datetime DEFAULT NULL,
+  `for_partner_uuid` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `for_partner_uuid` (`for_partner_uuid`),
+  CONSTRAINT `kakao_account_ibfk_1` FOREIGN KEY (`for_partner_uuid`) REFERENCES `for_partner` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `kakao_user_info` (
+  `id` bigint NOT NULL,
+  `connected_at` datetime DEFAULT NULL,
+  `kakao_account_id` bigint DEFAULT NULL,
+  `properties` json DEFAULT NULL,
+  `for_partner_uuid` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `kakao_account_id` (`kakao_account_id`),
+  KEY `for_partner_uuid` (`for_partner_uuid`),
+  CONSTRAINT `kakao_user_info_ibfk_1` FOREIGN KEY (`kakao_account_id`) REFERENCES `kakao_account` (`id`),
+  CONSTRAINT `kakao_user_info_ibfk_2` FOREIGN KEY (`for_partner_uuid`) REFERENCES `for_partner` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `kakatoken` (
+  `access_token` varchar(255) NOT NULL,
+  `token_type` varchar(10) NOT NULL,
+  `refresh_token` varchar(255) NOT NULL,
+  `expires_in` decimal(10,0) NOT NULL,
+  `scope` varchar(255) NOT NULL,
+  `refresh_token_expires_in` int NOT NULL,
+  PRIMARY KEY (`access_token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

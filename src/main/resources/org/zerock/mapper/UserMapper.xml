@@ -12,6 +12,7 @@
     <result property="id" column="id"/>
     <result property="password" column="password"/>
     <result property="username" column="username"/>
+    <result property="name" column="name"/>
     <result property="phone" column="phone"/>
     <result property="createday" column="createday"/>
 <!--     <collection property="authList" resultMap="authMap"> -->
@@ -26,7 +27,7 @@
   
   <select id="read" resultMap="memberMap">
       SELECT
-        mem.username , password  ,name , phone  ,createday , auth
+        mem.username , password  , mem.name , phone  ,createday , auth
       FROM
         user mem Left outer Join user_auth a on mem.username = a.username 
       WHERE mem.username = #{username}

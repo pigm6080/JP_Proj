@@ -48,8 +48,8 @@ public class UserServiceImpl implements UserService{
 			log.info("일치 / 불일치 여부 이외 문제가 발생한 것 같습니다.");
 		}
 		
-<<<<<<< HEAD
-		vo.setPassword(pwecoderEncoder.encode(vo.getPassword()));
+
+		// vo.setPassword(pwecoderEncoder.encode(vo.getPassword()));
 		
 		log.info("register 입니다." + vo);
 		
@@ -57,9 +57,9 @@ public class UserServiceImpl implements UserService{
 		mapper.insertAuth(vo.getUsername());
 		this.grantAuth(vo.getAuth());
 		log.info( vo.getName() + "님의  역할은 "+ vo.getAuth() + "입니다...");
-=======
+
 		
->>>>>>> features
+
 	}
 
 	@Override
@@ -92,30 +92,28 @@ public class UserServiceImpl implements UserService{
 		return mapper.getList();
 	}
 
-<<<<<<< HEAD
-	private String grantAuth(AuthVO authVO) {
-		mapper.grantAuth(authVO);
-		String addedAuth = authVO. getAuthority();
-		return addedAuth;
+	@Override
+	public String emailcheck(String username) {
+		
+		UserVO vo = mapper.read(username);
+		
+		System.out.println("id check :" + username + " : " + vo);
+		
+		if(vo == null) {
+			return "ok";
+		}else {
+			return "no";
+		}
 	}
 
-
-=======
 	@Override
 	public boolean grantAuth(AuthVO authVO) {
 		AuthVO received = authVO;
 		return mapper.grantAuth(received);
 	}
-
 	@Override
 	public AuthVO getUserAuth(String username) {
 		AuthVO authGet = mapper.getUserAuth(username);
 		return authGet;
 	}
-
-
-
-
-
->>>>>>> features
 }
