@@ -48,7 +48,8 @@
 	</form>
 	        <p class="joinus">
 	          아직 회원이 아니신가요? ->
-	          <a href="resources/regMember.html" class="reg">회원가입</a>
+	          <a href="/regMember" class="reg">회원가입</a>
+	          
 	        </p>
 	      </div>
 	

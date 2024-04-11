@@ -65,13 +65,40 @@
             <button class="button" data-section="community">커뮤니티</button>
           </div>
           <div class="auth-buttons">
-            <button class="button" onclick="location.href='/customLogin'">
+            <button id = "loginButton" class="button" onclick="location.href='/customLogin'">
               로그인
             </button>
-            <button class="button" onclick="location.href='/regMember'">
+            <button id = "registerButton" class="button" onclick="location.href='/regMember'">
               회원가입
             </button>
           </div>
+			<h1>${user.name}</h1>
+         	 <form action="/customLogout" method="post">
+				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
+				<button id = "logoutBtnton" class ="button">로그아웃</button>
+			</form>
+
+		<script>
+		  // 페이지 로드 후 호출되는 함수
+		  window.onload = function() {
+		    checkSession();
+		  };
+		
+		  // 세션에 값이 있는지 확인하는 함수
+		  function checkSession() {
+		    
+		   var sessionValue = '${user.name}';
+		    
+		    // 세션에 값이 있는 경우
+		    if (sessionValue) {
+		      // 버튼 숨기기
+		     	 document.getElementById("loginButton").style.display = "none";
+		     	 document.getElementById("registerButton").style.display = "none";
+		    } else{
+		    	document.getElementById("logoutBtnton").style.display = "none";
+		    }
+		  }
+		</script>
         </div>
         <!-- 사이드 퀵nav-->
         <div class="l-navbar" id="navbar">
