@@ -4,6 +4,7 @@
 <html lang="kr">
   <head>
     <meta charset="UTF-8" />
+    <meta name="csrf-token" content="${_csrf.token}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>너 J발 P야?</title>
     <link rel="icon" href="resources/img/JP.png" />

@@ -23,18 +23,30 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private PasswordEncoder pwecoderEncoder;
 	
+	
 	@Override
 	public void register(UserVO vo , AuthVO userAuth) {
-		
-		vo.setPassword(pwecoderEncoder.encode(vo.getPassword()));
-		
-		log.info("register 입니다." + vo);
-		
-		mapper.insert(vo);
-		mapper.insertAuth(vo.getUsername());
-		String thisauth = this.grantAuth(userAuth);
 
-		log.info( vo.getName() + "님 역할이 " + thisauth + " 설정되었습니다.");
+		if (vo.getUsername().equals(userAuth.getUsername())) {
+			vo.setPassword(pwecoderEncoder.encode(vo.getPassword()));
+			vo.setAuthList(userAuth);
+			log.info("주어진 UserVO의 유저이름과 AuthVO의 유저이름이 일치합니다. 등록을 진행합니다.");
+			log.info("register 입니다." + vo);
+			
+			mapper.insert(vo);
+			mapper.insertAuth(userAuth);
+
+
+			log.info( vo.getName() + "님 역할이 " + userAuth.getAuth() + " 설정되었습니다.");
+
+		}else if (!(vo.getUsername().equals(userAuth.getUsername()))) {
+			log.info("주어진 UserVO의 유저이름과 AuthVO의 유저이름이 일치하지않습니다.");
+			log.info("파라미터를 확인해주세요");
+		}else {
+			log.info("일치 / 불일치 여부 이외 문제가 발생한 것 같습니다.");
+		}
+		
+		
 	}
 
 	@Override
@@ -68,10 +80,9 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public String grantAuth(AuthVO authVO) {
-		mapper.grantAuth(authVO);
-		String addedAuth = authVO. getAuthority();
-		return addedAuth;
+	public boolean grantAuth(AuthVO authVO) {
+		AuthVO received = authVO;
+		return mapper.grantAuth(received);
 	}
 
 	@Override

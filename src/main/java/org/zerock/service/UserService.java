@@ -26,7 +26,7 @@ public interface UserService {
 	
 	
 	//권한 부여 추가 k - private 처리
-	String grantAuth(AuthVO authVO);
+	boolean grantAuth(AuthVO authVO);
 	
 	AuthVO getUserAuth(String username);
 

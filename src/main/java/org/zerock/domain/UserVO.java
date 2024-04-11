@@ -1,10 +1,11 @@
 package org.zerock.domain;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,7 @@ import lombok.ToString;
 @Getter @Setter
 @ToString
 
-public class UserVO{ //extends User{
+public class UserVO implements UserDetails{ //extends User{
 	
 //	public UserVO(String username, String password, Collection<? extends GrantedAuthority> authorities) {
 //		super(username, password, authorities);
@@ -27,8 +28,13 @@ public class UserVO{ //extends User{
 	private String name;
 	private String phone;
 	private Date createday;
+	private AuthVO authList;
 
-	
+	@Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singleton(() -> authList.getAuth());
+    }
+
 
 //	@Override
 	// 계정이 만료 되지 않았는가?

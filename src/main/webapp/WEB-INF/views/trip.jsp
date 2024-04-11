@@ -5,6 +5,7 @@
 <html lang="kr">
   <head>
     <meta charset="UTF-8" />
+	<meta name="csrf-token" content="${_csrf.token}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>여행 정보</title>
     <link rel="icon" href="../resources/img/JP.png" />

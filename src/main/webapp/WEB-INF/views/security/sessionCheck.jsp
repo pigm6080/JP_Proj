@@ -14,7 +14,7 @@
 
 
 <h2>session 기본추가확인</h2>
-<p>${Check}</p>
+<p>check : ${Check}</p>
 
 <hr>
 <h2>session checker 커스텀메소드를 통한 확인</h2>

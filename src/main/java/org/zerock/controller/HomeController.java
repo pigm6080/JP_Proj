@@ -53,6 +53,7 @@ public class HomeController {
 		
 	    System.out.println("회원가입 정보: " + vo);
 	    AuthVO userAuth = new AuthVO(vo.getUsername(), "USER");
+
 	    service.register(vo , userAuth);
 	    
 	    return "redirect:/";

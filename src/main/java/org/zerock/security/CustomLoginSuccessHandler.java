@@ -17,12 +17,13 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-@Service
+@Component
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 	
 	@Override

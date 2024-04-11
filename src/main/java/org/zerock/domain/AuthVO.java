@@ -23,6 +23,7 @@ public class AuthVO implements GrantedAuthority {
         this.auth = auth;
         this.authorities = new ArrayList<>();
         this.authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        this.authorities.add(new SimpleGrantedAuthority(auth));
     }
 
     @Override

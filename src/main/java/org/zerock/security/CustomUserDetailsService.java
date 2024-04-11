@@ -32,23 +32,31 @@ public class CustomUserDetailsService implements UserDetailsService{
 		//usernamemeans userid
 		
 		UserVO user = userMapper.read(username);
-		AuthVO userAuth = userMapper.getUserAuth(username);
-		if (user == null) {
+		
+		AuthVO userAuth = userMapper.getUserAuth(user.getUsername());
+		
+		if (user.getUsername() == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
+		log.warn("현 로그인 유저에게 주어진 권한VO 객체 : " + userAuth);
+		log.warn("현 로그인 유저에게 주어진 권한 : " + userAuth.getAuth());
 		
 		 // UserDetails 객체를 생성하여 사용자 정보 설정
         UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
-                .roles() // 사용자의 역할 설정
+                .roles(userAuth.getAuth()) // 사용자의 역할 설정
                 .build();
 
 		log.warn("queried by member mapper vo에서 가져온 값은 !!!!!!!!!!:" + user);
+		log.warn("queried by member mapper vo에서 가져온 권한VO는 !!!!!!!!!!:" + userAuth);
+		log.warn("queried by member mapper vo에서 가져온 비밀번호는 !!!!!!!!!!:" + user.getPassword());
+		
 		
 		// HttpSession을 사용하여 사용자 정보를 세션에 저장 (선택사항)
         HttpSession session = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest().getSession();
         session.setAttribute("loggedInUser", userDetails);
+     
         
         return userDetails;
 		
@@ -56,6 +64,10 @@ public class CustomUserDetailsService implements UserDetailsService{
 		
 		
 //		return UserAdapter(vo);
+	}
+	
+	public AuthVO getUserAuthority(String username) {
+		return userMapper.getUserAuth(username);
 	}
 	
 	

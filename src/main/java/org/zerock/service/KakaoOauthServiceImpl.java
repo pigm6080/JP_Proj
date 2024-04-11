@@ -1,8 +1,12 @@
 package org.zerock.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import org.json.simple.parser.JSONParser;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -11,16 +15,19 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.zerock.domain.AuthVO;
 import org.zerock.domain.KakaoTokenVO;
 import org.zerock.domain.UserVO;
 import org.zerock.mapper.UserMapper;
 import org.zerock.oauthutil.OTPgenerator;
-import org.zerock.security.domain.Role;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -34,6 +41,8 @@ import lombok.extern.log4j.Log4j;
 @PropertySource("classpath:/oauth/KakaoOauthClient.properties")
 public class KakaoOauthServiceImpl implements KakaoOauthService {
 
+	private static final Logger logger = LoggerFactory.getLogger(KakaoOauthServiceImpl.class);
+	
 	// 서비스에 필요한 상수
 
 	private static final String REDIRECT_URI = "http://localhost:8082/Oauth/kakao/getAuth";
@@ -51,6 +60,8 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 	
 	@Autowired
 	private UserMapper mapper;
+	@Autowired
+	private UserServiceImpl userSrv;
 	
 	
 
@@ -106,12 +117,6 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 				String.class // 요청 시 반환되는 데이터 타입
 		);
 
-		// TODO 응답코드별 에러처리 필요!!
-//		log.info(response);
-//		log.info("응답코드 헤더: "+response.getHeaders()); //String[] format
-//		log.info(response.getStatusCode());
-//		log.info("응답코드 밸류: "+response.getStatusCode().value()); //200
-//		log.info("응답코드 밸류 타입: "+response.getStatusCode().getClass().getName()); //org.springframework.http.HttpStatus
 
 		if (response.getStatusCode().value() == 200) {
 			log.info("응답 상태 코드 200이래!!!!");
@@ -130,14 +135,11 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		}
 		log.info("카카오 인증코드 : " + token.getAccess_token());
 
-//		if(valToken(token.getAccess_token(),token.getToken_type())==0) {
-//			log.info("good token");
-//		}
 		return token;
 	}
 
 	@Override
-	public Map<UserVO, AuthVO> getKakaoUserInfo(@ModelAttribute KakaoTokenVO token)
+	public UserVO getKakaoUserInfo(@ModelAttribute KakaoTokenVO token)
 			throws JsonMappingException, JsonProcessingException {
 		// For Info Get
 		RestTemplate rt2 = new RestTemplate();
@@ -157,17 +159,12 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		);
 
 		log.info("resp2 응답코드 :" + response2.getStatusCodeValue());
-
-		// 문제 발생
 		ObjectMapper omp = new ObjectMapper();
-		JSONParser jParser = new JSONParser();
 		JsonNode bodyJson = null;
 
 		String bodyString = response2.getBody();
 		log.info("response2 : " + response2);
-
 		log.info("response2 : " + response2.getBody());
-
 		log.info("bodyString : " + bodyString);
 
 		bodyJson = omp.readTree(bodyString);
@@ -175,7 +172,7 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 
 		JsonNode propertiesJson = bodyJson.get("properties");
 		JsonNode kakaoAccount = bodyJson.get("kakao_account");
-		JsonNode kakaoProfile = kakaoAccount.get("profile");
+		
 		/*
 		 * Iterator<String> fieldNames = bodyJson.fieldNames();
 		 * 
@@ -186,70 +183,32 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		 * // 필드 이름과 값을 출력 또는 원하는 작업 수행 log.info("Field: " + fieldName);
 		 * log.info("Value: " + fieldValue); }
 		 */
-		
-		
-//		log.info("properties 순회");
-//		Iterator<String> fieldNames = propertiesJson.fieldNames();
-//
-//		while (fieldNames.hasNext()) {
-//			String fieldName = fieldNames.next();
-//			JsonNode fieldValue = propertiesJson.get(fieldName);
-//
-//			// 필드 이름과 값을 출력 또는 원하는 작업 수행
-//			log.info("Field: " + fieldName);
-//			log.info("Value: " + fieldValue);
-//		}
-		
-//		log.info("kakao_account 순회");
-//		Iterator<String> fieldNames2 = kakaoAccount.fieldNames();
-//
-//		while (fieldNames2.hasNext()) {
-//			String fieldName2 = fieldNames2.next();
-//			JsonNode fieldValue2 = kakaoAccount.get(fieldName2);
-//
-//			// 필드 이름과 값을 출력 또는 원하는 작업 수행
-//			log.info("Field: " + fieldName2);
-//			log.info("Value: " + fieldValue2);
-//		}
-		
-		
-//		log.info("kakao_account의 프로필 순회");
-//		Iterator<String> fieldNames3 = kakaoProfile.fieldNames();
-//
-//		while (fieldNames3.hasNext()) {
-//			String fieldName3 = fieldNames3.next();
-//			JsonNode fieldValue3 = kakaoProfile.get(fieldName3);
-//
-//			// 필드 이름과 값을 출력 또는 원하는 작업 수행
-//			log.info("Field: " + fieldName3);
-//			log.info("Value: " + fieldValue3);
-//		}
-//		TODO id to STring working.... 04 05 17: 36 ######$$$$$$$$$$$$$$$$$$$$$$$4
+
 		
 		log.info(bodyJson.get("id").asText());
 		
 		String username = bodyJson.get("id").asText(); // Numberic ID
-		String password = OTPgenerator.generateTemporaryPassword();  //Temporary password (20) add
+//		String password = OTPgenerator.generateTemporaryPassword();  //Temporary password (20) add
 		String name = propertiesJson.get("nickname").asText();
 		String phone = "null";
-//		
-		log.info(" username : " + username + "\n password : " + password + "\n name : "+ name + "\n phone : "+ phone);
+	
+		log.info(" username : " + username + "\n password : " + "\n name : "+ name + "\n phone : "+ phone); //+ password 
 
-		// bodyJson <- 결과 JSON
-		
-		AuthVO authvo = new AuthVO(username, "KakaoUser");
-		
-		//TODO
-		Map<String, Object> 
+
+//		Map<String, Object> voList = new HashMap<>();
 	        
-	    // 여기서 사용자의 권한을 설정합니다.
-	    
-	        
-		UserVO vo = new UserVO( username, password );
-		
+		UserVO vo = new UserVO();
+		vo.setUsername(username.toString());
+//		vo.setPassword(password);
 		vo.setName(name);		// name
 		vo.setPhone(phone);		// phone
-		return vo ,;
+//		vo.setAuthList(thisAuth);
+		
+		
+//		voList.put("UserVO", vo);
+//		voList.put("AuthVO", vo.getAuthList());
+		
+		return vo;
 	}
 
 	@Override
@@ -287,30 +246,104 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 
 	// 유저 정보를 토대로 자동 회원가입을 진행시킴
 	@Override
-	public UserVO kakaoRegist(UserVO vo, UserServiceImpl userSrv) {
-		// TODO Auto-generated method stub
-		log.info("Kakao User정보를 토대로 회원가입을 진행시킵니다.");
-		UserVO returnVO = null;
+	public String kakaoRegist(@RequestParam(value = "KakaoUserInfo") @ModelAttribute UserVO uservo , Model model) {
+		String resultMsg = "Yes start : ";
 		
-		if(userSrv.get(vo.getUsername()) != null) {
+		//새로운 권한 객채 생성
+		AuthVO thisAuth = (AuthVO) kakaoRoleAdd(uservo.getUsername()).get("authVO");
+		String msg = (String) kakaoRoleAdd(uservo.getUsername()).get("ResultMsg");
+		
+		UserVO dbread = mapper.read(uservo.getUsername());
+		//등록을 진핸한다
+		
+		if((dbread) != null) {
+	    //만약 유저VO getUsername()이 null이면 또 비밀번호가 설정되어있찌않다면 
+			//권한 가져오고 비밀번호 설정
+			thisAuth = uservo.getAuthList();
+			if (dbread.getPassword().isEmpty() || dbread.getPassword()==null) {
+			String password = OTPgenerator.generateTemporaryPassword();  //Temporary password (20) add
+			uservo.setPassword(password);
+			mapper.update(uservo);
+			}
 			
-			UserVO returnUserName = userSrv.get(vo.getUsername());
-			String thisUserName = returnUserName.getUsername();
-			AuthVO newAuthVO = new AuthVO(thisUserName, Role.SNSMEMBER.name());
-			
-			userSrv.grantAuth(newAuthVO);
-			//있다면 권한만 설정해준다
-		}
-		else if (userSrv.get(vo.getUsername()) == null) {
-			AuthVO authVO = new AuthVO(vo.getUsername(), Role.SNSMEMBER.name());
-			returnVO = vo;
-
-			
-			userSrv.register(returnVO, authVO);
-			//없다면 등록하여야하고
+		}else if (mapper.read(uservo.getUsername()) == null) { //조회할 수 없는 유저면
+			thisAuth = uservo.getAuthList();
+			String password = OTPgenerator.generateTemporaryPassword();  //Temporary password (20) add
+			uservo.setPassword(password);
+			userSrv.register(uservo, thisAuth);
+			resultMsg = resultMsg + "regist done, "; //등록 후 결과 메시지 추가
 		}
 		
-		return returnVO;
+		/* 여기부터 등록 후 확인작업 */
+		
+		
+		logger.info("thisAuth : ", thisAuth != null? "권한이 없어서 추가됨": "권한이 이미 부여되어있음");
+		
+		logger.info("Kakao User정보를 토대로 회원가입을 진행시킵니다.");
+		//전달받은 정보
+		String receivedUserNm = uservo.getUsername();
+		AuthVO FoundUserAuth = uservo.getAuthList();
+		resultMsg = resultMsg + "received data confirmed, ";
+		
+		if (receivedUserNm == null || FoundUserAuth == null) {
+			String errorPoint = receivedUserNm == null ? "receivedUserNm" :  (FoundUserAuth == null? "receivedUserAuth" : "Unknown Error");
+			HttpSession session = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest().getSession();
+			
+			switch (errorPoint) {
+			case "receivedUserNm" :
+				
+		        session.setAttribute("ErrorMsg", "Received UserName is null Check UserVO inserting process");
+		        resultMsg = resultMsg + "error UserName null, ";
+				return "redirect:/customLogin";
+			case "receivedUserAuth":
+				
+		        session.setAttribute("ErrorMsg", "Received UserAuth is null Check AuthVO inserting process");
+		        kakaoRoleAdd(receivedUserNm);
+		        resultMsg = resultMsg + "error UserAuth null, Role add again ";
+			}
 
+		}
+		//DB에서 불러온 정보
+		String thisUserName = userSrv.get(uservo.getUsername()).getUsername();
+		AuthVO thisUserAuth = userSrv.getUserAuth(thisUserName);
+		
+		if(thisUserName != null) {
+			if(thisUserName.equals(thisUserAuth.getUsername())) {
+				userSrv.grantAuth(thisAuth);
+				resultMsg = resultMsg + "Role granted again for role add ,";
+			}
+		}
+		else if (userSrv.get(uservo.getUsername()) == null) {
+			userSrv.register(uservo, thisAuth);
+			resultMsg = resultMsg + "getUsername NOT FOUND regist again ,";
+		}else if (userSrv.getUserAuth(thisUserName) == null) {
+			resultMsg = resultMsg + "Role granted again for role add ,";
+			mapper.insertAuth(thisAuth);
+		}
+		model.addAttribute("UserVO", thisUserAuth);
+		model.addAttribute("AuthVO", thisUserAuth);
+		
+		return resultMsg;
+
+	}
+	
+	private Map<String, Object> kakaoRoleAdd(String username) {
+		AuthVO injectAuth = new AuthVO(username, "KakaoUser");
+		int result = 0;
+		if (userSrv.getUserAuth(username)==null) {
+			System.out.println("권한을 제대로 읽어올 수 없음. 새로운 추가 진핸");
+			mapper.insertAuth(injectAuth);
+			result = 1;
+		}else { //권한이 있다는게 확인된다면
+			System.out.println(mapper.getUserAuth(username).getAuthorities());
+			mapper.grantAuth(injectAuth);
+			result = 2;
+		}
+		Map<String, Object> answer = new HashMap<>();
+		answer.put("ResultMsg", Integer.toString(result));
+		answer.put("authVO", injectAuth);
+		
+		return answer;
+		
 	}
 }
