@@ -166,12 +166,12 @@
  
 
             
-<c:forEach var="file" items="${files}" varStatus="loop">
+	<c:forEach var="file" items="${files}" varStatus="loop">
                    <c:if test="${loop.first or file.placeName ne files[loop.index - 1].placeName}">
                   <div class="board_container">
                     <div class="board_item">
                    
-                        <img src="${file.filepath}" style="width:350px;">
+                        <img src="/trip${file.filepath}" style="width:350px;">
                       <div class="heart_container">
                         <div class="heart" onclick="toggleHeart()">
                           <i class="fa-regular fa-heart"></i>

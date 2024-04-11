@@ -149,9 +149,25 @@ public class tripController {
         // 예를 들어, 서비스나 DAO를 사용하여 데이터베이스에서 해당 placeName에 대한 정보를 가져와 모델에 추가합니다.
         // 이후 trip/trip_detail.jsp 등의 뷰 페이지에서 모델에 담긴 정보를 사용하여 상세 정보를 보여줍니다.
         List<FileVO> files = fileService.getFilesByHashTag(hashtag);
+        
+        FileVO match = null;
+        
+        for (FileVO file : files) {
+            if (file.getPlaceName().equals(placeName)) {
+            	match = file;
+                break; // 첫 번째 일치하는 파일을 찾으면 반복문을 종료합니다.
+            }
+        }
+        
+        
+        fileUserService.getUserByUsername("");
         // 예시로 모델에 placeName을 추가하는 코드를 작성하겠습니다.
         model.addAttribute("placeName", placeName); // 여기서 place_name을 placeName으로 수정
         model.addAttribute("files", files);
+        
+        model.addAttribute("id", match.getId());
+        
+        System.out.println("id :의 값은  :"  +  match);
         System.out.println(placeName);
         System.out.println(files);
         return "trip/trip_detail";
@@ -240,7 +256,7 @@ public class tripController {
     private String saveFile(MultipartFile file) throws IOException {
         String originalFilename = file.getOriginalFilename();
         String filename = generateFilenameWithExtension(originalFilename); // 파일명에 확장자 추가
-        String filepath = "C:/uploaded-images/" + filename;
+        String filepath = "/Users/myhome/Documents/upup/uploaded-images/" + filename;
         file.transferTo(new java.io.File(filepath));
         return filename;
     }
@@ -278,11 +294,12 @@ public class tripController {
         return hashtag; // 해시태그를 리턴
     }
 
+    
     @GetMapping("/uploaded-images/{filename:.+}")
     @ResponseBody
     public byte[] getImage(@PathVariable String filename) throws IOException {
     	System.out.println("getImage실행됨");
-        return Files.readAllBytes(Paths.get("C:/uploaded-images/" + filename));
+        return Files.readAllBytes(Paths.get("/Users/myhome/Documents/upup/uploaded-images/" + filename));
     }
 
 
