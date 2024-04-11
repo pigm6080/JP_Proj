@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html lang="kr">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+         <meta name="_csrf" content="${_csrf.token}" />
+		<meta name="_csrf_header" content="${_csrf.headerName}" />
         <title>여행정보 - 상세조회</title>
         <link rel="icon" href="../resources/img/JP.png" />
         <link rel="stylesheet" href="../resources/styles/Header.css" />
@@ -18,11 +22,166 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       /> 
         <script defer src="../resources/js/test.js"></script>
-
+		
+		<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!-- IONICONS -->
         <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+        
         <!-- JS -->
-        <script defer src="../resources/js/test.js"></script>
+ <!--      <script defer src="../resources/js/test.js"></script> -->
+        
+        
+        <!--  댓글 부분 -->
+       <script type="text/javascript" src="../resources/js/reply.js"></script> 
+        <script type="text/javascript"> 
+    	
+        
+        /*
+    	console.log("=================");
+    	console.log("JS TEST");
+    	
+    	var bnoValue = '${id}';
+    	
+    	console.log(bnoValue);
+    	
+    	
+    	
+    	replyService.add(
+    		{reply:"JS  TEST" , replyer :"tester" , bno:bnoValue} // reply
+    		,
+    		function(result){
+    			alert("RESULT " + result);
+    	);
+    	
+    	
+    	replyService.getList({bno:bnoValue,page:1} , function(list){
+    		
+    		for(var i=0, len =list.length || 0; i< len; i++){
+    			console.log(list[i]);
+    		}
+    		
+    	});
+        
+        
+        replyService.remove(2 , function(count){
+    		
+    		console.log(count);
+    		
+    		if(count ==="success"){
+    			alert("REMOVED");
+    		} }
+    		,function(err){
+    			alert('ERROR...');
+    		});
+        
+    	replyService.update({
+    		rno : 1,
+    		bno : bnoValue,
+    		reply : "Modify Reply...."
+    	}, function(result){
+    		
+    		alert("수정완료...");
+    	});
+        
+    	replyService.get(1, function(data){
+    		console.log(data);
+    	});
+        
+       rest댓글 테스트 완료
+        */
+        $(document).ready(function() {
+    		var operForm = $("#operForm");
+        
+        	
+        	
+    		$("button[data-oper='modify']").on("click", function(e) {
+    			operForm.attr("action", "/board/modify").submit();
+    		});
+
+    		$("button[data-oper='list']").on("click", function(e) {
+    			operForm.find("#bno").remove();
+    			operForm.attr("action", "/board/list");
+    			operForm.submit();
+    		});
+        
+        	 	
+        	console.log('자바 스크립트 시작');
+       		
+        	var bnoValue = '${id}';
+    		var replyUL = $(".chat");
+
+    		console.log(bnoValue + replyUL);
+        	
+    		showList(1);
+       		
+    		function showList(page) {
+    			
+  
+    			replyService.getList({bno : bnoValue,page : page || 1}, function(list) {
+    				var str = "";
+    				if (list == null || list.length == 0) {
+    				replyUL.html("");
+    				return;
+    			}
+    				
+    				for (var i = 0, len = list.length || 0; i < len; i++) {
+    				console.log('자바 스크립트 	출력 2시작');
+    					str += "<li class='list clearfix' data-rno='" + list[i].rno + "'>";
+    					str += "<div><div class='header'><strong class='primary-font'>"
+    					+ list[i].replyer+ "</strong>";
+    				    str += " <small class='pull-right text-muted'>"
+    					+ replyService.displayTime(list[i].replyDate)+ "</small></div>";
+    					str += "<p>"+ list[i].reply	+ "</p></div></li>";
+    			}
+    				replyUL.html(str);
+    			}); //end function
+    		}//end showList
+       	
+    		var modal = $('.modal');
+    		var modalInputReply = modal.find("input[name='reply']");
+    		var modalInputReplyer = modal.find("input[name='replyer']");
+    		var modalInputReplyDate = modal.find("input[name='replyDate']");
+
+    		var modalModBtn = $('#modalModBtn');
+    		var modalRemoveBtn = $('#modalRemoveBtn');
+    		var modalRegisterBtn = $('#modalRegisterBtn');
+    		
+    		$("#addReplyBtn").on('click', function(e){
+    			console.log('addReplyBtn');
+    			modal.find("input").val("");
+    			modalInputReplyDate.closest('div').hide();
+    			modal.find("button[id != 'modalCloseBtn']").hide();
+
+    			modalRegisterBtn.show();
+
+    			$(".modal").modal("show");
+    		}); //on end
+    		
+
+
+    		
+    		modalRegisterBtn.on("click", function(e) {
+    		    var reply = {
+    		        reply: modalInputReply.val(),
+    		        replyer: modalInputReplyer.val(),
+    		        bno: bnoValue
+    		    };
+
+    		    replyService.add(reply, function(result) {
+    		        alert(result);
+    		        modal.find("input").val("");
+    		       
+    		        //새로고침해서 새롭게달린 글을 가져온다.
+    		        showList(1);
+    		    });
+    		});
+    		
+    		
+        
+        });
+       
+        
+        </script> 
 
         <style>
             @font-face {
@@ -193,6 +352,16 @@
             </c:if>
         </c:forEach>
 
+		<!-- 여기서 부터댓글 시작. -->
+
+
+
+
+
+
+
+
+
           <section id="reply">
                 <div class="reply_title">
                     <h1>여행지가 마음에 드시나요?</h1>
@@ -200,52 +369,74 @@
                     <img src="../resources/img/info_detail_icon01.png" alt="">
                     <div class="reviewBtn"><p>내 후기등록</p></div>
                 </div>
-                    <!-- 덧글 입력창 -->
-                        <div class="comment_input">
-                            <form id="commentForm">
-                                <textarea id="commentText" placeholder="덧글을 입력하세요..." rows="4" cols="50"></textarea>
-                                <button type="submit">덧글 등록</button>
-                            </form>
-                        </div>
+
+<style>
+    .modal-body {
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* 선택적으로 폼 컨트롤에 추가 스타일을 지정할 수 있습니다. */
+</style>
+<!-- 모달창  -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				
+				<h4 class="modal-title" id="myModalLabel">댓글 달기</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-grouop">
+					<label>댓글 제목</label>
+					<input class="form-control" name="reply" value="내용을 입력하시오.">
+				</div>
+				<div class="form-group">
+					<label>작성자</label>
+					<input class="form-control" name="replyer" value="">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button id="modalRegisterBtn" type="button" class="btn btn-primary">글등록</button>
+
+			</div>
+		</div>
+	</div>
+</div>
                      <!-- 덧글 목록 -->
-                        <div class="comment_list">
-                            <div class="comment_item">
-                                <p><strong>사용자1:</strong> 여행지가 정말 멋있었어요! 다음에 또 방문하고 싶네요.</p>
-                                <p><strong>등록일:</strong> 2024-03-28</p>
-                                <div class="like_dislike_btns">
-                                    <button class="like_btn">
-                                        <i class="fa-solid fa-thumbs-up fa-lg"></i>
-                                     </button>
-                                     <button class="dislike_btn">
-                                         <i class="fa-solid fa-thumbs-down fa-lg"></i>
-                                     </button>
-                                </div>
-                            </div>
-                            <div class="comment_item">
-                                <p><strong>사용자2:</strong> 이곳은 너무 아름다웠어요. 풍경이 정말 멋졌습니다.</p>
-                                <p><strong>등록일:</strong> 2024-03-27</p>
-                                <div class="like_dislike_btns">
-                                    <button class="like_btn">
-                                        <i class="fa-solid fa-thumbs-up fa-lg"></i>
-                                     </button>
-                                     <button class="dislike_btn">
-                                         <i class="fa-solid fa-thumbs-down fa-lg"></i>
-                                     </button>
-                                </div>
-                            </div>
-                            <div class="comment_item">
-                                <p><strong>사용자3:</strong> 여행지의 분위기가 정말 좋았어요. 하루가 너무 빨리 지나갔네요.</p>
-                                <p><strong>등록일:</strong> 2024-03-26</p>
-                                <div class="like_dislike_btns">
-                                    <button class="like_btn">
-                                       <i class="fa-solid fa-thumbs-up fa-lg"></i>
-                                    </button>
-                                    <button class="dislike_btn">
-                                        <i class="fa-solid fa-thumbs-down fa-lg"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+	                        <div class="panel-body">
+					<ul class="chat">
+
+						<li class="left clearfix" data-rno="12">
+							<div>
+								<div class="header">
+									<strong class="primary-font">user00</strong> <small
+										class="pull-right text-muted">2023-01-01 13:13</small>
+								</div>
+								<p>Good job!</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+                        
+
           </section>
     </body>
 </html>
