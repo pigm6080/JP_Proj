@@ -1,8 +1,5 @@
 /* 여행플래너 영역 */
-<<<<<<< HEAD
-=======
 @media screen and (min-width: 601px){
->>>>>>> main
 .trip_container {
   position: relative;
   justify-content: space-between;
@@ -93,4 +90,82 @@
   rotate: 4deg;
   background-image: url("../img/지도.png");
   background-repeat: no-repeat;
+}
+}
+
+@media screen and (max-width: 600px){
+
+.content_planner{
+  overflow: hidden;
+  width: 100vw;
+  height: 100px;
+}
+
+.trip_container{
+  width: 100%;
+  height: 100px;
+  background-image: url(../img/stars.jpg);
+  background-repeat: no-repeat;
+  opacity: 0.7;
+}
+
+.tripplanner_text_box{
+  padding-top: 25px;
+  padding-left: 40px;
+}
+
+.tripplanner_title{
+  color: white;
+  font-size: 30px;
+}
+
+.tripplanner_text_box>.subtitle{
+  position: relative;
+  top: -10px;
+  padding-left: 80px;
+  color: #2ac1bc;
+  font-size: 24px;
+}
+
+.description{
+  display: none;
+  padding-top: 10px;
+  padding-left: 80px;
+  color: white;
+  font-size: 24px;
+}
+
+.highlight{
+  color: #28cb8b;
+  font-size: 30px;
+}
+
+.info_textbox{
+  display: none;
+}
+
+.tripplanner_button { 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  position: relative;
+  top: -55px;
+  left: 200px;
+  width: 120px;
+  height: 40px;
+  background-color: #28cb8b;
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.tripplanner_button > p {
+  font-size: 20px;
+  text-align: center;
+}
+.tripplanner_button > p > a {
+  color: #fff;
+  text-decoration: none;
+}
+
 }

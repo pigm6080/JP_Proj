@@ -39,6 +39,5 @@
     <!-- 수정 버튼 -->
     <input type="submit" value="Update">
 </form>
-    </form>
 </body>
 </html>

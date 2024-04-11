@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -67,30 +66,7 @@ public class tripController {
 	    }
 	}
 
-//	@GetMapping("/regMember")
-//	public String regMember() {
-//		
-//		System.out.println("회원가입 폼 왔음.");
-//		
-//		return "redirect:/regMember";
-//	}
-//	
-//	@PostMapping("/reg")
-//	public String regmember(@ModelAttribute UserVO vo) {
-//		
-//	    System.out.println("회원가입 정보: " + vo);
-//	    
-//	    service.register(vo);
-//	    
-//	    return "redirect:/";
-//	}
-	@GetMapping("/showdetail")
-	public String tripdetail() {
-		
-		System.out.println("디테일 폼 왔음.");
-		
-		return "/trip/trip_detail";
-	}
+	
 	@GetMapping("/detailInsert")
 	public String tripInsertForm() {
 	    System.out.println("디테일 인서트폼 왔음.");
@@ -264,7 +240,7 @@ public class tripController {
     private String saveFile(MultipartFile file) throws IOException {
         String originalFilename = file.getOriginalFilename();
         String filename = generateFilenameWithExtension(originalFilename); // 파일명에 확장자 추가
-        String filepath = "C:/uploaded-images/" + filename;
+        String filepath = "/Users/myhome/Documents/upup/uploaded-images/" + filename;
         file.transferTo(new java.io.File(filepath));
         return filename;
     }
@@ -302,12 +278,12 @@ public class tripController {
         return hashtag; // 해시태그를 리턴
     }
 
-    @RequestMapping(value="/uploaded-images/{filename:.+}" , method=RequestMethod.GET)
+    
+    @GetMapping("/uploaded-images/{filename:.+}")
     @ResponseBody
-    public byte[] getImage(@PathVariable String filename , Model model) throws IOException {
+    public byte[] getImage(@PathVariable String filename) throws IOException {
     	System.out.println("getImage실행됨");
-    	model.addAttribute("ImgFile",Files.readAllBytes(Paths.get("C:/uploaded-images/" + filename)));
-        return Files.readAllBytes(Paths.get("C:/uploaded-images/" + filename));
+        return Files.readAllBytes(Paths.get("/Users/myhome/Documents/upup/uploaded-images/" + filename));
     }
 
 

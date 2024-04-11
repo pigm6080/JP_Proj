@@ -107,6 +107,7 @@ CREATE TABLE `kakao_account` (
   CONSTRAINT `kakao_account_ibfk_1` FOREIGN KEY (`for_partner_uuid`) REFERENCES `for_partner` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
+
 CREATE TABLE `kakao_user_info` (
   `id` bigint NOT NULL,
   `connected_at` datetime DEFAULT NULL,
@@ -119,6 +120,7 @@ CREATE TABLE `kakao_user_info` (
   CONSTRAINT `kakao_user_info_ibfk_1` FOREIGN KEY (`kakao_account_id`) REFERENCES `kakao_account` (`id`),
   CONSTRAINT `kakao_user_info_ibfk_2` FOREIGN KEY (`for_partner_uuid`) REFERENCES `for_partner` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
 
 CREATE TABLE `kakatoken` (
   `access_token` varchar(255) NOT NULL,

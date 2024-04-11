@@ -22,15 +22,6 @@ public class CustomUser extends User{
 		
 	}
 
-<<<<<<< HEAD
-	public CustomUser(UserVO vo) {
-//FIXME  권한 가져오는 부분 수정 ,, ㅅ게터부분도 수정해줘야함
-		super(vo.getUsername(), vo.getPassword(), vo.getAuthList().stream()
-		.map(auth -> new SimpleGrantedAuthority(auth.getAuth())).collect(Collectors.toList()));
-		
-		this.user = vo;
-	}
-=======
 //	public CustomUser(UserVO vo) {
 //		List<String> stringAuthorities = List.of(customUserDetailsService.getUserAuthority(userName).getAuth());//"ROLE_USER", "ROLE_ADMIN");
 //		Collection<GrantedAuthority> grantedAuthorities = stringAuthorities.stream()
@@ -40,5 +31,4 @@ public class CustomUser extends User{
 //		.map(auth -> new SimpleGrantedAuthority(auth.getAuthority())).collect(Collectors.toList()));
 //		this.user = vo;
 //	}
->>>>>>> features
 }

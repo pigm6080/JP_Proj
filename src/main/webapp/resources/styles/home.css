@@ -1,8 +1,5 @@
 /* 슬라이드바 */
-<<<<<<< HEAD
-=======
 @media screen and (min-width: 731px){
->>>>>>> main
 .slide_bar_container {
   width: 38%;
   height: 200px;
@@ -253,8 +250,6 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
-<<<<<<< HEAD
-=======
 }
 
 @media screen and (max-width: 730px) {
@@ -562,4 +557,3 @@ body{
 
 
 }
->>>>>>> main

@@ -4,7 +4,6 @@
 <html lang="kr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="csrf-token" content="${_csrf.token}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>너 J발 P야?</title>
     <link rel="icon" href="resources/img/JP.png" />
@@ -24,9 +23,8 @@
     <script defer src="resources/js/theme.js"></script>
     
     <!-- IONICONS -->
-    <script
-      src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"
-    ></script>
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
 
     <style>
 		@font-face {

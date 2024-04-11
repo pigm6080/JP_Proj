@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.TripInfoMapper">
+
+    <!-- TripInfo 테이블에 데이터 삽입하는 쿼리문 -->
+    <insert id="insertTripInfo" parameterType="org.zerock.domain.TripInfoVO">
+        INSERT INTO trip_info (hashtag, placeName)
+        VALUES (#{hashtag}, #{placeName})
+    </insert>
+    <!-- 여행지명으로 데이터를 읽는 쿼리 -->
+	 <select id="getTripInfoByPlaceName" resultType="org.zerock.domain.TripInfoVO">
+       SELECT * FROM trip_info WHERE placeName = #{placeName} LIMIT 1
+
+    </select>
+    
+     <!-- HashTag로 데이터를 읽는 쿼리 -->
+	 <select id="getTripInfoByHashTag" resultType="org.zerock.domain.TripInfoVO">
+       SELECT * FROM trip_info WHERE hashtag = #{hashtag} LIMIT 1
+
+    </select>
+	
+</mapper>

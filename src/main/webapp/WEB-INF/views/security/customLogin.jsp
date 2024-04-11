@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -34,7 +35,7 @@
 	        <p>J발 P야? 회원가입으로 모든 서비스를 이용할 수 있어요</p>
 	      </div>
 	      <div class="login_form">
-		<form action="${request.pageContext.contextPath}/login" method="post"
+		<form action="${request.pageContext.contextPath}/login" method="post">
 	        <div class="inputBox">
 	          <label for="username">아이디</label>
 	          <input type="text" id="username" name="username" />

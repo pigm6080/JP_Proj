@@ -21,16 +21,9 @@ public interface UserMapper {
 //	public void insertAuth(String username);
 	public void insertAuth(AuthVO autoVO);
 	
-<<<<<<< HEAD
-	
-	//권한 부여 추가 k
-	String grantAuth(AuthVO authVO);
-=======
 	//권한 부여 추가 k
 	boolean grantAuth(AuthVO authVO);
 	AuthVO getUserAuth(String username);
-
->>>>>>> features
 
 }
 

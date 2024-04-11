@@ -15,19 +15,12 @@ import org.springframework.stereotype.Component;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-<<<<<<< HEAD
-=======
 @Component
->>>>>>> features
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response,
-<<<<<<< HEAD
-			AccessDeniedException accessDeniedException) throws IOException, ServletException {
-=======
 		AccessDeniedException accessDeniedException) throws IOException, ServletException {
->>>>>>> features
 		String requestUri = request.getRequestURI();
 
 		System.out.println(requestUri);

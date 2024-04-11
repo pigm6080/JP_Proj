@@ -17,20 +17,13 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
-<<<<<<< HEAD
-=======
 import org.springframework.stereotype.Component;
->>>>>>> features
 import org.springframework.stereotype.Service;
 
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-<<<<<<< HEAD
-@Service
-=======
 @Component
->>>>>>> features
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 	
 	@Override
@@ -144,17 +137,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 			response.sendRedirect("/");
 		}
 		
-<<<<<<< HEAD
-		
-		
-		
-	    
-		
-		
-		
-=======
 
->>>>>>> features
 		
 	}
 	

@@ -60,6 +60,9 @@
 	<security:http pattern="/webapp/**" security="none"/>
 	<security:http pattern="/uploaded-images/" security="none"/>
 	<security:http pattern="/" security="none"/>
+	<security:http pattern="https://unpkg.com/**" security="none"/>
+	<security:http pattern="https://cdnjs.cloudflare.com/**" security="none"/>
+	<security:http pattern="https://ajax.googleapis.com/**" security="none"/>
 
 <security:http auto-config="true" use-expressions="true">
 	<security:intercept-url pattern="/*" access="permitAll" />

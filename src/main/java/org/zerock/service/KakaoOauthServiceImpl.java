@@ -1,11 +1,6 @@
 package org.zerock.service;
 
-<<<<<<< HEAD
-import java.util.EnumSet;
-import java.util.Iterator;
-
-import org.json.simple.parser.JSONParser;
-=======
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> features
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpEntity;
@@ -22,22 +16,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.client.RestTemplate;
-import org.zerock.domain.AuthVO;
-import org.zerock.domain.KakaoTokenVO;
-import org.zerock.domain.UserVO;
-import org.zerock.oauthutil.OTPgenerator;
-import org.zerock.security.domain.Role;
-=======
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -46,7 +30,6 @@ import org.zerock.domain.KakaoTokenVO;
 import org.zerock.domain.UserVO;
 import org.zerock.mapper.UserMapper;
 import org.zerock.oauthutil.OTPgenerator;
->>>>>>> features
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -60,11 +43,8 @@ import lombok.extern.log4j.Log4j;
 @PropertySource("classpath:/oauth/KakaoOauthClient.properties")
 public class KakaoOauthServiceImpl implements KakaoOauthService {
 
-<<<<<<< HEAD
-=======
 	private static final Logger logger = LoggerFactory.getLogger(KakaoOauthServiceImpl.class);
 	
->>>>>>> features
 	// 서비스에 필요한 상수
 
 	private static final String REDIRECT_URI = "http://localhost:8082/Oauth/kakao/getAuth";
@@ -79,8 +59,6 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 
 	@Value("${client_secret}")
 	private String CLIENT_SECRET; // client_secret
-<<<<<<< HEAD
-=======
 	
 	@Autowired
 	private UserMapper mapper;
@@ -88,7 +66,6 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 	private UserServiceImpl userSrv;
 	
 	
->>>>>>> features
 
 	@Override
 	public String tokenValidation(KakaoTokenVO token) {
@@ -118,7 +95,7 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 	}
 
 	@Override
-	public KakaoTokenVO getToken(String code) {
+	public KakaoTokenVO getToken(String code) throws IOException {
 		RestTemplate rt = new RestTemplate();
 
 		// Header ADD
@@ -142,15 +119,6 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 				String.class // 요청 시 반환되는 데이터 타입
 		);
 
-<<<<<<< HEAD
-		// TODO 응답코드별 에러처리 필요!!
-//		log.info(response);
-//		log.info("응답코드 헤더: "+response.getHeaders()); //String[] format
-//		log.info(response.getStatusCode());
-//		log.info("응답코드 밸류: "+response.getStatusCode().value()); //200
-//		log.info("응답코드 밸류 타입: "+response.getStatusCode().getClass().getName()); //org.springframework.http.HttpStatus
-=======
->>>>>>> features
 
 		if (response.getStatusCode().value() == 200) {
 			log.info("응답 상태 코드 200이래!!!!");
@@ -169,18 +137,12 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		}
 		log.info("카카오 인증코드 : " + token.getAccess_token());
 
-<<<<<<< HEAD
-//		if(valToken(token.getAccess_token(),token.getToken_type())==0) {
-//			log.info("good token");
-//		}
-=======
->>>>>>> features
 		return token;
 	}
 
 	@Override
 	public UserVO getKakaoUserInfo(@ModelAttribute KakaoTokenVO token)
-			throws JsonMappingException, JsonProcessingException {
+			throws IOException, RestClientException {
 		// For Info Get
 		RestTemplate rt2 = new RestTemplate();
 
@@ -199,25 +161,12 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		);
 
 		log.info("resp2 응답코드 :" + response2.getStatusCodeValue());
-<<<<<<< HEAD
-
-		// 문제 발생
 		ObjectMapper omp = new ObjectMapper();
-		JSONParser jParser = new JSONParser();
-=======
-		ObjectMapper omp = new ObjectMapper();
->>>>>>> features
 		JsonNode bodyJson = null;
 
 		String bodyString = response2.getBody();
 		log.info("response2 : " + response2);
-<<<<<<< HEAD
-
 		log.info("response2 : " + response2.getBody());
-
-=======
-		log.info("response2 : " + response2.getBody());
->>>>>>> features
 		log.info("bodyString : " + bodyString);
 
 		bodyJson = omp.readTree(bodyString);
@@ -225,11 +174,7 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 
 		JsonNode propertiesJson = bodyJson.get("properties");
 		JsonNode kakaoAccount = bodyJson.get("kakao_account");
-<<<<<<< HEAD
-		JsonNode kakaoProfile = kakaoAccount.get("profile");
-=======
 		
->>>>>>> features
 		/*
 		 * Iterator<String> fieldNames = bodyJson.fieldNames();
 		 * 
@@ -240,69 +185,11 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		 * // 필드 이름과 값을 출력 또는 원하는 작업 수행 log.info("Field: " + fieldName);
 		 * log.info("Value: " + fieldValue); }
 		 */
-<<<<<<< HEAD
-		
-		
-//		log.info("properties 순회");
-//		Iterator<String> fieldNames = propertiesJson.fieldNames();
-//
-//		while (fieldNames.hasNext()) {
-//			String fieldName = fieldNames.next();
-//			JsonNode fieldValue = propertiesJson.get(fieldName);
-//
-//			// 필드 이름과 값을 출력 또는 원하는 작업 수행
-//			log.info("Field: " + fieldName);
-//			log.info("Value: " + fieldValue);
-//		}
-		
-//		log.info("kakao_account 순회");
-//		Iterator<String> fieldNames2 = kakaoAccount.fieldNames();
-//
-//		while (fieldNames2.hasNext()) {
-//			String fieldName2 = fieldNames2.next();
-//			JsonNode fieldValue2 = kakaoAccount.get(fieldName2);
-//
-//			// 필드 이름과 값을 출력 또는 원하는 작업 수행
-//			log.info("Field: " + fieldName2);
-//			log.info("Value: " + fieldValue2);
-//		}
-		
-		
-//		log.info("kakao_account의 프로필 순회");
-//		Iterator<String> fieldNames3 = kakaoProfile.fieldNames();
-//
-//		while (fieldNames3.hasNext()) {
-//			String fieldName3 = fieldNames3.next();
-//			JsonNode fieldValue3 = kakaoProfile.get(fieldName3);
-//
-//			// 필드 이름과 값을 출력 또는 원하는 작업 수행
-//			log.info("Field: " + fieldName3);
-//			log.info("Value: " + fieldValue3);
-//		}
-//		TODO id to STring working.... 04 05 17: 36 ######$$$$$$$$$$$$$$$$$$$$$$$4
-=======
 
->>>>>>> features
 		
 		log.info(bodyJson.get("id").asText());
 		
 		String username = bodyJson.get("id").asText(); // Numberic ID
-<<<<<<< HEAD
-		String password = OTPgenerator.generateTemporaryPassword();  //Temporary password (20) add
-		String name = propertiesJson.get("nickname").asText();
-		String phone = "null";
-//		
-		log.info(" username : " + username + "\n password : " + password + "\n name : "+ name + "\n phone : "+ phone);
-
-		// bodyJson <- 결과 JSON
-		
-
-		UserVO vo = new UserVO(username, 	// username
-				password, 					// password
-				name, 						// name
-				phone						// phone
-		);
-=======
 //		String password = OTPgenerator.generateTemporaryPassword();  //Temporary password (20) add
 		String name = propertiesJson.get("nickname").asText();
 		String phone = "null";
@@ -323,7 +210,6 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 //		voList.put("UserVO", vo);
 //		voList.put("AuthVO", vo.getAuthList());
 		
->>>>>>> features
 		return vo;
 	}
 
@@ -362,30 +248,6 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 
 	// 유저 정보를 토대로 자동 회원가입을 진행시킴
 	@Override
-<<<<<<< HEAD
-	public UserVO kakaoRegist(UserVO vo, UserServiceImpl userSrv) {
-		// TODO Auto-generated method stub
-		log.info("Kakao User정보를 토대로 회원가입을 진행시킵니다.");
-		UserVO returnVO = null;
-		
-		if(userSrv.get(vo.getUsername()) != null) {
-			AuthVO authVO = new AuthVO(vo.getUsername(), Role.SNSMEMBER.name());
-			returnVO = userSrv.get(vo.getUsername());
-			returnVO.setAuth(authVO);	
-			//있다면 권한만 설정해준다
-		}
-		else if (userSrv.get(vo.getUsername()) == null) {
-			AuthVO authVO = new AuthVO(vo.getUsername(), Role.SNSMEMBER.name());
-			returnVO = vo;
-			returnVO.setAuth(authVO);
-			userSrv.register(returnVO);
-			//없다면 등록하여야하고
-		}
-		
-		return returnVO;
-
-	}
-=======
 	public String kakaoRegist(@RequestParam(value = "KakaoUserInfo") @ModelAttribute UserVO uservo , Model model) {
 		String resultMsg = "Yes start : ";
 		
@@ -486,5 +348,10 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		return answer;
 		
 	}
->>>>>>> features
+
+	@Override
+	public UserVO kakaoRegist(UserVO vo, UserServiceImpl userSrv) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

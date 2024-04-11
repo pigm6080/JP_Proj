@@ -1,9 +1,5 @@
 /* 테마 버튼디자인 */
-<<<<<<< HEAD
-
-=======
 @media screen and (min-width: 601px){
->>>>>>> main
 #테마 {
   position: relative;
 }
@@ -179,8 +175,6 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-<<<<<<< HEAD
-=======
 }
 
 @media screen and (max-width: 600px) {
@@ -253,4 +247,3 @@
 
 
 }
->>>>>>> main
