@@ -6,6 +6,8 @@
 <html lang="kr">
 <head>
 <meta charset="UTF-8" />
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>로그인 페이지</title>
 <link rel="icon" href="resources/img/JP.png" />
@@ -81,58 +83,46 @@
 	var prevPageCheck = '<c:out value="${prevPage}"/>';
 	var isLoginTry = '<c:out value="${loginTry}"/>';
 
-	document.getElementById("loginForm").addEventListener(
-			"submit",
-			function(event) {
-				event.preventDefault(); // 기본 폼 제출 방지
-
-				var csrfHeader = '<c:out value="${_csrf.parameterName}"/>';
-				var csrfToken = '<c:out value="${_csrf.token}"/>';
-				console.log("이전 페이지 체크 : ", prevPageCheck);
-				console.log("로그인 시도 체크 : ", isLoginTry);
-
-				var snsUserName = '<c:out value="${username}"/>';
-				var snsUserPswd = '<c:out value="${password}"/>';
-
-				var xhr = new XMLHttpRequest();
-				xhr.open("POST", "/login", true);
-				xhr.setRequestHeader("Content-Type",
-						"application/x-www-form-urlencoded");
-				xhr.setRequestHeader(csrfHeader, csrfToken); // CSRF 토큰 설정
-
-				xhr.onreadystatechange = function() {
-					if (xhr.readyState == 4 && xhr.status == 200) {
-						// 요청 성공 시 처리
-						console.log(xhr.responseText);
-					}
-				};
-
-				var data = "username=" + encodeURIComponent(snsUserName)
-						+ "&password=" + encodeURIComponent(snsUserPswd);
-				xhr.send(data); // 데이터 전송
-			});
+	
 
 	if (prevPageCheck == "kakaoOauth" && isLoginTry == "Oauth_authenticated") {
+		document.getElementById("loginForm").addEventListener(
+				"submit",
+				function(event) {
+					event.preventDefault(); // 기본 폼 제출 방지
 
-		//   			const lt_UserName = document.querySelector('#username');
-		//   			const lt_UserPwrd = document.querySelector('#password');
-		//   			const csrfToken__ = document.querySelector('#csrf');
+					var csrfHeader = '<c:out value="${_csrf.parameterName}"/>';
+					var csrfToken = '<c:out value="${_csrf.token}"/>';
+					console.log("이전 페이지 체크 : ", prevPageCheck);
+					console.log("로그인 시도 체크 : ", isLoginTry);
 
-		//   			csrf.name = csrfHeader;
-		//   			csrf.value = csrfToken;
-		//   			console.log("QuerySelector Un:" , lt_UserName );
-		//   			console.log("QuerySelector Pw:" , lt_UserPwrd );
+					var snsUserName = '<c:out value="${username}"/>';
+					var snsUserPswd = '<c:out value="${password}"/>';
 
-		//   			console.log("login try. . . ");
-		//   			lt_UserName.value = snsUserName;
-		//   			lt_UserPwrd.value = snsUserPswd;
-		//   			console.log("login try. . .  Id:" , lt_UserName );
-		//   			console.log("login try. . .  Pw:" , lt_UserPwrd );
+					var xhr = new XMLHttpRequest();
+					xhr.open("POST", "/login", true);
+					xhr.setRequestHeader("Content-Type",
+							"application/x-www-form-urlencoded");
+					xhr.setRequestHeader(csrfHeader, csrfToken); // CSRF 토큰 설정
 
-		//   			console.log("submit try . . .");
-		//   			document.getElementById("loginForm").method = "POST";
+					xhr.onreadystatechange = function() {
+						if (xhr.readyState == 4 && xhr.status == 200) {
+							// 요청 성공 시 처리
+							console.log(xhr.responseText);
+						}
+					};
+
+					var data = "username=" + encodeURIComponent(snsUserName)
+							+ "&password=" + encodeURIComponent(snsUserPswd);
+					xhr.send(data); // 데이터 전송
+				});
+		
 		document.getElementById("loginForm").submit();
 
+	}else {
+		document.getElementById("loginForm").addEventListener("submit",	function(event) {
+			document.getElementById("loginForm").submit();
+		}
 	}
 </script>
 </html>

@@ -3,6 +3,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="_csrf" content="${_csrf.token}" />
+	<meta name="_csrf_header" content="${_csrf.headerName}" />
     <title>파일 정보 수정 폼</title>
 </head>
 <body>

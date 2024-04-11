@@ -5,9 +5,9 @@
 
   <head>
     <meta charset="UTF-8" />
-	
-		<meta name="_csrf" content="${_csrf.token}" />
-		<meta name="_csrf_header" content="${_csrf.headerName}" />
+
+	<meta name="_csrf" content="${_csrf.token}" />
+	<meta name="_csrf_header" content="${_csrf.headerName}" />
 	
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입 페이지</title>
@@ -34,6 +34,11 @@
   <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script>
+	
+	 var token = $("meta[name='_csrf']").attr("content");
+	 var header = $("meta[name='_csrf_header']").attr("content");
+	 
+	 
 	  function validateForm() {
 	    var username = document.getElementById("username").value;
 	    var password = document.getElementById("password").value;
@@ -79,26 +84,17 @@
 	    // 모든 유효성 검사 통과 시 true 반환
 	    return true;
 	  }
-	</script>
-	<script>
+
 	// 이메일 입력값을 가져오고,
 	// 입력값을 서버로 전송하고 똑같은 이메일이 있는지 체크한 후
 	// 사용 가능 여부를 이메일 입력창 아래에 표시
 	const emailCheck = () => {
-		 
-		$(function() {
-		    $(document).ajaxSend(function(e, xhr, options) {
-		        xhr.setRequestHeader(header, token);
-		    });
-		});
-		
-
+	
 	    const email = document.getElementById("username").value;
 	    const checkResult = document.getElementById("check-result");
 	    console.log("입력한 이메일", email);
 	    // 아작스로 같이 보내줘야 먹는다. 스프링 시큐리티떄문에. crsf  변조 위조 방지
-	    var token = $("meta[name='_csrf']").attr("content");
-	    var header = $("meta[name='_csrf_header']").attr("content");
+	   
 	    
 	    $.ajax({
 	        // 요청방식: post, url: "email-check", 데이터: 이메일
@@ -132,6 +128,14 @@
 	            console.log("에러발생", err);
 	        }
 	    });
+	    
+	    console.log("header", header);
+	    console.log("token", token);
+		$(function() {
+		    $(document).ajaxSend(function(e, xhr, options) {
+		        xhr.setRequestHeader(header, token);
+		    });
+		});
 	}
 	</script>
     <div class="signup-form">

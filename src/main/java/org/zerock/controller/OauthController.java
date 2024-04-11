@@ -92,10 +92,10 @@ public class OauthController {
 
 
 	@RequestMapping(value = "/kakaologout") // kakao login 회원인 경우 로그아웃 수행
-	public String kakaoLogOut(String accessToken, Model model) throws IOException {
+	public String kakaoLogOut(String accessToken, Model model, HttpServletRequest request) throws IOException {
 
 		String token = (String) model.getAttribute("access_token");
-		kakaoSrv.kakaoLogOut(token);
+		kakaoSrv.kakaoLogOut(token,request);
 
 //		return "redirect:/";
 		return "/security/customLogout";

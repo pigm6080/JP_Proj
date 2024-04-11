@@ -4,6 +4,8 @@ package org.zerock.service;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.ui.Model;
 import org.zerock.domain.AuthVO;
 import org.zerock.domain.KakaoTokenVO;
@@ -22,12 +24,14 @@ public interface KakaoOauthService {
 	String tokenValidation(KakaoTokenVO token); //token validation
 	
 	
-	int kakaoLogOut(String access_token); // access_token needs..
+//	int kakaoLogOut(String access_token); // access_token needs..
 
 
-	UserVO kakaoRegist(UserVO vo, UserServiceImpl userSrv);
+//	UserVO kakaoRegist(UserVO vo, UserServiceImpl userSrv);
 
 	String kakaoRegist(UserVO uservo, Model model);
+
+	int kakaoLogOut(String access_token, HttpServletRequest request);
 
 //	String kakaoRegist(UserVO uservo, Model model);
 

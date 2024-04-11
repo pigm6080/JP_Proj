@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
@@ -221,13 +223,21 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 	}
 
 	@Override
-	public int kakaoLogOut(String access_token) {
+	public int kakaoLogOut(String access_token ,HttpServletRequest request) {
 		int result = 0;
 
 		RestTemplate rt = new RestTemplate();
 		HttpHeaders logOutHeader = new HttpHeaders();
 		logOutHeader.add("Authorization", "bearer " + access_token);
+	
+		// CsrfToken 객체 가져오기
+		CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
 
+		// CsrfToken이 존재하는지 확인하고 헤더에 추가
+		if (csrfToken != null) {
+		    logOutHeader.add(csrfToken.getHeaderName(), csrfToken.getToken());
+		}
+		
 		HttpEntity<MultiValueMap<String, String>> logOutReq = new HttpEntity<>(logOutHeader);
 
 		ResponseEntity<String> logOutResponse = rt.exchange(KAPI_PREFIX + "v1/user/logout", // https://{요청할 서버 주소}
@@ -245,6 +255,14 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 			return result;
 		}
 	}
+
+
+
+//	@Override
+//	public UserVO kakaoRegist(UserVO vo, UserServiceImpl userSrv) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	// 유저 정보를 토대로 자동 회원가입을 진행시킴
 	@Override
@@ -349,9 +367,4 @@ public class KakaoOauthServiceImpl implements KakaoOauthService {
 		
 	}
 
-	@Override
-	public UserVO kakaoRegist(UserVO vo, UserServiceImpl userSrv) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

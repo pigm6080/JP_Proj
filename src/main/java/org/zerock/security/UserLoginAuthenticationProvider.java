@@ -52,7 +52,11 @@ public class UserLoginAuthenticationProvider implements AuthenticationProvider {
 		String OauthUserPass = null;
 		for (GrantedAuthority authorities : userInfo.getAuthorities()) { // "ROLE_KakaoUser"
 			System.out.println("DB에 저장된 유저 역할 : " + authorities);
-				if (authorities.toString().equals("ROLE_KakaoUser")) {
+			System.out.println("KakaoUser인가 ? 1차:" + authorities.getAuthority()+ " : " +  authorities.getAuthority());
+			System.out.println("KakaoUser인가 ? 2차 : " + authorities.getAuthority().indexOf("KakoUser"));
+			
+			
+				if (authorities.getAuthority().indexOf("KakoUser") != -1)  {
 					foundOauthUser = true;
 				}
 		}
