@@ -132,6 +132,7 @@
     				    str += " <small class='pull-right text-muted'>"
     					+ replyService.displayTime(list[i].replyDate)+ "</small></div>";
     					str += "<p>"+ list[i].reply	+ "</p></div></li>";
+    					str += "<br>"
     			}
     				replyUL.html(str);
     			}); //end function
