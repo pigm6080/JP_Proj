@@ -364,12 +364,7 @@
 
 
           <section id="reply">
-                <div class="reply_title">
-                    <h1>여행지가 마음에 드시나요?</h1>
-                    <h2>자세한 여행후기는 내 후기등록에서!</h2>
-                    <img src="../resources/img/info_detail_icon01.png" alt="">
-                    <div class="reviewBtn"><p>내 후기등록</p></div>
-                </div>
+
 
 <style>
     .modal-body {
@@ -393,6 +388,9 @@
         border: 1px solid #ccc;
         border-radius: 5px;
     }
+    .list clearfix{
+    	font-size: 10px;
+    }
 
     /* 선택적으로 폼 컨트롤에 추가 스타일을 지정할 수 있습니다. */
 </style>
@@ -405,17 +403,18 @@
 				<h4 class="modal-title" id="myModalLabel">댓글 달기</h4>
 			</div>
 			<div class="modal-body">
+			<label>댓글 내용</label>
 				<div class="form-grouop">
-					<label>댓글 제목</label>
-					<input class="form-control" name="reply" value="내용을 입력하시오.">
+					
+					<input class="form-control" name="reply" placeholder="내용을 입력하시오." style="width: 1000px; height: 100px;">
 				</div>
 				<div class="form-group">
 					<label>작성자</label>
-					<input class="form-control" name="replyer" value="">
+					<input class="form-control" name="replyer" placeholder="작성자" style="width: 1000px;">
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button id="modalRegisterBtn" type="button" class="btn btn-primary">글등록</button>
+				<button id="modalRegisterBtn" type="button" class="btn btn-primary" >글등록</button>
 
 			</div>
 		</div>
@@ -437,7 +436,12 @@
 					</ul>
 				</div>
                         
-
+                <div class="reply_title">
+                    <h1>여행지가 마음에 드시나요?</h1>
+                    <h2>자세한 여행후기는 내 후기등록에서!</h2>
+                    <img src="../resources/img/info_detail_icon01.png" alt="">
+                    <div class="reviewBtn"><p>내 후기등록</p></div>
+                </div>
           </section>
     </body>
 </html>
