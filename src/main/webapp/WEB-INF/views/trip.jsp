@@ -5,6 +5,7 @@
 <html lang="kr">
   <head>
     <meta charset="UTF-8" />
+	<meta name="csrf-token" content="${_csrf.token}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>여행 정보</title>
     <link rel="icon" href="../resources/img/JP.png" />
@@ -170,7 +171,6 @@
                    <c:if test="${loop.first or file.placeName ne files[loop.index - 1].placeName}">
                   <div class="board_container">
                     <div class="board_item">
-                   
                         <img src="/trip${file.filepath}" style="width:350px;">
                       <div class="heart_container">
                         <div class="heart" onclick="toggleHeart()">
