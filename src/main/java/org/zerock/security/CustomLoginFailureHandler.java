@@ -15,13 +15,22 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+<<<<<<< HEAD
+=======
+import org.springframework.stereotype.Component;
+>>>>>>> features
 import org.springframework.stereotype.Service;
 
 import lombok.extern.log4j.Log4j;
 
 
+<<<<<<< HEAD
 @Service
 @Log4j
+=======
+@Log4j
+@Component
+>>>>>>> features
 public class CustomLoginFailureHandler implements AuthenticationFailureHandler {
 
 	@Override

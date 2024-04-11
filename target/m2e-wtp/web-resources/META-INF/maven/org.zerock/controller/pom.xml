@@ -193,6 +193,7 @@
 			<artifactId>mybatis</artifactId>
 			<version>3.5.11</version>
 		</dependency>
+<<<<<<< HEAD
 
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 		<dependency>
@@ -216,6 +217,10 @@
 			<version>8.3.0</version>
 		</dependency>
 		<!--
+=======
+		
+				<!--
+>>>>>>> features
 		https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -250,8 +255,14 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+<<<<<<< HEAD
 
 
+=======
+		
+		
+		        
+>>>>>>> features
 	</dependencies>
 	<build>
 		<plugins>

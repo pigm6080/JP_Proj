@@ -2,9 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security 
+        http://www.springframework.org/schema/security/spring-security.xsd">
 
+<<<<<<< HEAD
 <bean id = "CustomAccessDeniedHandler" class ="org.zerock.security.CustomAccessDeniedHandler"></bean>
 <bean id = "CustomLoginSuccessHandler" class ="org.zerock.security.CustomLoginSuccessHandler"></bean>
 <bean id = "CustomLoginFailureHandler" class ="org.zerock.security.CustomLoginFailureHandler"></bean>
@@ -54,14 +58,80 @@
 	
 	 
 <!--  위로 통합 	<security:logout logout-url="/customLogout" invalidate-session="true"/> -->
-	
-	
-	 
-</security:http>
-		
-		
-<security:authentication-manager>
+=======
+	<bean id="CustomAccessDeniedHandler"
+		class="org.zerock.security.CustomAccessDeniedHandler"></bean>
+	<bean id="CustomLoginSuccessHandler"
+		class="org.zerock.security.CustomLoginSuccessHandler"></bean>
+	<bean id="CustomLoginFailureHandler"
+		class="org.zerock.security.CustomLoginFailureHandler"></bean>
+	<bean id="bcryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
+	<bean id="UserLoginAuthenticationProvider"
+		class="org.zerock.security.UserLoginAuthenticationProvider"></bean>
+	<bean id="CustomUserDetailsService"
+		class="org.zerock.security.CustomUserDetailsService"></bean>
+	<bean id="LoginUriInterceptFilter"
+		class="org.zerock.security.LoginUriInterceptFilter">
+	</bean>
+	<bean id="SignupUriInterceptFilter"
+		class="org.zerock.security.SignupUriInterceptFilter">
+	</bean>
 
+
+	<bean id="OauthLogoutHandler"
+		class="org.zerock.security.OauthLogoutHandler" />
+
+	<bean id="oauthLogoutFilter"
+		class="org.springframework.security.web.authentication.logout.LogoutFilter">
+		<constructor-arg index="0" value="/customLogout" />
+		<constructor-arg index="1">
+			<list>
+				<!-- 기본 로그아웃 핸들러 -->
+				<bean
+					class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+				<!-- 커스텀 로그아웃 핸들러 -->
+				<ref bean="OauthLogoutHandler" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="csrfRequestMatcher"
+		class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
+		<constructor-arg value="/" />
+	</bean>
+
+
+	<security:http pattern="/**/*.js" security="none"/>
+	<security:http pattern="/**/*.css" security="none"/>
+	<security:http pattern="src/main/resources/**" security="none"/>
+	<security:http pattern="/src/main/**" security="none"/>
+	<security:http pattern="/webapp/**" security="none"/>
+	<security:http pattern="/uploaded-images/" security="none"/>
+	<security:http pattern="/" security="none"/>
+>>>>>>> features
+	
+	
+	<security:http auto-config="true" use-expressions="true">
+		<!-- CSRF 보호 설정 -->
+		<security:csrf disabled="true"></security:csrf>
+		<!-- <security:csrf request-matcher-ref="csrfRequestMatcher"/> -->
+
+<!-- 		<security:intercept-url pattern="/**" -->
+<!-- 			access="permitAll" /> -->
+<!-- 		<security:intercept-url pattern="/" -->
+<!-- 			access="permitAll" /> -->
+<!-- 		<security:intercept-url -->
+<!-- 			pattern="/uploaded-images/*" access="permitAll" /> -->
+<!-- 		<security:intercept-url pattern="/webapp/**" -->
+<!-- 			access="permitAll" /> -->
+<!-- 		<security:intercept-url pattern="/src/main/**" -->
+<!-- 			access="permitAll" /> -->
+<!-- 		<security:intercept-url -->
+<!-- 			pattern="src/main/resources/**" access="permitAll" /> -->
+		
+
+<<<<<<< HEAD
 <!-- 	<security:authentication-provider user-service-ref="customUserDetailsService"> -->
 		
 <!-- 		<security:password-encoder ref="bcryptPasswordEncoder" /> -->
@@ -73,6 +143,89 @@
 	
 	
 </security:authentication-manager>
+=======
+		<!-- <security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')" 
+			/> <security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')" 
+			/> -->
 
+		<!-- FIXME -->
+		<!-- <security:intercept-url pattern="/파일저장페이지 ,글쓰기 페이지URI" access="hasRole('ROLE_MEMBER')" 
+			/> 파일 저장 페이지 로그인한 유저만 접근 가능하게 <<< -->
+		<!-- <security:intercept-url pattern="/파일저장페이지 ,글쓰기 페이지URI" access="hasRole('ROLE_MEMBER')" 
+			/> 파일 저장 페이지 로그인한 유저만 접근 가능하게 <<< -->
+<!-- 		<security:intercept-url pattern="/" -->
+<!-- 			access="permitAll" /> -->
+		<security:intercept-url pattern="/reg"
+			access="permitAll" />
+>>>>>>> features
+
+		<security:intercept-url pattern="/customLogin"
+			access="isAnonymous()" />
+		<security:intercept-url pattern="/regMember"
+			access="isAnonymous()" />
+
+
+		<!-- <security:csrf disabled="false" /> -->
+		<security:form-login username-parameter="username"
+			password-parameter="password"  login-processing-url="/login"
+			default-target-url="/" 
+			authentication-success-handler-ref="CustomLoginSuccessHandler"
+			authentication-failure-handler-ref="CustomLoginFailureHandler" /> <!-- 로그인 실패시 페이지or 컨트롤러 구현 -->
+		<!-- authentication-failure-url="/customLogin" --><!--login-page="/customLogin" -->
+
+		<!-- <security:custom-logout-handler ref="customLogoutHandler"/> -->
+		<security:logout logout-url="/customLogout"
+			logout-success-url="/" invalidate-session="true"
+			delete-cookies="true" />
+
+		<security:access-denied-handler
+			ref="CustomAccessDeniedHandler" />
+
+		<!-- 위로 통합 <security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/> -->
+
+
+
+		<!-- 위로 통합 <security:logout logout-url="/customLogout" invalidate-session="true"/> -->
+
+
+		<!-- 커스텀 필터들 빈 생성 후 추가 /////충돌 이슈로 설정에서 제외 /////-->
+<!-- 		<security:custom-filter -->
+<!-- 			ref="LoginUriInterceptFilter" after="FORM_LOGIN_FILTER" /> -->
+<!-- 		<security:custom-filter -->
+<!-- 			ref="SignupUriInterceptFilter" before="LOGOUT_FILTER" /> -->
+<!-- 		<security:custom-filter ref="LogoutUriInterceptFilter" after="FORM_LOGIN_FILTER" /> -->
+<!-- <security:custom-filter ref="SignupUriInterceptFilter" before="FORM_LOGIN_FILTER" /> -->
+
+
+
+		<security:session-management>
+			<!-- 세션 만료시간 설정 -->
+			<security:concurrency-control
+				max-sessions="3" />
+		</security:session-management>
+
+		<security:anonymous enabled="true" />
+
+
+	</security:http>
+
+
+
+	<security:authentication-manager>
+
+		<!-- <security:authentication-provider user-service-ref="customUserDetailsService"> -->
+
+		<!-- <security:password-encoder ref="bcryptPasswordEncoder" /> -->
+
+		<!-- </security:authentication-provider> -->
+
+		<security:authentication-provider
+			ref="UserLoginAuthenticationProvider">
+		</security:authentication-provider>
+
+
+	</security:authentication-manager>
 
 </beans>
+
+

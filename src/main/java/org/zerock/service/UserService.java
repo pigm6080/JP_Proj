@@ -8,7 +8,8 @@ import org.zerock.domain.UserVO;
 public interface UserService {
 	
 	//삽입
-	public void register(UserVO vo);
+//	public void register(UserVO vo);
+	void register(UserVO vo, AuthVO userAuth);
 	
 	//한개 출력
 	public UserVO get(String username);
@@ -21,8 +22,18 @@ public interface UserService {
 	
 	//회원 전체 리스트 출력
 	public List<UserVO> getList();
+<<<<<<< HEAD
 	
 	//권한 부여 추가 k - private 처리
 //	String grantAuth(AuthVO authVO);
+=======
+
+	
+	
+	//권한 부여 추가 k - private 처리
+	boolean grantAuth(AuthVO authVO);
+	
+	AuthVO getUserAuth(String username);
+>>>>>>> features
 
 }
