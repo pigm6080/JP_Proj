@@ -19,6 +19,7 @@
 - 김근휘<br>
 - 조광남<br>
 - 홍성원<br>
+<img width="1025" alt="image" src="https://github.com/pigm6080/JP_Proj/assets/74187960/27ac9e1c-d813-43fd-9baf-56ad45f5f16d">
 
 ---
 
@@ -53,7 +54,7 @@
 ---
 
 ## 📋 DB ERD
-
+<img width="844" alt="image" src="https://github.com/willBeDuke/Online-town-market/assets/74187960/7fce4741-f692-471d-87ab-8a61fa290e9c">
 
 <br>
 
@@ -82,6 +83,12 @@
 <br>
 
 ---
+
+### ✅ 프로젝트 소감
+
+<img width="1083" alt="image" src="https://github.com/willBeDuke/Online-town-market/assets/74187960/8655f18c-4ce9-4321-87d4-bf5b1acf507b">
+
+
 
 
 ## 📋 API 명세서
