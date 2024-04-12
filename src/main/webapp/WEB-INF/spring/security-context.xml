@@ -64,6 +64,8 @@
 	<security:http pattern="https://cdnjs.cloudflare.com/**" security="none"/>
 	<security:http pattern="https://ajax.googleapis.com/**" security="none"/>
 	<security:http pattern="/customLogout" security="none"/>
+	<security:http pattern="**/customLogout" security="none"/>
+	<security:http pattern="*/customLogout" security="none"/>
 	<security:http pattern="/customLogout/**" security="none"/>
 
 <security:http auto-config="true" use-expressions="true">
@@ -71,6 +73,7 @@
 	<security:intercept-url pattern="/reg" access="permitAll" />
 	<security:intercept-url pattern="/customLogin" access="isAnonymous()"/>
 	<security:intercept-url pattern="/customLogout" access="permitAll"/>
+	<security:intercept-url pattern="/customLogout/**" access="permitAll"/>
 	<security:intercept-url pattern="/regMember" access="isAnonymous()"/>
 	
 	

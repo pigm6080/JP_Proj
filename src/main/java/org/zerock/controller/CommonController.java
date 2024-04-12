@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.log4j.Log4j;
 
@@ -46,8 +46,8 @@ public class CommonController {
 	
 	
 
-//	@RequestMapping("/logOutProcess")
-	@PostMapping("/customLogout")
+	@RequestMapping("/customLogout")
+//	@PostMapping("/customLogout")
 	public String logoutGET(@ModelAttribute UserDetails userDetails, Model model) {
 		System.out.println("/logOutProcess 캐치");
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

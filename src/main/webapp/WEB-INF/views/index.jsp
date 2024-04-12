@@ -57,7 +57,7 @@ body {
 			<div class="nav">
 				<div class="logo-group">
 					<div class="logo">
-						<a href="/"> <img src="resources/img/로고02.png" alt="로고" /> <span
+						<a href="/"><img src="resources/img/로고02.png" alt="로고" /> <span
 							class="project-name">너 J발 P야?</span>
 						</a>
 					</div>
@@ -85,8 +85,8 @@ body {
 						<button id="logoutBtnton" class="button nondisplay" >로그아웃</button>
 					</form>
 
-					<!-- 					<button id="logoutBtnton" class="button nondisplay" -->
-					<!-- 						onclick="location.href='/logOutProcess'">로그아웃</button> -->
+<!-- 										<button id="logoutBtnton" class="button nondisplay" -->
+<!-- 											onclick="location.href='/customLogout'">로그아웃</button> -->
 				</div>
 				<div class="hamburger">
 					<div class="line line-1"></div>

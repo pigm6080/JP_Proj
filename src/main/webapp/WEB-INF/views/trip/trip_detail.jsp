@@ -201,6 +201,7 @@
 body {
 	font-family: 'MaplestoryBold', sans-serif;
 }
+
 </style>
 </head>
 <body>
@@ -208,9 +209,8 @@ body {
 		<div class="nav" style="opacity: 0.8;">
 			<div class="logo-group">
 				<div class="logo">
-					<a href="../resources/index.html"> <img
-						src="../resources/img/로고02.png" alt="로고" /> <span
-						class="project-name">너 J발 P야?</span></a>
+					<a href="/"> <img src="../resources/img/로고02.png" alt="로고" />
+						<span class="project-name">너 J발 P야?</span></a>
 				</div>
 			</div>
 			<div class="nav-buttons">
@@ -220,13 +220,111 @@ body {
 				<button class="button  on" data-section="trip_info">여행정보</button>
 				<button class="button" data-section="community">커뮤니티</button>
 			</div>
+			<!--로그인 정보단-->
+
+
+			<h1 class="username">${user.name}${UserName}</h1>
+			<h1 class="username">${SNSUserName}</h1>
 			<div class="auth-buttons">
-				<button class="button" onclick="location.href='loginMember.html'">
-					로그인</button>
-				<button class="button" onclick="location.href='regMember.html'">
-					회원가입</button>
+				<button id="loginButton" class="button"
+					onclick="location.href='/customLogin'">로그인</button>
+				<button id="registerButton" class="button"
+					onclick="location.href='/regMember'">회원가입</button>
+
+				<form action="/customLogout" method="post">
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+					<button id="logoutBtnton" class="button nondisplay">로그아웃</button>
+				</form>
+
+				<!-- 										<button id="logoutBtnton" class="button nondisplay" -->
+				<!-- 											onclick="location.href='/customLogout'">로그아웃</button> -->
 			</div>
 		</div>
+
+		<!--로그인 javascript-->
+
+
+		<script>
+			//   페이지 로드 후 호출되는 함수
+			window.onload = function() {
+				checkSession();
+			};
+
+			// 세션에 값이 있는지 확인하는 함수
+			function checkSession() {
+				$.ajax({
+					url : '/Oauth/kakao/checkSession', // 세션 확인을 위한 서버 엔드포인트
+					type : 'GET',
+					success : function(data) {
+						if (data.indexOf("ROLE") != -1
+								|| data.indexOf("Kakao") != -1) {
+							// 											console.log(data);
+							// 세션에 값이 있는 경우
+							document.getElementById("loginButton").classList
+									.add("nondisplay");
+							document.getElementById("registerButton").classList
+									.add("nondisplay");
+							document.getElementById("logoutBtnton").classList
+									.remove("nondisplay");
+						} else if (!data) {
+							document.getElementById("loginButton").classList
+									.remove("nondisplay");
+							document.getElementById("registerButton").classList
+									.remove("nondisplay");
+							document.getElementById("logoutBtnton").classList
+									.add("nondisplay");
+						}
+					},
+					error : function(xhr, status, error) {
+						console.error('Error occurred during session check:',
+								error);
+					}
+				});
+			}
+
+			function logout() {
+				// CSRF 토큰 가져오기
+				var csrfTokenMeta = document
+						.querySelector('meta[name="_csrf"]');
+				var csrfHeaderMeta = document
+						.querySelector('meta[name="_csrf_header"]');
+
+				// CSRF 토큰과 헤더 이름이 유효한지 확인
+				if (csrfTokenMeta && csrfHeaderMeta) {
+					var csrfToken = csrfTokenMeta.getAttribute('content');
+					var csrfHeader = csrfHeaderMeta.getAttribute('content');
+
+					// XMLHttpRequest 객체 생성
+					var xhr = new XMLHttpRequest();
+
+					// 요청 설정
+					xhr
+							.open("GET", "http://localhost:8082/logOutProcess",
+									true); // true는 비동기 방식을 의미
+
+					// 요청 헤더에 CSRF 토큰 추가
+					xhr.setRequestHeader(csrfHeader, csrfToken);
+
+					// 응답 처리
+					xhr.onload = function() {
+						if (xhr.status >= 200 && xhr.status < 300) {
+							// 요청이 성공한 경우 응답 처리
+							console.log(xhr.responseText); // 응답 데이터 출력
+						} else {
+							// 요청이 실패한 경우 오류 처리
+							console.error("Request failed with status",
+									xhr.status);
+						}
+					};
+
+					// 요청 보내기
+					xhr.send();
+				} else {
+					console.error("CSRF 토큰 또는 헤더를 찾을 수 없습니다.");
+				}
+			}
+		</script>
 		<!-- 사이드 퀵nav-->
 		<div class="l-navbar" id="navbar">
 			<nav class="nav_t">
@@ -367,15 +465,37 @@ body {
 
 
 	<section id="reply">
-		<div class="reply_title">
-			<h1>여행지가 마음에 드시나요?</h1>
-			<h2>자세한 여행후기는 내 후기등록에서!</h2>
-			<img src="../resources/img/info_detail_icon01.png" alt="">
-			<div class="reviewBtn">
-				<p>내 후기등록</p>
-			</div>
-		</div>
 
+
+		<style>
+.modal-body {
+	padding: 20px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.form-control {
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.list clearfix {
+	font-size: 10px;
+}
+
+/* 선택적으로 폼 컨트롤에 추가 스타일을 지정할 수 있습니다. */
+</style>
 		<!-- 모달창  -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
@@ -383,16 +503,18 @@ body {
 				<div class="modal-content">
 					<div class="modal-header">
 
-						<h4 class="modal-title" id="myModalLabel">댓글 달기</h4>
+						<h4 class="modal-title" id="myModalLabel">후기 달기</h4>
 					</div>
 					<div class="modal-body">
+						<label>후기 내용</label>
 						<div class="form-grouop">
-							<label>댓글 제목</label> <input class="form-control" name="reply"
-								value="내용을 입력하시오.">
+
+							<input class="form-control" name="reply" placeholder="내용을 입력하시오."
+								style="width: 1000px; height: 100px;">
 						</div>
 						<div class="form-group">
 							<label>작성자</label> <input class="form-control" name="replyer"
-								value="">
+								placeholder="작성자" style="width: 1000px;">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -419,33 +541,14 @@ body {
 			</ul>
 		</div>
 
-
+		<div class="reply_title">
+			<h1>여행지가 마음에 드시나요?</h1>
+			<h2>자세한 여행후기는 내 후기등록에서!</h2>
+			<img src="../resources/img/info_detail_icon01.png" alt="">
+			<div class="reviewBtn">
+				<p>내 후기등록</p>
+			</div>
+		</div>
 	</section>
 </body>
-
-<style>
-.modal-body {
-	padding: 20px;
-}
-
-.form-group {
-	margin-bottom: 20px;
-}
-
-.form-group label {
-	display: block;
-	margin-bottom: 5px;
-	font-weight: bold;
-}
-
-.form-control {
-	width: 100%;
-	padding: 10px;
-	font-size: 16px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-}
-
-/* 선택적으로 폼 컨트롤에 추가 스타일을 지정할 수 있습니다. */
-</style>
 </html>
