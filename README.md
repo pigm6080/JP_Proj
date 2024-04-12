@@ -58,6 +58,11 @@
 
 <br>
 
+## 📋 요구사항 명세서
+<img width="876" alt="image" src="https://github.com/willBeDuke/Online-town-market/assets/74187960/8a9228f0-6c16-46d8-bd62-24999617d31f">
+
+## 📋 유스케이스
+<img width="858" alt="image" src="https://github.com/willBeDuke/Online-town-market/assets/74187960/278fa3dc-0c2a-4892-b2fa-fb98ad89fb59">
 ---
 
 
