@@ -95,6 +95,9 @@
 
 ### ✅ 깃크라켄 기록..
 <img width="594" alt="image" src="https://github.com/willBeDuke/Online-town-market/assets/74187960/49cebbc9-edbc-42ef-aae2-5f01802c60d4">
+
+### 기술스택
+<img width="1155" alt="image" src="https://github.com/willBeDuke/Online-town-market/assets/74187960/ac8effce-6df9-469f-947c-c338c338a683">
 <img width="594" alt="image" src="https://github.com/willBeDuke/Online-town-market/assets/74187960/ffb96745-bbf4-4282-b143-c56e52c7fda1">
 
 
