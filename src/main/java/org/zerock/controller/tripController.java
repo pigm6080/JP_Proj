@@ -66,23 +66,7 @@ public class tripController {
 	    }
 	}
 
-	@GetMapping("/regMember")
-	public String regMember() {
-		
-		System.out.println("회원가입 폼 왔음.");
-		
-		return "redirect:/regMember";
-	}
 	
-	@PostMapping("/reg")
-	public String regmember(@ModelAttribute UserVO vo) {
-		
-	    System.out.println("회원가입 정보: " + vo);
-	    
-	    service.register(vo);
-	    
-	    return "redirect:/";
-	}
 	@GetMapping("/detailInsert")
 	public String tripInsertForm() {
 	    System.out.println("디테일 인서트폼 왔음.");
@@ -256,7 +240,7 @@ public class tripController {
     private String saveFile(MultipartFile file) throws IOException {
         String originalFilename = file.getOriginalFilename();
         String filename = generateFilenameWithExtension(originalFilename); // 파일명에 확장자 추가
-        String filepath = "/Users/myhome/Documents/upup/uploaded-images/" + filename;
+        String filepath = "C:\\uploaded-images\\" + filename;
         file.transferTo(new java.io.File(filepath));
         return filename;
     }
@@ -299,7 +283,7 @@ public class tripController {
     @ResponseBody
     public byte[] getImage(@PathVariable String filename) throws IOException {
     	System.out.println("getImage실행됨");
-        return Files.readAllBytes(Paths.get("/Users/myhome/Documents/upup/uploaded-images/" + filename));
+        return Files.readAllBytes(Paths.get("C:\\uploaded-images\\" + filename));
     }
 
 

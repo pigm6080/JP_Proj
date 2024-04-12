@@ -2,6 +2,7 @@ package org.zerock.mapper;
 
 import java.util.List;
 
+import org.zerock.domain.AuthVO;
 import org.zerock.domain.UserVO;
 
 public interface UserMapper {
@@ -17,6 +18,15 @@ public interface UserMapper {
 	//회원 전체 리스트 출력
 	public List<UserVO> getList();
 	//로그인
-	public void insertAuth(String username);
+//	public void insertAuth(String username);
+	public void insertAuth(AuthVO autoVO);
 	
+	//권한 부여 추가 k
+	boolean grantAuth(AuthVO authVO);
+	
+	AuthVO getUserAuth(String username);
+
 }
+
+
+

@@ -1,6 +1,7 @@
 package org.zerock.security.domain;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -21,11 +22,13 @@ public class CustomUser extends User{
 		
 	}
 
-	public CustomUser(UserVO vo) {
-
-		super(vo.getUsername(), vo.getPassword(), vo.getAuthList().stream()
-		.map(auth -> new SimpleGrantedAuthority(auth.getAuth())).collect(Collectors.toList()));
-		
-		this.user = vo;
-	}
+//	public CustomUser(UserVO vo) {
+//		List<String> stringAuthorities = List.of(customUserDetailsService.getUserAuthority(userName).getAuth());//"ROLE_USER", "ROLE_ADMIN");
+//		Collection<GrantedAuthority> grantedAuthorities = stringAuthorities.stream()
+//			    .map(SimpleGrantedAuthority::new)
+//			    .collect(Collectors.toList());		
+//		super(vo.getUsername(), vo.getPassword(), vo.getAuthorities().stream()
+//		.map(auth -> new SimpleGrantedAuthority(auth.getAuthority())).collect(Collectors.toList()));
+//		this.user = vo;
+//	}
 }

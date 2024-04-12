@@ -1,0 +1,31 @@
+[33mcommit 8c4409ff8a66a62d57694c3bc65e3974674b3c90[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: YRN <118609415+Kascald@users.noreply.github.com>
+Date:   Wed Apr 3 18:42:11 2024 +0900
+
+    카카오 연동 인가코드 ,액세스 토큰 획득
+    
+    토큰 VO ,유저정보 VO ,
+
+[33mcommit 33dda5a80177458f223e3af797b1ec389e34be2f[m[33m ([m[1;31mpigm6080/main[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m, [m[1;32mDV[m[33m)[m
+Author: pigm6080 <pigm6080@gmail.com>
+Date:   Mon Mar 25 15:27:05 2024 +0900
+
+    fronyend 연동완료
+
+[33mcommit ed212fd88a36f85dbb8ac33694da7a11a35a104d[m
+Author: pigm6080 <pigm6080@gmail.com>
+Date:   Fri Mar 22 15:19:03 2024 +0900
+
+    main 시큐리티 연동
+
+[33mcommit 18b4f36bc6a4adbb4facfbb2e308a5a838bd0b76[m
+Author: h970920 <h970920@naver.com>
+Date:   Thu Mar 21 17:19:45 2024 +0900
+
+    홍성원 커밋 테스트.
+
+[33mcommit 742a194d3705ba912d8a6e86fd5becf0205e7600[m
+Author: pigm6080 <pigm6080@gmail.com>
+Date:   Thu Mar 21 17:13:45 2024 +0900
+
+    pom.xml설정완료

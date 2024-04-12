@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <meta charset="UTF-8">
 <title>J발 너 P야 ? 에러페이지</title>
 </head>

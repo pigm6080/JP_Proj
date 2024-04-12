@@ -6,4 +6,3 @@ public interface FileUserMapper {
     void insertUser(FileUserVO user);
     FileUserVO getUserByUsername(String username);
 }
-

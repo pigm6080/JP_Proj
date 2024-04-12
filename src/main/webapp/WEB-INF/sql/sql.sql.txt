@@ -10,10 +10,15 @@ CREATE TABLE user (
     createday TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
+
+#User_auth 테이블 생성
+
+
 CREATE TABLE user_auth(
     username VARCHAR(100) NOT NULL,
     auth VARCHAR(50) default 'ROLE_MEMBER' NOT NULL,
     CONSTRAINT user_auth FOREIGN KEY (username) REFERENCES user (username)
+
 );
 
 SELECT mem.username , password  ,name ,phone  ,createday , auth
@@ -70,4 +75,59 @@ CREATE TABLE tbl_reply (
 
 
 ———————————————————————
+Oauth 설정 DB 쿼리
 
+CREATE TABLE `kakao_account` (
+  `id` bigint NOT NULL,
+  `profile_nickname_needs_agreement` tinyint(1) DEFAULT NULL,
+  `profile_image_needs_agreement` tinyint(1) DEFAULT NULL,
+  `name_needs_agreement` tinyint(1) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email_needs_agreement` tinyint(1) DEFAULT NULL,
+  `is_email_valid` tinyint(1) DEFAULT NULL,
+  `is_email_verified` tinyint(1) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `age_range_needs_agreement` tinyint(1) DEFAULT NULL,
+  `age_range` varchar(255) DEFAULT NULL,
+  `birthyear_needs_agreement` tinyint(1) DEFAULT NULL,
+  `birthyear` varchar(255) DEFAULT NULL,
+  `birthday_needs_agreement` tinyint(1) DEFAULT NULL,
+  `birthday` varchar(255) DEFAULT NULL,
+  `birthday_type` varchar(255) DEFAULT NULL,
+  `gender_needs_agreement` tinyint(1) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `phone_number_needs_agreement` tinyint(1) DEFAULT NULL,
+  `phone_number` varchar(255) DEFAULT NULL,
+  `ci_needs_agreement` tinyint(1) DEFAULT NULL,
+  `ci` varchar(255) DEFAULT NULL,
+  `ci_authenticated_at` datetime DEFAULT NULL,
+  `for_partner_uuid` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `for_partner_uuid` (`for_partner_uuid`),
+  CONSTRAINT `kakao_account_ibfk_1` FOREIGN KEY (`for_partner_uuid`) REFERENCES `for_partner` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `kakao_user_info` (
+  `id` bigint NOT NULL,
+  `connected_at` datetime DEFAULT NULL,
+  `kakao_account_id` bigint DEFAULT NULL,
+  `properties` json DEFAULT NULL,
+  `for_partner_uuid` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `kakao_account_id` (`kakao_account_id`),
+  KEY `for_partner_uuid` (`for_partner_uuid`),
+  CONSTRAINT `kakao_user_info_ibfk_1` FOREIGN KEY (`kakao_account_id`) REFERENCES `kakao_account` (`id`),
+  CONSTRAINT `kakao_user_info_ibfk_2` FOREIGN KEY (`for_partner_uuid`) REFERENCES `for_partner` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `kakatoken` (
+  `access_token` varchar(255) NOT NULL,
+  `token_type` varchar(10) NOT NULL,
+  `refresh_token` varchar(255) NOT NULL,
+  `expires_in` decimal(10,0) NOT NULL,
+  `scope` varchar(255) NOT NULL,
+  `refresh_token_expires_in` int NOT NULL,
+  PRIMARY KEY (`access_token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
