@@ -88,6 +88,9 @@
 
 <img width="1083" alt="image" src="https://github.com/willBeDuke/Online-town-market/assets/74187960/8655f18c-4ce9-4321-87d4-bf5b1acf507b">
 
+### ✅ 깃크라켄 기록..
+<img width="594" alt="image" src="https://github.com/willBeDuke/Online-town-market/assets/74187960/49cebbc9-edbc-42ef-aae2-5f01802c60d4">
+<img width="594" alt="image" src="https://github.com/willBeDuke/Online-town-market/assets/74187960/ffb96745-bbf4-4282-b143-c56e52c7fda1">
 
 
 
