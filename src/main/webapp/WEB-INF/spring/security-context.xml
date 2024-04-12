@@ -51,8 +51,8 @@
 		<constructor-arg value="/" />
 	</bean>
 
-
-
+	<bean id="javaConfig" class="org.zerock.security.domain.secu_config"></bean>
+	
 	<security:http pattern="/**/*.js" security="none"/>
 	<security:http pattern="/**/*.css" security="none"/>
 	<security:http pattern="src/main/resources/**" security="none"/>
@@ -63,13 +63,14 @@
 	<security:http pattern="https://unpkg.com/**" security="none"/>
 	<security:http pattern="https://cdnjs.cloudflare.com/**" security="none"/>
 	<security:http pattern="https://ajax.googleapis.com/**" security="none"/>
-	
+	<security:http pattern="/customLogout" security="none"/>
+	<security:http pattern="/customLogout/**" security="none"/>
 
 <security:http auto-config="true" use-expressions="true">
 	<security:intercept-url pattern="/*" access="permitAll" />
 	<security:intercept-url pattern="/reg" access="permitAll" />
 	<security:intercept-url pattern="/customLogin" access="isAnonymous()"/>
-	<security:intercept-url pattern="/customLogout" access="isAuthenticated()"/>
+	<security:intercept-url pattern="/customLogout" access="permitAll"/>
 	<security:intercept-url pattern="/regMember" access="isAnonymous()"/>
 	
 	

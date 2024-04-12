@@ -12,12 +12,13 @@
 
 <h1>Logout Page</h1>
 
-	<form action="customLogout" method="post" id="logoutForm">>
+	<form action="/logOutProcess" method="post" id="logoutForm">>
+	    <input type="hidden" name="username" value="${loggedInUser.userName}"/>
 		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
 <!-- 		<button>로그아웃</button> -->
 	</form>
 </body>
 <script type="text/javascript">
-document.getElementById("logoutForm").submit();
+	document.getElementById("logoutForm").submit();
 </script>
 </html>

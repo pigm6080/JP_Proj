@@ -15,12 +15,13 @@ import org.zerock.mapper.UserMapper;
 import org.zerock.security.domain.CustomUser;
 //import org.zerock.oauthutil.UserAdapter;
 
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService{
 
 	@Autowired

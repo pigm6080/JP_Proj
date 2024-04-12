@@ -5,15 +5,20 @@ import java.util.Collections;
 import java.util.Date;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Getter @Setter
 @ToString
-
 public class UserVO implements UserDetails{ //extends User{
 	
 //	public UserVO(String username, String password, Collection<? extends GrantedAuthority> authorities) {
@@ -29,35 +34,43 @@ public class UserVO implements UserDetails{ //extends User{
 	private String phone;
 	private Date createday;
 	private AuthVO authList;
+	
+	
+//	
+//	@Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return Collections.singleton(() -> authList.getAuth());
+//    }
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+	    // Assuming AuthVO has a method getAuth() that returns the authority as a String
+	    return Collections.singleton(new SimpleGrantedAuthority(authList.getAuth()));
+	}
+
 
 	@Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(() -> authList.getAuth());
-    }
-
-
-//	@Override
 	// 계정이 만료 되지 않았는가?
 	public boolean isAccountNonExpired() {
 
 		return true;
 	}
 
-//	@Override
+	@Override
 	// 계정이 잠기지 않았는가?
 	public boolean isAccountNonLocked() {
 
 		return true;
 	}
 
-//	@Override
+	@Override
 	// 패스워드가 만료되지 않았는가?
 	public boolean isCredentialsNonExpired() {
 
 		return true;
 	}
 
-//	@Override
+	@Override
 	// 계정이 활성화 되었는가?
 	public boolean isEnabled() {
 
